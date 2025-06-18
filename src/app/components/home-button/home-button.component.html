@@ -1,0 +1,19 @@
+<a
+  [href]="href"
+  class="relative flex flex-col items-center justify-center w-full h-full bg-gray-100
+         transition-all duration-200 ease-in-out
+         hover:bg-gray-200 rounded-lg hover:brightness-110 hover:scale-105 shadow-gray-400 shadow-lg"
+>
+  <img
+    [src]="srcImage"
+    alt="Ver tiendas formales"
+    class="absolute w-full h-full object-cover rounded-lg" />
+
+  <div class="absolute bottom-0 w-full text-center bg-gradient-to-t from-gray-900 to-transparent text-white p-2 rounded-b-lg flex flex-col items-start">
+    <p class="text-3xl font-black text-start">
+      <small class="text-2xl">Ver</small>
+      <br />
+      {{ text }}
+    </p>
+  </div>
+</a>
