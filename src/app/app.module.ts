@@ -17,6 +17,7 @@ import { ShoppingCartIconComponent } from './components/atoms/icons/shopping-car
 import { SearchBarComponent } from './components/atoms/search-bar/search-bar.component';
 import {FormsModule} from "@angular/forms";
 import { SearchIconComponent } from './components/atoms/icons/search-icon/search-icon.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SearchIconComponent } from './components/atoms/icons/search-icon/search
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class SearchBarComponent implements OnInit {
 
   @Input() placeholder: string = 'Buscar...';
-  @Input() backgroundColor: string = 'bg-zinc-100'; // Tailwind utility or class name
+  @Input() backgroundColor: string = 'bg-zinc-100';
   @Output() search = new EventEmitter<string>();
 
   searchQuery: string = '';
