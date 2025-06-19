@@ -1,0 +1,8 @@
+<button
+  (click)="buttonClicked"
+  class="bg-neutral-300 rounded-full p-2  hover:bg-lime-400 duration-200
+  hover:scale-110 mx-1 h-9 w-9"
+>
+  <app-left-arrow-icon *ngIf="direction === 'left'"></app-left-arrow-icon>
+  <app-right-arrow-icon *ngIf="direction === 'right'"></app-right-arrow-icon>
+</button>
