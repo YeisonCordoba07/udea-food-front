@@ -10,6 +10,8 @@ import { CategoryComponent } from './components/molecules/category/category.comp
 import { ArrowButtonComponent } from './components/atoms/arrow-button/arrow-button.component';
 import { RightArrowIconComponent } from './components/atoms/icons/right-arrow-icon/right-arrow-icon.component';
 import { LeftArrowIconComponent } from './components/atoms/icons/left-arrow-icon/left-arrow-icon.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LeftArrowIconComponent } from './components/atoms/icons/left-arrow-icon
     CategoryComponent,
     ArrowButtonComponent,
     RightArrowIconComponent,
-    LeftArrowIconComponent
+    LeftArrowIconComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
