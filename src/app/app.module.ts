@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeButtonComponent } from './components/home-button/home-button.component';
+import { HomeButtonComponent } from './components/molecules/home-button/home-button.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CategoryItemComponent } from './components/atoms/category-item/category-item.component';
 import { CategoryComponent } from './components/molecules/category/category.component';
