@@ -14,18 +14,7 @@ export class NavbarComponent implements OnInit {
   }
 
   search(query: string): void {
-    this.searchService.searchByName(query).subscribe(
-      {
-        next: (response) => {
-          console.log('Search results:', response);
-          // Aquí puedes manejar los resultados de la búsqueda
-        },
-        error: (error) => {
-          console.error('Error during search:', error);
-          // Aquí puedes manejar el error de la búsqueda
-        }
-      }
-    );
+    this.searchService.searchByName(query);
   }
 
 }
