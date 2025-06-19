@@ -1,0 +1,20 @@
+<form class="relative items-center w-full" (submit)="handleSearch($event)">
+  <div class="absolute top-2.5 left-3 text-gray-400">
+    <app-search-icon></app-search-icon>
+  </div>
+
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    name="search"
+    [ngClass]="[
+      'border-2 border-transparent rounded-full',
+      backgroundColor,
+      'h-10 w-full ps-10 px-4 text-sm text-gray-900 font-medium',
+      'focus:outline-none focus:border-orange-500 hover:border-orange-300',
+      'transition duration-150 ease'
+    ]"
+    [placeholder]="placeholder"
+  />
+</form>
+

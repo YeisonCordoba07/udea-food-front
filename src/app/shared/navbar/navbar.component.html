@@ -1,0 +1,38 @@
+<nav class="bg-white border-b-2 border-b-orange-500 py-3 px-5 w-full h-full flex items-center justify-between gap-10 max-sm:gap-3 z-30">
+
+
+  <a href="/" class="flex items-center gap-2 max-sm:hidden ">
+  <img
+    src="assets/images/UdeALogo.png"
+    width="80"
+    height="24"
+    alt="logo udea food"
+    class="w-20 h-full"
+  />
+  </a>
+
+  <div class="w-1/2 flex-auto">
+    <app-search-bar
+      placeholder="Comida, tiendas, productos, ..." ></app-search-bar>
+  </div>
+
+
+
+
+  <div class="flex gap-5 h-full">
+    <app-principal-button
+      text="Iniciar sesión"
+      typeButton="secondary"
+      buttonType="button"
+      [showIcon]="false"
+    ></app-principal-button>
+
+    <app-principal-button
+      text="Registrarse"
+      typeButton="primary"
+      buttonType="button"
+      [showIcon]="false"
+    ></app-principal-button>
+  </div>
+
+</nav>

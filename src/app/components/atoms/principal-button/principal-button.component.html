@@ -1,0 +1,11 @@
+<button
+  [disabled]="disabled"
+  [type]="buttonType"
+  (click)="handleClick()"
+  [class]="buttonClasses"
+>
+  <span>{{ text }}</span>
+  <ng-container *ngIf="showIcon">
+    <app-shopping-cart-icon></app-shopping-cart-icon>
+  </ng-container>
+</button>

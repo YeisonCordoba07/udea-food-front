@@ -12,6 +12,11 @@ import { RightArrowIconComponent } from './components/atoms/icons/right-arrow-ic
 import { LeftArrowIconComponent } from './components/atoms/icons/left-arrow-icon/left-arrow-icon.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { PrincipalButtonComponent } from './components/atoms/principal-button/principal-button.component';
+import { ShoppingCartIconComponent } from './components/atoms/icons/shopping-cart-icon/shopping-cart-icon.component';
+import { SearchBarComponent } from './components/atoms/search-bar/search-bar.component';
+import {FormsModule} from "@angular/forms";
+import { SearchIconComponent } from './components/atoms/icons/search-icon/search-icon.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +29,16 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     RightArrowIconComponent,
     LeftArrowIconComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    PrincipalButtonComponent,
+    ShoppingCartIconComponent,
+    SearchBarComponent,
+    SearchIconComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
