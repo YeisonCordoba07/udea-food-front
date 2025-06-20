@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -10,6 +10,7 @@ export class DropdownComponent implements OnInit {
   isOpen: boolean = false;
   @Input() options: string[] = [];
   @Input() selected!: string;
+  @Output() optionChange = new EventEmitter<string>();
 
   constructor(private elementRef: ElementRef) { }
 
@@ -21,7 +22,10 @@ export class DropdownComponent implements OnInit {
   }
 
   handleFilterClick(filter: string) {
-    this.selected = filter;
+    if(this.selected !== filter) {
+      this.selected = filter;
+      this.optionChange.emit(filter);
+    }
     this.toggleDropdown();
   }
 

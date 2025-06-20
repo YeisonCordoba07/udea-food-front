@@ -1,4 +1,8 @@
 <div class="flex gap-2 items-center">
   <span class="font-bold text-sm">{{ text }}:</span>
-  <app-dropdown [options]="options" [selected]="selected"></app-dropdown>
+  <app-dropdown
+    [options]="options"
+    [selected]="selected"
+    (optionChange)="onOptionSelect($event)"
+  ></app-dropdown>
 </div>
