@@ -4,7 +4,7 @@ export const API_ROUTES = {
   DASHBOARD: '/dashboard',
   PROFILE: '/profile',
   SETTINGS: '/settings',
-  // Puedes agrupar también
+
   ADMIN: {
     USERS: '/admin/users',
     SETTINGS: '/admin/settings'

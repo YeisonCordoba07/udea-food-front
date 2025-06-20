@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 
 
 import { BehaviorSubject } from 'rxjs';
-import {API_ROUTES} from "@core/constants/routes.constanst";
+import {API_ROUTES} from "@core/constants/routes.constants";
 import {Producto} from "@core/models/udea.model";
 
 @Injectable({

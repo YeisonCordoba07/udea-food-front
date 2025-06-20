@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {initialFilterState} from "@core/constants/filter.constants";
 
@@ -9,10 +9,10 @@ export class FiltersService {
   private filters = new BehaviorSubject(initialFilterState);
   filters$ = this.filters.asObservable();
 
-  constructor() { }
+  constructor() {
+  }
 
-  updateFilters(value: string, newFilter: string){
-    console.log("viejo", this.filters.getValue())
+  updateFilters(value: string, newFilter: string) {
     const currentFilters = this.filters.getValue();
     const updatedFilters = {...currentFilters, [value]: newFilter};
 
