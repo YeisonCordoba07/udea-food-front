@@ -1,0 +1,27 @@
+<div class="flex p-4 gap-12 justify-start items-start bg-stone-50 border-b border-b-neutral-200 px-5 max-sm:justify-between">
+
+  <app-filter-element
+    text="Mostrar solo"
+    [options]="filterOptions.mostrarSolo"
+    [selected]="filters.mostrarSolo"
+    ></app-filter-element>
+
+  <app-filter-element
+    text="Buscar en"
+    [options]="filterOptions.buscarEn"
+    [selected]="filters.buscarEn"
+  ></app-filter-element>
+
+  <app-filter-element
+    text="Ordenar por"
+    [options]="filterOptions.ordenarPor"
+    [selected]="filters.ordenarPor"
+  ></app-filter-element>
+
+  <app-filter-element
+    text="Ordenar"
+    [options]="filterOptions.tipoOrden"
+    [selected]="filters.tipoOrden"
+  ></app-filter-element>
+
+</div>

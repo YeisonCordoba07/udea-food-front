@@ -1,0 +1,34 @@
+<div
+  class="flex flex-col items-center relative w-fit"
+>
+  <button
+    class="bg-orange-100 border border-orange-500 py-2 px-4 rounded-full duration-200 hover:scale-105 text-sm flex gap-5 items-center justify-between text-orange-500 font-semibold w-52"
+    (click)="toggleDropdown()"
+  >
+    {{ selected }}
+    <div
+      [ngClass]="{
+        'transform rotate-180 duration-200 transition-transform': isOpen,
+        'duration-200 transition-transform': !isOpen
+      }"
+    >
+      <app-down-arrow-icon></app-down-arrow-icon>
+    </div>
+  </button>
+
+
+  <ul
+    class="filter-dropdown bg-white border shadow-md flex flex-col w-52 p-3 rounded-xl text-black absolute top-full left-1/2 transform -translate-x-1/2 z-10 mt-2"
+    *ngIf="isOpen">
+
+    <li
+      class="dropdownElement"
+      *ngFor="let filter of options"
+      (click)="handleFilterClick(filter)"
+    >
+      {{ filter }}
+    </li>
+
+  </ul>
+
+</div>

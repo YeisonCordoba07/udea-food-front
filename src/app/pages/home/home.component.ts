@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {SearchService} from "../../core/services/search.service";
-import {Producto} from "../../core/models/udea.model";
+import {SearchService} from "@core/services/search.service";
+import {Producto} from "@core/models/udea.model";
 
 @Component({
   selector: 'app-home',
