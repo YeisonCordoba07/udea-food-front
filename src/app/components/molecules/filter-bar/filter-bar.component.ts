@@ -14,8 +14,11 @@ export class FilterBarComponent implements OnInit, OnDestroy {
   filters!: Filters;
   filterKeys: (keyof typeof filterOptions)[] = [];
   private subscription!: Subscription;
+  protected readonly filterOptions = filterOptions;
+
 
   constructor(private filtersService: FiltersService) {}
+
 
   ngOnInit(): void {
     this.filterKeys = Object.keys(filterOptions) as (keyof typeof filterOptions)[];
@@ -27,15 +30,16 @@ export class FilterBarComponent implements OnInit, OnDestroy {
     );
   }
 
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
+
   onFilterChange(filterKey: keyof typeof filterOptions, newValue: string): void {
     this.filtersService.updateFilters(filterKey, newValue);
   }
 
-  protected readonly filterOptions = filterOptions;
 }

@@ -12,14 +12,18 @@ export class DropdownComponent implements OnInit {
   @Input() selected!: string;
   @Output() optionChange = new EventEmitter<string>();
 
+
   constructor(private elementRef: ElementRef) { }
+
 
   ngOnInit(): void {
   }
 
+
   toggleDropdown(): void {
     this.isOpen = !this.isOpen;
   }
+
 
   handleFilterClick(filter: string) {
     if(this.selected !== filter) {
@@ -28,6 +32,7 @@ export class DropdownComponent implements OnInit {
     }
     this.toggleDropdown();
   }
+
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {

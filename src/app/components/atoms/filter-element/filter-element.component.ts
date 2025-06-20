@@ -11,10 +11,13 @@ export class FilterElementComponent implements OnInit {
   @Input() text: string = "";
   @Output() filterChange = new EventEmitter<string>();
 
+
   constructor() { }
+
 
   ngOnInit(): void {
   }
+
 
   onOptionSelect(option: string): void {
     this.filterChange.emit(option);
