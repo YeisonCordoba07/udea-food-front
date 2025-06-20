@@ -1,12 +1,31 @@
 <div class="flex p-4 gap-12 justify-start items-start bg-stone-50 border-b border-b-neutral-200 px-5 max-sm:justify-between">
 
-  <ng-container *ngFor="let key of filterKeys">
-    <app-filter-element
-      [text]="key"
-      [options]="filterOptions[key]"
-      [selected]="filters[key]"
-      (filterChange)="onFilterChange(key, $event)"
+  <app-filter-element
+    text="Mostrar solo"
+    [options]="filterOptions.mostrarSolo"
+    [selected]="filters.mostrarSolo"
+    (filterChange)="onFilterChange(filterKeys[0], $event)"
     ></app-filter-element>
-  </ng-container>
+
+  <app-filter-element
+    text="Buscar en"
+    [options]="filterOptions.buscarEn"
+    [selected]="filters.buscarEn"
+    (filterChange)="onFilterChange(filterKeys[1], $event)"
+  ></app-filter-element>
+
+  <app-filter-element
+    text="Ordenar por"
+    [options]="filterOptions.ordenarPor"
+    [selected]="filters.ordenarPor"
+    (filterChange)="onFilterChange(filterKeys[2], $event)"
+  ></app-filter-element>
+
+  <app-filter-element
+    text="Ordenar"
+    [options]="filterOptions.tipoOrden"
+    [selected]="filters.tipoOrden"
+    (filterChange)="onFilterChange(filterKeys[3], $event)"
+  ></app-filter-element>
 
 </div>
