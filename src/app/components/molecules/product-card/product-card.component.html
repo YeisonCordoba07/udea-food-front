@@ -3,6 +3,7 @@
   class="flex flex-col w-[290px] h-fit p-4 border border-zinc-200 rounded-lg font-bold gap-2 items-start cursor-pointer shadow-lg hover:shadow-xl duration-200 ease-out max-sm:w-[49%]">
 
   <img [src]="src" [alt]="producto.nombre" width="300" height="300"
+       (click)="openDetails()"
        class="bg-no-repeat max-h-64 object-cover rounded-md mx-auto  max-sm:w-full max-sm:h-auto"/>
 
 
@@ -38,5 +39,13 @@
       typeButton="secondary"
       text="Agregar"></app-principal-button>
   </div>
+
+  <app-product-card-detail
+    [producto]="producto"
+    [src]="src"
+    [ingredients]="null"
+    [show]="show"
+    (close)="closeDetails()"
+  ></app-product-card-detail>
 
 </div>

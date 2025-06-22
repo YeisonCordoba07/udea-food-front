@@ -25,6 +25,7 @@ import { DropdownComponent } from '@components/atoms/dropdown/dropdown.component
 import { DownArrowIconComponent } from '@components/atoms/icons/down-arrow-icon/down-arrow-icon.component';
 import { ProductCardComponent } from './components/molecules/product-card/product-card.component';
 import { EmptyDialogComponent } from './components/atoms/empty-dialog/empty-dialog.component';
+import { ProductCardDetailComponent } from './components/molecules/product-card-detail/product-card-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EmptyDialogComponent } from './components/atoms/empty-dialog/empty-dial
     DropdownComponent,
     DownArrowIconComponent,
     ProductCardComponent,
-    EmptyDialogComponent
+    EmptyDialogComponent,
+    ProductCardDetailComponent
   ],
   imports: [
     BrowserModule,

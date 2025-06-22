@@ -10,10 +10,18 @@ export class ProductCardComponent implements OnInit {
 
   @Input() src: string = 'assets/images/food1.jpg';
   @Input() producto!: Producto;
+  show: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openDetails() {
+    this.show = true;
+  }
+
+  closeDetails(){
+    this.show = false;
+  }
 }

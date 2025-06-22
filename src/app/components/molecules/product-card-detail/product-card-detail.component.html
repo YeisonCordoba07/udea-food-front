@@ -1,0 +1,113 @@
+<app-empty-dialog [show]="show" (close)="closeDialog()">
+  <div
+    class="w-[75vw] mix-w-[60vw] max-w-[90vw] bg-white rounded-md flex gap-7 p-7 max-h-[80vh]"
+  >
+
+    <!-- Imagen y categorias */}-->
+    <div class="flex flex-col gap-4 w-6/12">
+      <img
+        [src]="src" alt="producto.nombre"
+        width="300"
+        height="300"
+        class="bg-no-repeat w-full h-fit object-cover rounded-md"
+      />
+
+    </div>
+
+
+    <!-- Information of the product -->
+    <div class="flex flex-col gap-2 w-6/12   overflow-y-auto ">
+      <div>
+        <span class="font-bold text-2xl">{{ producto.nombre }}</span>
+        <div>
+          <p class="text-gray-400 text-lg font-bold">${{ producto.precio }}</p>
+        </div>
+      </div>
+      <div>
+        <p class="text-gray-500">{{ producto.descripcion }}</p>
+      </div>
+
+      <div class="flex flex-col gap-7 mt-7 " *ngIf="ingredients">
+
+        <div class="flex flex-col" *ngFor="let item of ingredients.ingredientes">
+
+          <!-- Titulo ingrediente -->
+          <div class="relative flex flex-col py-3 justify-center">
+            <span class="font-bold text-lg">{{ item.nombre }}</span>
+            <span class="text-gray-400 text-xs pl-1">
+            Selecciona min {{ item.minSeleccion }} y max {{ item.maxSeleccion }}
+          </span>
+
+
+            <span
+              *ngIf="item.maxSeleccion === 1"
+              class=" absolute right-0 py-1 px-2 bg-orange-400 text-white rounded-[4px] w-fit text-xs">obligatorio</span>
+
+            <span
+              *ngIf="item.maxSeleccion !== 1"
+              class=" absolute right-0 py-1 px-2 bg-blue-400 text-white rounded-[4px] w-fit text-xs">opcional</span>
+
+
+          </div>
+
+          <!-- Opciones de ingredientes -->
+          <ul>
+
+            <li class="flex justify-between h-14 ml-4 mr-4 border-b border-gray-300 items-center"
+                *ngFor="let option of item.opciones">
+              <div class="flex flex-col justify-center">
+
+                <span>{{ option.nombre }}</span>
+                <span class="text-sm text-gray-400" *ngIf="option.costo !==0">+ $ {{ option.costo }}</span>
+              </div>
+
+              <!-- Radio button -->
+
+
+              <input
+                id="bordered-radio-1"
+                type="radio"
+                value=""
+                *ngIf="item.maxSeleccion === 1"
+                name={`bordered-radio-${item.nombre}`}
+                class="w-6 h-6 focus:ring-transparent  accent-orange-600 cursor-pointer"
+              />
+
+              <input type="checkbox" *ngIf="item.maxSeleccion !== 1" class="w-5 h-5"/>
+
+
+            </li>
+
+
+          </ul>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- Buttons -->
+  <div class="w-full flex justify-end px-3 py-3 border-t border-t-gray-300 items-center rounded-b-md z-10 bg-white">
+    <div class="flex gap-5">
+      <!-- AGREGAR FUNCIÓN PARA addToCart(producto) -->
+      <div>
+
+        <app-principal-button
+          typeButton="primary"
+          text="Agregar"
+        ></app-principal-button>
+      </div>
+
+      <!-- AGREGAR FUNCIÓN PARA router.push(`/tienda/${producto.idTienda}`) -->
+      <app-principal-button
+        typeButton="secondary"
+        text="Ver tienda"
+        [showIcon]="false"
+      ></app-principal-button>
+    </div>
+  </div>
+
+</app-empty-dialog>
