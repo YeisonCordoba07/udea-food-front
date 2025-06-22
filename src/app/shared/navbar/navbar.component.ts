@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from "@core/services/search.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,18 @@ import {SearchService} from "@core/services/search.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private readonly searchService: SearchService) { }
+  constructor(private readonly searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   search(query: string): void {
     this.searchService.searchByName(query);
+
+    this.router.navigate(['/resultados'], {
+      queryParams: { q: query }
+    });
+
   }
 
 }
