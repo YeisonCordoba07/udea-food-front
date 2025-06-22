@@ -1,19 +1,19 @@
 <app-category></app-category>
 <app-filter-bar></app-filter-bar>
-<h1>Numero de resultados</h1>
+<h1>Numero de resultados {{productos.length}}</h1>
 
 <div class="flex flex-wrap gap-4 p-4">
-  <!--<ProductCard key={product.idProducto} producto={product}></ProductCard>-->
-  <div *ngIf="filters.mostrarSolo=== 'productos'" >
-    <span *ngFor="let producto of productos">
-      Producto
-    </span>
-  </div>
 
-  <div *ngIf="filters.mostrarSolo=== 'tienda'" >
-    <span *ngFor="let tienda of productos">
+  <ng-container *ngIf="filters.mostrarSolo=== 'Productos'">
+      <ng-container *ngFor="let producto of productos">
+        <app-product-card [producto]="producto"></app-product-card>
+      </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="filters.mostrarSolo=== 'tienda'" >
+    <ng-container *ngFor="let tienda of productos">
       Tienda
-    </span>
-  </div>
+    </ng-container>
+  </ng-container>
 
 </div>

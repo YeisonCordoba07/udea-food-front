@@ -1,0 +1,42 @@
+<div
+
+  class="flex flex-col w-[290px] h-fit p-4 border border-zinc-200 rounded-lg font-bold gap-2 items-start cursor-pointer shadow-lg hover:shadow-xl duration-200 ease-out max-sm:w-[49%]">
+
+  <img [src]="src" [alt]="producto.nombre" width="300" height="300"
+       class="bg-no-repeat max-h-64 object-cover rounded-md mx-auto  max-sm:w-full max-sm:h-auto"/>
+
+
+  <div class="flex gap-1 flex-col w-full">
+          <span class="text-lg overflow-hidden text-ellipsis whitespace-nowrap w-full">{{ producto.nombre }}
+          </span>
+  </div>
+
+
+  <!------- Price ------->
+  <div class="flex flex-col w-full">
+    <div class="flex items-center gap-2">
+
+                        <span class="text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap">
+                            $ {{ producto.precio }}
+                        </span>
+      <span class="bg-lime-500  rounded-md text-center w-fit px-2 py-[2px] text-white ">-12%</span>
+
+    </div>
+
+    <small
+      class="text-sm font-normal text-neutral-400 line-through overflow-hidden text-ellipsis whitespace-nowrap">
+      $ {{ producto.precio }}
+    </small>
+
+
+  </div>
+
+
+  <!------- Cart Button ------->
+  <div class="mt-auto w-full">
+    <app-principal-button
+      typeButton="secondary"
+      text="Agregar"></app-principal-button>
+  </div>
+
+</div>

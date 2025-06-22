@@ -1,29 +1,18 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {SearchService} from "@core/services/search.service";
-import {Producto} from "@core/models/udea.model";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  private productoSubscription$!: Subscription;
-  productos: Producto[] = [];
-  constructor(private searchService: SearchService) { }
+export class HomeComponent implements OnInit {
+
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.productoSubscription$ = this.searchService.productos$.subscribe(
-      (productos)=>{
-      this.productos = productos;
-    })
   }
 
-  ngOnDestroy(): void {
-    if (this.productoSubscription$) {
-      this.productoSubscription$.unsubscribe();
-    }
-  }
+
 
 }
