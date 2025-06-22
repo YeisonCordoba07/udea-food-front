@@ -1,0 +1,31 @@
+<div
+  (click)="closeDialog()"
+  *ngIf="show"
+  class="fixed inset-0 w-screen h-screen flex flex-col items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm z-40"
+>
+  <div
+
+    class="bg-white relative rounded-lg w-fit h-fit flex flex-col items-center justify-center"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={30}
+      height={30}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width={3}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      (click)="closeDialog()"
+      class="absolute top-2 right-2 cursor-pointer text-gray-500 hover:text-gray-700 transition duration-1
+          500 ease-in-out hover:bg-gray-200 rounded-full p-1 hover:scale-110"
+
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M18 6l-12 12"/>
+      <path d="M6 6l12 12"/>
+    </svg>
+      <ng-content></ng-content>
+  </div>
+</div>
