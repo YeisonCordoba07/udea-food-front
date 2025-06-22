@@ -1,4 +1,4 @@
-import {Component, Output, Input, OnInit, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-empty-dialog',
@@ -8,15 +8,17 @@ import {Component, Output, Input, OnInit, EventEmitter} from '@angular/core';
 export class EmptyDialogComponent implements OnInit {
 
   @Input() show: boolean = false;
-  @Output() close = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openDialog(){
+    this.show = true;
+  }
+
   closeDialog() {
     this.show = false;
-    this.close.emit();
   }
 
 }

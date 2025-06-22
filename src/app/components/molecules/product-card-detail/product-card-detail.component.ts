@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IngredienteProducto, Producto} from "@core/models/udea.model";
+import {EmptyDialogComponent} from "@components/atoms/empty-dialog/empty-dialog.component";
 
 @Component({
   selector: 'app-product-card-detail',
@@ -11,16 +12,17 @@ export class ProductCardDetailComponent implements OnInit {
   @Input() src: string = 'assets/images/food1.jpg';
   @Input() producto!: Producto;
   @Input() ingredients!: IngredienteProducto | null;
-  @Input() show: boolean = false;
-  @Output() close = new EventEmitter();
+
+  @ViewChild(EmptyDialogComponent) emptyDialog!: EmptyDialogComponent;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  closeDialog() {
-    this.show = false;
-    this.close.emit();
+  openDialog() {
+    this.emptyDialog.openDialog();
   }
+
 
 }
