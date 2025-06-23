@@ -20,7 +20,7 @@
       <div>
         <span class="font-bold text-2xl">{{ producto.nombre }}</span>
         <div>
-          <p class="text-gray-400 text-lg font-bold">${{ producto.precio }}</p>
+          <p class="text-gray-400 text-lg font-bold">{{ producto.precio | currency:'USD'}}</p>
         </div>
       </div>
       <div>

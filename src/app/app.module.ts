@@ -28,6 +28,10 @@ import { EmptyDialogComponent } from '@components/atoms/empty-dialog/empty-dialo
 import { ProductCardDetailComponent } from '@components/molecules/product-card-detail/product-card-detail.component';
 import { TiendaComponent } from '@pages/tienda/tienda.component';
 import {RouterLink} from "@angular/router";
+import { SectionBarComponent } from './components/molecules/section-bar/section-bar.component';
+import { PerfilTiendaComponent } from './components/molecules/perfil-tienda/perfil-tienda.component';
+import { StarIconComponent } from './components/atoms/icons/star-icon/star-icon.component';
+import { MapPinIconComponent } from './components/atoms/icons/map-pin-icon/map-pin-icon.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import {RouterLink} from "@angular/router";
     ProductCardComponent,
     EmptyDialogComponent,
     ProductCardDetailComponent,
-    TiendaComponent
+    TiendaComponent,
+    SectionBarComponent,
+    PerfilTiendaComponent,
+    StarIconComponent,
+    MapPinIconComponent
   ],
   imports: [
     BrowserModule,

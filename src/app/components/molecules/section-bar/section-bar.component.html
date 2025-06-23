@@ -1,0 +1,59 @@
+<div class="px-4 py-3 mb-4 flex items-center justify-between bg-gray-100 sticky top-0 z-10 overflow-hidden gap-5">
+
+
+  <div class="flex items-center gap-5 w-3/4">
+    <h2 class="text-lg font-bold">Secciones</h2>
+
+    <div
+      class='flex gap-2 overflow-x-hidden border-l-2 border-r-2 bg-white rounded-md items-center shadow-black border border-gray-200 w-full lateralShadow'
+      #sectionContainer
+
+    >
+      <ng-container *ngFor="let section of secciones; let i = index">
+
+
+        <!-- acticar la seccion (click) -->
+        <!-- en a [href]="'#' + section.nombre" -->
+        <a
+            (click)="activeSection = section.nombre"
+           [ngClass]="{'px-4 py-2 text-black relative hover:text-amber-500 transition-colors duration-150 whitespace-nowrap': true,
+
+       'text-orange-500 font-bold' : activeSection === section.nombre }"
+        >
+
+          {{ section.nombre }}
+
+          <div class="before:w-full before:h-[3px] before:absolute before:bg-orange-400 before:right-0"
+               *ngIf="activeSection === section.nombre"></div>
+
+
+        </a>
+      </ng-container>
+
+    </div>
+
+
+    <!--<CreateSection
+      show={showCreateSection}
+      setShow={setShowCreateSection}
+    />-->
+
+    <div class="flex items-center">
+      <!-- Agregar click para mover la section bar -->
+      <app-arrow-button direction="left" (onClick)="scrollLeft()"></app-arrow-button>
+      <app-arrow-button direction="right" (onClick)="scrollRight()"></app-arrow-button>
+    </div>
+  </div>
+
+
+  <div class="flex items-center space-x-2 w-1/4">
+    <div class="w-full">
+      <app-search-bar
+        placeholder="Buscar dentro de la tienda"
+        backgroundColor="bg-white"
+      ></app-search-bar>
+    </div>
+  </div>
+
+
+</div>

@@ -2,3 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.lateralShadow{
+  box-shadow:
+    inset -12px 0px 10px  -1px rgba(0, 0, 0, 0.12),
+    inset  12px 0px 10px -5px rgba(0, 0, 0, 0.12);
+
+}
