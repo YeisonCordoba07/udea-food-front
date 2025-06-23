@@ -23,9 +23,11 @@ import { FilterBarComponent } from '@components/molecules/filter-bar/filter-bar.
 import { FilterElementComponent } from '@components/atoms/filter-element/filter-element.component';
 import { DropdownComponent } from '@components/atoms/dropdown/dropdown.component';
 import { DownArrowIconComponent } from '@components/atoms/icons/down-arrow-icon/down-arrow-icon.component';
-import { ProductCardComponent } from './components/molecules/product-card/product-card.component';
-import { EmptyDialogComponent } from './components/atoms/empty-dialog/empty-dialog.component';
-import { ProductCardDetailComponent } from './components/molecules/product-card-detail/product-card-detail.component';
+import { ProductCardComponent } from '@components/molecules/product-card/product-card.component';
+import { EmptyDialogComponent } from '@components/atoms/empty-dialog/empty-dialog.component';
+import { ProductCardDetailComponent } from '@components/molecules/product-card-detail/product-card-detail.component';
+import { TiendaComponent } from '@pages/tienda/tienda.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -50,13 +52,15 @@ import { ProductCardDetailComponent } from './components/molecules/product-card-
     DownArrowIconComponent,
     ProductCardComponent,
     EmptyDialogComponent,
-    ProductCardDetailComponent
+    ProductCardDetailComponent,
+    TiendaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterLink
   ],
   providers: [],
   bootstrap: [AppComponent]

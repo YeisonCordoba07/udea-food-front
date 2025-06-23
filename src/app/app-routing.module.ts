@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "@pages/home/home.component";
 import {SearchResultsComponent} from "@pages/search-results/search-results.component";
+import {TiendaComponent} from "@pages/tienda/tienda.component";
 
 
 const routes: Routes = [
@@ -12,6 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'resultados', component: SearchResultsComponent
+  },
+  {
+    path: 'tienda/:id', component: TiendaComponent
   }
 ];
 

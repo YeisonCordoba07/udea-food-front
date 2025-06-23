@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IngredienteProducto, Producto} from "@core/models/udea.model";
 import {EmptyDialogComponent} from "@components/atoms/empty-dialog/empty-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-card-detail',
@@ -15,13 +16,17 @@ export class ProductCardDetailComponent implements OnInit {
 
   @ViewChild(EmptyDialogComponent) emptyDialog!: EmptyDialogComponent;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   openDialog() {
     this.emptyDialog.openDialog();
+  }
+
+  openTienda(){
+    this.router.navigate(['/tienda', this.producto.idTienda]);
   }
 
 
