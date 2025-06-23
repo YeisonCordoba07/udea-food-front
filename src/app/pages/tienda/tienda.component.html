@@ -1,1 +1,16 @@
-<p>tienda works!</p>
+<section *ngIf="tienda$ | async as tienda">
+  <h1>{{ tienda.nombre }}</h1>
+  <img [src]="tienda.foto" alt="Logo de tienda">
+
+  <h2>Productos</h2>
+  <div *ngFor="let seccion of tienda.secciones">
+    <h3>{{ seccion.nombre }}</h3>
+    <div *ngFor="let producto of seccion.productos">
+      <h4>{{ producto.nombre }}</h4>
+      <p>{{ producto.descripcion }}</p>
+      <p>Precio: {{ producto.precio | currency:'EUR' }}</p>
+    </div>
+
+  </div>
+</section>
+
