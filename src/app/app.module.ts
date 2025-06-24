@@ -15,7 +15,7 @@ import { NavbarComponent } from '@shared/navbar/navbar.component';
 import { PrincipalButtonComponent } from '@components/atoms/principal-button/principal-button.component';
 import { ShoppingCartIconComponent } from '@components/atoms/icons/shopping-cart-icon/shopping-cart-icon.component';
 import { SearchBarComponent } from '@components/atoms/search-bar/search-bar.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SearchIconComponent } from '@components/atoms/icons/search-icon/search-icon.component';
 import {HttpClientModule} from "@angular/common/http";
 import { SearchResultsComponent } from '@pages/search-results/search-results.component';
@@ -32,6 +32,10 @@ import { SectionBarComponent } from './components/molecules/section-bar/section-
 import { PerfilTiendaComponent } from './components/molecules/perfil-tienda/perfil-tienda.component';
 import { StarIconComponent } from './components/atoms/icons/star-icon/star-icon.component';
 import { MapPinIconComponent } from './components/atoms/icons/map-pin-icon/map-pin-icon.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TextInputFieldComponent } from './components/atoms/text-input-field/text-input-field.component';
+import { AddSectionIconComponent } from './components/atoms/icons/add-section-icon/add-section-icon.component';
+import { MinusIconComponent } from './components/atoms/icons/minus-icon/minus-icon.component';
 
 @NgModule({
   declarations: [
@@ -61,14 +65,19 @@ import { MapPinIconComponent } from './components/atoms/icons/map-pin-icon/map-p
     SectionBarComponent,
     PerfilTiendaComponent,
     StarIconComponent,
-    MapPinIconComponent
+    MapPinIconComponent,
+    LoginComponent,
+    TextInputFieldComponent,
+    AddSectionIconComponent,
+    MinusIconComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterLink
+    RouterLink,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
