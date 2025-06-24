@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   handleLogin(event: Event): void {
     event.preventDefault();
+    console.log(event);
 
     if (this.loginForm.invalid) {
       return;
@@ -39,7 +40,13 @@ export class LoginComponent implements OnInit {
 
     const credentials = this.loginForm.value;
 
+    // Aquí puedes imprimir los valores
+    console.log('Credenciales enviadas:', credentials);
+
+    // Simular final de envío
+    this.loading = false;
   }
+
 
   get username(): FormControl{
     return this.loginForm.get('username') as FormControl;

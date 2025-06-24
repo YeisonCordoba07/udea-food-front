@@ -7,9 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AddSectionIconComponent implements OnInit {
 
-  @Input() size: string = '24px';
-  @Input() strokeWidth: string = '2';
-
 
   constructor() { }
 

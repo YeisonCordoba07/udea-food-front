@@ -17,21 +17,23 @@ export class TextInputFieldComponent implements OnInit {
 
 
   incrementValue(): void {
-    /*if( this.inputType === 'number') {
-      const value = this.formControlName.value;
-      this.formControlName.setValue(value + 1);
-    }*/
-
+    if (this.inputType === 'number') {
+      let value = Number(this.control.value);
+      if (isNaN(value)) value = 0;
+      this.control.setValue(value + 1);
+    }
   }
 
   decrementValue(): void {
-    /*if( this.inputType === 'number') {
-      const value = this.formControlName.value;
-      if (value - 1 > 0) {
-        this.formControlName.setValue(value - 1);
+    if (this.inputType === 'number') {
+      let value = Number(this.control.value);
+      if (isNaN(value)) value = 0;
+      if (value > 0) {
+        this.control.setValue(value - 1);
       }
-    }*/
+    }
   }
+
 
 
   constructor() { }

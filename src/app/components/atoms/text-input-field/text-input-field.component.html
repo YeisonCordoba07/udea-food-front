@@ -9,7 +9,7 @@
     color,
     'shadow-inner shadow-gray-200 rounded-md h-10 w-full ps-5 px-4 text-sm text-gray-900 font-medium focus:bg-white focus:outline-2 focus:outline-orange-500 focus:border-transparent focus:outline-offset-0 hover:border-orange-300 transition duration-150 ease flex items-center',
     inputType === 'number' ? 'noSpinner min-w-[120px]' : '',
-    control?.invalid && control?.touched ? 'border-2 border-red-600' : 'border border-gray-100'
+    control.invalid && control.touched ? 'border-2 border-red-600' : 'border border-gray-100'
   ]"
       [placeholder]="placeholder"
     />
@@ -20,7 +20,7 @@
         class="rounded-[3px] bg-neutral-200 hover:bg-neutral-300 w-7 h-full border-neutral-300 border transition-colors duration-150 flex items-center justify-center"
         (click)="incrementValue()"
       >
-        <app-add-section-icon strokeWidth="2" size="20"></app-add-section-icon>
+        <app-add-section-icon ></app-add-section-icon>
       </button>
       <button
         type="button"
@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <small *ngIf="control?.invalid && control?.touched" class="text-red-600 ps-1">
+    <small *ngIf="control.invalid && control.touched" class="text-red-600 ps-1">
       {{ errorMessage }}
     </small>
   </div>

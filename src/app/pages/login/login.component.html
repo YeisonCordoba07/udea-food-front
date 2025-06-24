@@ -19,24 +19,25 @@
     </div>
 
     <app-text-input-field
-      [control]="username"
       label="Nombre de usuario"
+      [control]="username"
       placeholder="randomUser12345"
       [errorMessage]="loginForm.get('username')?.hasError('required') ? 'El nombre de usuario es obligatorio' : ''"
     ></app-text-input-field>
 
     <app-text-input-field
-      [control]="password"
       label="Contraseña"
+      [control]="password"
       placeholder="password123"
       [errorMessage]="loginForm.get('password')?.hasError('required') ? 'La contraseña es obligatoria' : ''"
     ></app-text-input-field>
 
+
     <app-principal-button
       text="Acceder"
       [showIcon]="false"
-      typeButton="primary"
-      type="submit"
+      styleButton="primary"
+      buttonType="submit"
       [disabled]="loginForm.invalid || loading"
     ></app-principal-button>
   </form>
