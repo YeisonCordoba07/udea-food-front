@@ -36,6 +36,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { TextInputFieldComponent } from './components/atoms/text-input-field/text-input-field.component';
 import { AddSectionIconComponent } from './components/atoms/icons/add-section-icon/add-section-icon.component';
 import { MinusIconComponent } from './components/atoms/icons/minus-icon/minus-icon.component';
+import { AddCircleDashedIconComponent } from './components/atoms/icons/add-circle-dashed-icon/add-circle-dashed-icon.component';
+import { StoreIconComponent } from './components/atoms/icons/store-icon/store-icon.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { MinusIconComponent } from './components/atoms/icons/minus-icon/minus-ic
     LoginComponent,
     TextInputFieldComponent,
     AddSectionIconComponent,
-    MinusIconComponent
+    MinusIconComponent,
+    AddCircleDashedIconComponent,
+    StoreIconComponent
   ],
   imports: [
     BrowserModule,

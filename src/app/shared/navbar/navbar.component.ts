@@ -10,6 +10,9 @@ import {LoginService} from "@core/services/login/login.service";
 })
 export class NavbarComponent implements OnInit {
 
+  isLogged$ = this.loginService.isLogged$;
+  currentAccount = this.loginService.currentAccount$;
+
   constructor(private readonly searchService: SearchService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
