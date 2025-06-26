@@ -12,9 +12,9 @@
 
 
 
-<div class="absolute right-0 top-[140%]  w-64 h-fit bg-white rounded-lg menu-account-shadow border border-gray-100">
+<div class="absolute right-0 top-[140%]  w-64 h-fit bg-white rounded-lg menu-account-shadow border border-gray-100  z-40" *ngIf="showMenu" >
 
-  <ul class="text-gray-800 pb-2 z-50" *ngIf="showMenu">
+  <ul class="text-gray-800 pb-2 z-50" >
     <!-- Current account -->
     <li class="flex gap-4 items-center border-b p-4 border-neutral-200">
       <img
@@ -23,7 +23,7 @@
         class="h-full rounded-full w-10"
       />
       <span class="text-md font-bold">
-        {{ currentAccount?.nombre }}
+        {{ (currentAccount | async )?.nombre }}
       </span>
     </li>
 
@@ -31,25 +31,27 @@
     <!-- User account -->
     <!-- CAMBIAR CUENTA (CLICK) -->
     <app-account-menu-item
-      *ngIf="accountInfo?.usuario?.id !== accountInfo?.idActivo"
-      nombre="accountInfo.usuario.nombre"
-      tipoCuenta="accountInfo.usuario.tipoCuenta"
+      [idCuenta]="(accountInfo | async)?.usuario?.id!"
+      *ngIf="(accountInfo | async)?.usuario?.id !== (accountInfo | async)?.idActivo"
+      [nombre]="(accountInfo | async)?.usuario?.nombre!"
+      [tipoCuenta]="(accountInfo | async)?.usuario?.tipoCuenta!"
       foto="https://picsum.photos/100"
       label="Usuario"
-      (onClick)="handleChangeAccount(accountInfo?.usuario?.id!)"
+      (onClick)="handleChangeAccount($event)"
     ></app-account-menu-item>
 
 
     <!-- List of stores -->
     <!-- (CLICK) CAMBIAR CUENTA ACTIVA (onClick)="handleChangeAccount(store.id)" -->
-    <ng-container *ngFor="let store of accountInfo?.tiendas">
+    <ng-container *ngFor="let store of (accountInfo | async )?.tiendas">
       <app-account-menu-item
-        *ngIf="store.id !== accountInfo?.idActivo"
+        [idCuenta]="store.id"
+        *ngIf="store.id !== (accountInfo | async )?.idActivo"
         [nombre]="store.nombre"
         foto="https://picsum.photos/50"
         [tipoCuenta]="store.tipoTienda"
         label="Tiendas"
-        (onClick)="handleChangeAccount(store.id)"
+        (onClick)="handleChangeAccount($event)"
       ></app-account-menu-item>
 
     </ng-container>

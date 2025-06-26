@@ -10,97 +10,81 @@ import {AccountInfo, LoginRequest, LoginResponse, TiendaInfo, UsuarioInfo} from 
 export class LoginService {
 
   private accountInfoSubject = new BehaviorSubject<AccountInfo | null>(null);
-
   private currentAccountSubject = new BehaviorSubject<UsuarioInfo | TiendaInfo | null>(null);
-
   private isLoggedSubject = new BehaviorSubject<boolean>(false);
-
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
 
 
 
-
   constructor(private http: HttpClient) {
+    this.initializeSession();
   }
 
 
 
-
-  // Expose observables for state management
   get accountInfo$(): Observable<AccountInfo | null> {
     return this.accountInfoSubject.asObservable();
-  }
-
-  get token$(): Observable<string | null> {
-    return this.tokenSubject.asObservable();
-  }
-
-  get isLogged$(): Observable<boolean> {
-    return this.isLoggedSubject.asObservable();
   }
 
   get currentAccount$(): Observable<UsuarioInfo | TiendaInfo | null> {
     return this.currentAccountSubject.asObservable();
   }
 
+  get isLogged$(): Observable<boolean> {
+    return this.isLoggedSubject.asObservable();
+  }
+
+  get token$(): Observable<string | null> {
+    return this.tokenSubject.asObservable();
+  }
 
 
 
-  // Login method
-  login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(API_ROUTES.LOGIN_URL, credentials).pipe(
-      tap((response) => {
+  login(credentials: { username: string; password: string }): Observable<any> {
+    return this.http.post(API_ROUTES.LOGIN_URL, credentials).pipe(
+      tap((response: any) => {
         this.handleLoginSuccess(response);
-      }),
-      catchError((error) => {
-        console.error('Login failed:', error);
-        return throwError(() => new Error('Login failed'));
       })
     );
   }
 
 
-  // Logout method
   logout(): void {
     this.accountInfoSubject.next(null);
-    this.tokenSubject.next(null);
+    this.currentAccountSubject.next(null);
     this.isLoggedSubject.next(false);
+    this.tokenSubject.next(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('accountInfo');
   }
 
 
-  // Handle successful login
-  private handleLoginSuccess(response: LoginResponse): void {
+  private handleLoginSuccess(response: any): void {
     this.accountInfoSubject.next(response.accountInfo);
     this.tokenSubject.next(response.token);
     this.isLoggedSubject.next(true);
     localStorage.setItem('token', response.token);
-    this.currentAccountSubject.next(this.chooseCurrentAccount());
+    localStorage.setItem('accountInfo', JSON.stringify(response.accountInfo));
+    this.currentAccountSubject.next(this.chooseCurrentAccount(response.accountInfo));
   }
 
-
-  chooseCurrentAccount(): UsuarioInfo | TiendaInfo | null {
-    const account = this.accountInfoSubject.value;
-    const idActivo = account?.idActivo;
-
-    if(account?.usuario.id === idActivo && account?.usuario){
-      return account?.usuario;
+  private chooseCurrentAccount(accountInfo: AccountInfo): UsuarioInfo | TiendaInfo | null {
+    const idActivo = accountInfo.idActivo;
+    if (accountInfo.usuario.id === idActivo) {
+      return accountInfo.usuario;
     }
-
-    const tiendaActiva = account?.tiendas.find((tienda)=>{
-      return tienda.id === idActivo;
-    });
-    if(tiendaActiva){
-      return tiendaActiva;
-    }
-
-    return null;
+    return accountInfo.tiendas.find((tienda) => tienda.id === idActivo) || null;
   }
 
-
-  // Retrieve token from localStorage
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  private initializeSession(): void {
+    const token = localStorage.getItem('token');
+    const accountInfo = localStorage.getItem('accountInfo');
+    if (token && accountInfo) {
+      this.tokenSubject.next(token);
+      this.accountInfoSubject.next(JSON.parse(accountInfo));
+      this.isLoggedSubject.next(true);
+      this.currentAccountSubject.next(this.chooseCurrentAccount(JSON.parse(accountInfo)));
+    }
   }
 
 }

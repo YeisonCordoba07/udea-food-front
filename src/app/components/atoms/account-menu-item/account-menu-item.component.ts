@@ -11,14 +11,16 @@ export class AccountMenuItemComponent implements OnInit {
   @Input() foto: string = "";
   @Input() tipoCuenta: string = "";
   @Input() label: string = "";
-  @Output() onClick = new EventEmitter();
+  @Input() idCuenta: number = 0;
+  @Output() onClick = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   handleClick() {
-    this.onClick.emit();
+    this.onClick.emit(this.idCuenta);
   }
 
 

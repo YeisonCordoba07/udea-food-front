@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         (response)=>{
           console.log('Login successful:', response);
           this.loading = false;
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
         },
         (error)=>{
           console.error('Login failed:', error);

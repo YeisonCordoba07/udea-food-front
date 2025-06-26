@@ -19,7 +19,7 @@
   </div>
 
 
-  <div class="flex gap-5 h-full" *ngIf="(isLogged$ | async)">
+  <div class="flex gap-5 h-full" *ngIf="!(isLogged$ | async)">
     <app-principal-button
       text="Iniciar sesión"
       styleButton="secondary"
@@ -62,9 +62,7 @@
       <!--  MENU -->
 
       <app-account-menu
-        [currentAccount]="(currentAccount | async)"
-        [accountInfo]="(accountInfo | async)"
-
+        *ngIf="(isLogged$ | async)"
       ></app-account-menu>
 
     </div>

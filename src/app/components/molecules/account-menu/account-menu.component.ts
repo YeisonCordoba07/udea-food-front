@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {AccountInfo, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
+import { Component, OnInit } from '@angular/core';
 import {LoginService} from "@core/services/login/login.service";
 
 @Component({
@@ -10,16 +9,16 @@ import {LoginService} from "@core/services/login/login.service";
 export class AccountMenuComponent implements OnInit {
 
   showMenu: boolean = false;
-  @Input() currentAccount!: TiendaInfo | UsuarioInfo | null;
-  @Input() accountInfo!: AccountInfo | null;
+  currentAccount = this.loginService.currentAccount$;
+  accountInfo = this.loginService.accountInfo$;
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  handleChangeAccount(id: number) {
-    console.log(`Changing account to ID: ${id}`);
+  handleChangeAccount(idCuenta: number) {
+    console.log(`Changing account to ID: ${idCuenta}`);
   }
 
   logOut() {
