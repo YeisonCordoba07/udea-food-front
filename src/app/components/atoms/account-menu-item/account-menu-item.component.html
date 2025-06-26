@@ -1,0 +1,18 @@
+<li
+
+  class="flex flex-col border-b border-neutral-200"
+  (click)="handleClick()"
+>
+  <span class="text-sm font-bold text-black pt-2 pl-4">{{label}}</span>
+  <div class="flex gap-4 items-center menu-account-info py-2 pl-7">
+    <img
+      [src]="foto || 'https://picsum.photos/200'"
+    alt=""
+    class="h-full rounded-full w-10"
+    />
+    <div class="flex flex-col">
+      <span class="text-md">{{nombre}}</span>
+        <span class="text-sm font-bold" *ngIf="tipoCuenta">{{tipoCuenta}}</span>
+    </div>
+  </div>
+</li>

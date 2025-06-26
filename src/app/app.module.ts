@@ -38,6 +38,8 @@ import { AddSectionIconComponent } from './components/atoms/icons/add-section-ic
 import { MinusIconComponent } from './components/atoms/icons/minus-icon/minus-icon.component';
 import { AddCircleDashedIconComponent } from './components/atoms/icons/add-circle-dashed-icon/add-circle-dashed-icon.component';
 import { StoreIconComponent } from './components/atoms/icons/store-icon/store-icon.component';
+import { AccountMenuComponent } from './components/molecules/account-menu/account-menu.component';
+import { AccountMenuItemComponent } from './components/atoms/account-menu-item/account-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { StoreIconComponent } from './components/atoms/icons/store-icon/store-ic
     AddSectionIconComponent,
     MinusIconComponent,
     AddCircleDashedIconComponent,
-    StoreIconComponent
+    StoreIconComponent,
+    AccountMenuComponent,
+    AccountMenuItemComponent
   ],
   imports: [
     BrowserModule,
