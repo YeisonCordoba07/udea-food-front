@@ -7,10 +7,10 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class AccountMenuItemComponent implements OnInit {
 
-  @Input() label: string = "";
-  @Input() foto: string = "";
   @Input() nombre: string = "";
+  @Input() foto: string = "";
   @Input() tipoCuenta: string = "";
+  @Input() label: string = "";
   @Output() onClick = new EventEmitter();
   constructor() { }
 
@@ -20,5 +20,6 @@ export class AccountMenuItemComponent implements OnInit {
   handleClick() {
     this.onClick.emit();
   }
+
 
 }

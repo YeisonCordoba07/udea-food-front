@@ -10,8 +10,13 @@ import {LoginService} from "@core/services/login/login.service";
 })
 export class NavbarComponent implements OnInit {
 
+  showAccountInfo: boolean = false;
+  showMenu: boolean = false;
+
+
   isLogged$ = this.loginService.isLogged$;
   currentAccount = this.loginService.currentAccount$;
+  accountInfo = this.loginService.accountInfo$;
 
   constructor(private readonly searchService: SearchService, private router: Router, private loginService: LoginService) { }
 
@@ -39,4 +44,10 @@ export class NavbarComponent implements OnInit {
   openRegisterPage() {
     this.router.navigate(['/registro']);
   }
+
+  handleAccountInfoToggle() {
+    this.showAccountInfo = !this.showAccountInfo;
+  }
+
+
 }

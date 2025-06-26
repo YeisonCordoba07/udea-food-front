@@ -58,27 +58,14 @@
 
       <!-- Button to show menu -->
       <!-- MOSTRAR INFORMACIÓN DE LAS CUENTAS - MENU -->
-      <div
-        class="rounded-full flex  items-center hover:bg-orange-200  transition duration-150 hover:scale-110 cursor-pointer"
-      >
-        <img
-          src="https://picsum.photos/200"
-          alt=""
-          class="h-full rounded-full w-8"
-        />
-      </div>
-
 
       <!--  MENU -->
 
-      <!--<app-account-menu
-        *ngIf="showAccountInfo"
-        currentAccount="currentAccount"
-        accountInfo="accountInfo"
-        handleChangeAccount="handleChangeAccount"
-        logOut="logOut"
-        setShowAccountInfo="setShowAccountInfo"
-      ></app-account-menu>-->
+      <app-account-menu
+        [currentAccount]="(currentAccount | async)"
+        [accountInfo]="(accountInfo | async)"
+
+      ></app-account-menu>
 
     </div>
   </div>

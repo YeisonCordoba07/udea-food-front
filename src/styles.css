@@ -14,3 +14,27 @@
 .hover-logo{
   @apply hover:bg-orange-200 rounded-full transition duration-150 hover:scale-110 p-2 cursor-pointer;
 }
+
+
+
+/*--------------------  MENU ACCOUNT INFO --------------------*/
+.menu-account-info{
+  @apply hover:bg-neutral-200 duration-150 transition-colors cursor-pointer flex gap-4 items-center;
+}
+.menu-account-info-padding{
+  @apply p-4;
+}
+
+.menu-account-border{
+  @apply border-b  border-neutral-200;
+}
+
+.menu-account-shadow{
+  box-shadow: 0 0 15px 2px rgb(0 0 0 / 0.1);
+}
+
+/*--------------------  ACCOUNT --------------------*/
+.near-shadow{
+  box-shadow: 0 0 15px 2px rgb(0 0 0 / 0.1)
+}
+
