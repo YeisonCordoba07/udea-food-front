@@ -11,5 +11,6 @@ export const API_ROUTES = {
   },
   SEARCH_PRODUCT_BY_NAME_URL: "http://localhost:8080/producto/buscarPorNombreProducto",
 
-  GET_TIENDA_BY_ID_URL:"http://localhost:8080/tienda/perfilTienda"
+  GET_TIENDA_BY_ID_URL:"http://localhost:8080/tienda/perfilTienda",
+  LOGIN_URL:"http://localhost:8080/auth/login"
 };

@@ -71,6 +71,15 @@ export interface Filters {
   tipoOrden: string;
 }
 
+export interface LoginResponse{
+  token: string;
+  accountInfo: AccountInfo;
+}
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
 export interface AccountInfo {
   idActivo: number;
   usuario: UsuarioInfo;

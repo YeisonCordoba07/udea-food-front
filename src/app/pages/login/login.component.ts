@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {LoginService} from "@core/services/login/login.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) {
   }
 
 
@@ -30,21 +31,26 @@ export class LoginComponent implements OnInit {
 
   handleLogin(event: Event): void {
     event.preventDefault();
-    console.log(event);
-
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-
-    const credentials = this.loginForm.value;
-
-    // Aquí puedes imprimir los valores
-    console.log('Credenciales enviadas:', credentials);
 
     // Simular final de envío
-    this.loading = false;
+
+    if (this.loginForm.valid) {
+      this.loading = true;
+      const { username, password } = this.loginForm.value;
+
+      this.loginService.login({username, password}).subscribe(
+        (response)=>{
+          console.log('Login successful:', response);
+          this.loading = false;
+          this.router.navigate(['/']);
+        },
+        (error)=>{
+          console.error('Login failed:', error);
+          this.loading = false;
+        }
+      )
+
+    }
   }
 
 
