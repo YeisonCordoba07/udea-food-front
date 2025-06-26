@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {API_ROUTES} from "@core/constants/routes.constants";
-import {AccountInfo, LoginRequest, LoginResponse, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
+import {AccountInfo, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
 
 @Injectable({
   providedIn: 'root'
