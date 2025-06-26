@@ -1,23 +1,22 @@
-<nav class="bg-white border-b-2 border-b-orange-500 py-3 px-5 w-full h-full flex items-center justify-between gap-10 max-sm:gap-3 z-30">
+<nav
+  class="bg-white border-b-2 border-b-orange-500 py-3 px-5 w-full h-full flex items-center justify-between gap-10 max-sm:gap-3 z-30">
 
 
   <a href="/" class="flex items-center gap-2 max-sm:hidden ">
-  <img
-    src="assets/images/UdeALogo.png"
-    width="80"
-    height="24"
-    alt="logo udea food"
-    class="w-20 h-full"
-  />
+    <img
+      src="assets/images/UdeALogo.png"
+      width="80"
+      height="24"
+      alt="logo udea food"
+      class="w-20 h-full"
+    />
   </a>
 
   <div class="w-1/2 flex-auto">
     <app-search-bar
       (search)="search($event)"
-      placeholder="Comida, tiendas, productos, ..." ></app-search-bar>
+      placeholder="Comida, tiendas, productos, ..."></app-search-bar>
   </div>
-
-
 
 
   <div class="flex gap-5 h-full" *ngIf="(isLogged$ | async)">
@@ -48,9 +47,40 @@
       </a>
     </ng-container>
 
-    <ng-container #cliente>
 
+    <ng-container #cliente>
+      <!-- carrito -->
     </ng-container>
+
+
+    <!-- Button to create store -->
+    <div class="relative">
+
+      <!-- Button to show menu -->
+      <!-- MOSTRAR INFORMACIÓN DE LAS CUENTAS - MENU -->
+      <div
+        class="rounded-full flex  items-center hover:bg-orange-200  transition duration-150 hover:scale-110 cursor-pointer"
+      >
+        <img
+          src="https://picsum.photos/200"
+          alt=""
+          class="h-full rounded-full w-8"
+        />
+      </div>
+
+
+      <!--  MENU -->
+
+      <app-account-menu
+        *ngIf="showAccountInfo"
+        currentAccount="currentAccount"
+        accountInfo="accountInfo"
+        handleChangeAccount="handleChangeAccount"
+        logOut="logOut"
+        setShowAccountInfo="setShowAccountInfo"
+      ></app-account-menu>
+
+    </div>
   </div>
 
 </nav>
