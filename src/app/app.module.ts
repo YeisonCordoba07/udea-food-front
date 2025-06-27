@@ -43,7 +43,7 @@ import { AccountMenuItemComponent } from '@components/atoms/account-menu-item/ac
 import { SettingIconComponent } from '@components/atoms/icons/setting-icon/setting-icon.component';
 import { PenEditIconComponent } from '@components/atoms/icons/pen-edit-icon/pen-edit-icon.component';
 import { LogOutIconComponent } from '@components/atoms/icons/log-out-icon/log-out-icon.component';
-import { CartComponent } from '@components/molecules/cart/cart.component';
+import { MiniCartComponent } from '@components/molecules/cart/mini-cart.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +85,7 @@ import { CartComponent } from '@components/molecules/cart/cart.component';
     SettingIconComponent,
     PenEditIconComponent,
     LogOutIconComponent,
-    CartComponent
+    MiniCartComponent
   ],
   imports: [
     BrowserModule,
