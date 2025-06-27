@@ -1,0 +1,90 @@
+<div class="relative z-10">
+
+  <!-- Button to show cart details -->
+  <!--     onClick={() => setShowCart(!showCart)} -->
+  <button
+    class="hover:bg-orange-600 rounded-full transition duration-150 hover:scale-110 p-2 cursor-pointer bg-orange-500"
+    (click)="showCart = !showCart"
+
+  >
+  <span class="text-white">
+    <app-shopping-cart-icon></app-shopping-cart-icon>
+        </span>
+  </button>
+
+
+  <!-- Cart item count -->
+
+  <div
+    class="absolute -bottom-1 -right-2 bg-black rounded-full w-5 h-5 flex justify-center items-center text-xs font-bold text-orange-400"
+    *ngIf="cart.length > 0">
+    {{ cart.length }}
+  </div>
+
+
+  <!-- Cart details -->
+
+  <div class="absolute right-0 top-[140%]  w-72 h-fit bg-white rounded-lg menu-account-shadow border border-gray-100"
+       *ngIf="showCart">
+
+    <ul class="text-gray-800 pb-2 z-40">
+
+
+      <div class="flex flex-col items-center justify-center w-full h-full p-4 text-gray-500" *ngIf="cart.length === 0">
+        Carrito vacio
+      </div>
+
+
+      <!-- Cart items -->
+
+      <li
+        *ngFor="let item of cart"
+        class="flex gap-4 border-b p-4 border-neutral-200 "
+      >
+        <img
+          [src]="src"
+
+          width="80"
+          height="80"
+          class="bg-no-repeat object-cover rounded-md"
+        />
+
+        <div class="flex flex-col w-full  overflow-hidden h-full items-start">
+  <span class="text-md overflow-hidden text-ellipsis whitespace-nowrap w-full font-normal text-start">
+  {{ item.nombre }}
+  </span>
+
+          <span class="text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap w-full text-start">
+    $ {{ item.precio }}
+  </span>
+
+          <div>
+            <!-- onClick={()=> removeFromCart(item.idProducto)} -->
+            <button
+              class="text-red-500 hover:text-red-700 transition duration-150"
+
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </li>
+
+
+      <!-- Button to open cart page -->
+      <li
+        class="flex gap-4 p-4 text-orange-600 border-neutral-200 hover:bg-orange-100 transition duration-150 hover:text-orange-500 font-bold">
+        <!-- onClick={()=> setShowCart(!showCart)} -->
+        <a
+          href="/carrito"
+          class="flex  justify-center items-center w-full"
+        >
+          Ver carrito / Ir a pagar
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>

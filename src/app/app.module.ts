@@ -28,21 +28,22 @@ import { EmptyDialogComponent } from '@components/atoms/empty-dialog/empty-dialo
 import { ProductCardDetailComponent } from '@components/molecules/product-card-detail/product-card-detail.component';
 import { TiendaComponent } from '@pages/tienda/tienda.component';
 import {RouterLink} from "@angular/router";
-import { SectionBarComponent } from './components/molecules/section-bar/section-bar.component';
-import { PerfilTiendaComponent } from './components/molecules/perfil-tienda/perfil-tienda.component';
-import { StarIconComponent } from './components/atoms/icons/star-icon/star-icon.component';
-import { MapPinIconComponent } from './components/atoms/icons/map-pin-icon/map-pin-icon.component';
-import { LoginComponent } from './pages/login/login.component';
-import { TextInputFieldComponent } from './components/atoms/text-input-field/text-input-field.component';
-import { AddSectionIconComponent } from './components/atoms/icons/add-section-icon/add-section-icon.component';
-import { MinusIconComponent } from './components/atoms/icons/minus-icon/minus-icon.component';
-import { AddCircleDashedIconComponent } from './components/atoms/icons/add-circle-dashed-icon/add-circle-dashed-icon.component';
-import { StoreIconComponent } from './components/atoms/icons/store-icon/store-icon.component';
-import { AccountMenuComponent } from './components/molecules/account-menu/account-menu.component';
-import { AccountMenuItemComponent } from './components/atoms/account-menu-item/account-menu-item.component';
-import { SettingIconComponent } from './components/atoms/icons/setting-icon/setting-icon.component';
-import { PenEditIconComponent } from './components/atoms/icons/pen-edit-icon/pen-edit-icon.component';
-import { LogOutIconComponent } from './components/atoms/icons/log-out-icon/log-out-icon.component';
+import { SectionBarComponent } from '@components/molecules/section-bar/section-bar.component';
+import { PerfilTiendaComponent } from '@components/molecules/perfil-tienda/perfil-tienda.component';
+import { StarIconComponent } from '@components/atoms/icons/star-icon/star-icon.component';
+import { MapPinIconComponent } from '@components/atoms/icons/map-pin-icon/map-pin-icon.component';
+import { LoginComponent } from '@pages/login/login.component';
+import { TextInputFieldComponent } from '@components/atoms/text-input-field/text-input-field.component';
+import { AddSectionIconComponent } from '@components/atoms/icons/add-section-icon/add-section-icon.component';
+import { MinusIconComponent } from '@components/atoms/icons/minus-icon/minus-icon.component';
+import { AddCircleDashedIconComponent } from '@components/atoms/icons/add-circle-dashed-icon/add-circle-dashed-icon.component';
+import { StoreIconComponent } from '@components/atoms/icons/store-icon/store-icon.component';
+import { AccountMenuComponent } from '@components/molecules/account-menu/account-menu.component';
+import { AccountMenuItemComponent } from '@components/atoms/account-menu-item/account-menu-item.component';
+import { SettingIconComponent } from '@components/atoms/icons/setting-icon/setting-icon.component';
+import { PenEditIconComponent } from '@components/atoms/icons/pen-edit-icon/pen-edit-icon.component';
+import { LogOutIconComponent } from '@components/atoms/icons/log-out-icon/log-out-icon.component';
+import { CartComponent } from '@components/molecules/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { LogOutIconComponent } from './components/atoms/icons/log-out-icon/log-o
     AccountMenuItemComponent,
     SettingIconComponent,
     PenEditIconComponent,
-    LogOutIconComponent
+    LogOutIconComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
   </div>
 
 
-  <div class="flex gap-5 h-full" *ngIf="!(isLogged$ | async)">
+  <div class="flex gap-5 h-full" *ngIf="!(isLogged$ | async); else logged">
     <app-principal-button
       text="Iniciar sesión"
       styleButton="secondary"
@@ -37,35 +37,36 @@
     ></app-principal-button>
   </div>
 
-  <div class="flex items-center h-full text-orange-500 gap-10 max-sm:gap-3">
-    <ng-container *ngIf="(currentAccount  | async)?.tipoCuenta === 'tienda'; else cliente">
-      <a href="">
-        <app-add-circle-dashed-icon></app-add-circle-dashed-icon>
-      </a>
-      <a href="">
-        <app-store-icon></app-store-icon>
-      </a>
-    </ng-container>
+  <ng-template #logged>
+
+    <div class="flex items-center h-full text-orange-500 gap-10 max-sm:gap-3">
+      <ng-container *ngIf="(currentAccount  | async)?.tipoCuenta === 'tienda'; else cliente">
+        <a href="">
+          <app-add-circle-dashed-icon></app-add-circle-dashed-icon>
+        </a>
+        <a href="">
+          <app-store-icon></app-store-icon>
+        </a>
+      </ng-container>
 
 
-    <ng-template #cliente>
-      <!-- carrito -->
-    </ng-template>
+      <ng-template #cliente>
+        <!-- carrito -->
+        <app-cart></app-cart>
+      </ng-template>
 
 
-    <!-- Button to create store -->
-    <div class="relative">
+      <!-- Button to create store -->
+      <div class="relative">
 
-      <!-- Button to show menu -->
-      <!-- MOSTRAR INFORMACIÓN DE LAS CUENTAS - MENU -->
+        <!-- Button to show menu -->
+        <!--  MENU -->
 
-      <!--  MENU -->
+        <app-account-menu
+        ></app-account-menu>
 
-      <app-account-menu
-        *ngIf="(isLogged$ | async)"
-      ></app-account-menu>
-
+      </div>
     </div>
-  </div>
+  </ng-template>
 
 </nav>
