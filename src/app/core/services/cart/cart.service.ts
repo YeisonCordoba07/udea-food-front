@@ -16,8 +16,8 @@ export class CartService {
 
 
   constructor() {
-    // @ts-ignore
-    const cart: Producto[] | [] = localStorage.getItem("cart");
+
+    const cart: Producto[] = JSON.parse(localStorage.getItem("cart") || '[]');
     if(cart && cart.length > 0) {
       this.cartSubject.next(cart);
     }
@@ -27,9 +27,10 @@ export class CartService {
   addToCart(producto: Producto) {
     if(producto){
       const currentCart = this.cartSubject.getValue();
-      const existingProductIndex = currentCart.findIndex(item => item.idTienda === producto.idTienda);
 
-      if (existingProductIndex === -1) {
+      const existingProductIndex = currentCart.findIndex(item => item.idProducto === producto.idProducto);
+
+      if (existingProductIndex !== -1) {
         return;
       }
       currentCart.push(producto);
@@ -40,9 +41,9 @@ export class CartService {
     }
   }
 
-  remoteFromCart(idProducto: number) {
+  removeFromCart(idProducto: number) {
     const currentCart = this.cartSubject.getValue();
-    const updatedCart = currentCart.filter(producto => producto.idTienda !== idProducto);
+    const updatedCart = currentCart.filter(producto => producto.idProducto !== idProducto);
     this.cartSubject.next(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   }
