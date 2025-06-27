@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from "@core/services/cart/cart.service";
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-mini-cart',
   templateUrl: './mini-cart.component.html',
   styleUrls: ['./mini-cart.component.css']
 })

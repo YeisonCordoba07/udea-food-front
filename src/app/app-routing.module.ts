@@ -6,6 +6,7 @@ import {HomeComponent} from "@pages/home/home.component";
 import {SearchResultsComponent} from "@pages/search-results/search-results.component";
 import {TiendaComponent} from "@pages/tienda/tienda.component";
 import {LoginComponent} from "@pages/login/login.component";
+import {CartComponent} from "@pages/cart/cart.component";
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'carrito', component: CartComponent
   }
 ];
 

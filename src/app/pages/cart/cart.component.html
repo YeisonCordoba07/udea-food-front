@@ -1,0 +1,124 @@
+<div class="w-full h-full bg-zinc-300 flex justify-center">
+  <div class="w-[1200px] h-full p-7 bg-zinc-300 flex gap-5">
+
+    <!-- Productos -->
+    <div class="flex flex-col rounded-md w-full bg-gray-100 shadow-md border border-zinc-200">
+
+      <h2 class="text-2xl font-bold p-5 ">Productos</h2>
+      <hr class="border border-neutral-200 w-full" />
+
+      <div class="flex flex-col gap-5 p-5">
+
+        <div
+          *ngFor="let producto of (cart | async)"
+          class="flex p-4 rounded-lg font-bold gap-4 shadow-md  hover:shadow-xl transition-transform duration-200 ease-in-out h-[200px] w-full border border-gray-200 bg-white">
+
+
+      <img [src]="src" width="300" height="300"
+        class="bg-no-repeat h-full min-h-[100px] object-cover rounded-md mx-auto w-1/4" />
+
+
+
+    <div class="flex gap-1 flex-col w-full max-sm:text-center">
+        <span
+            class="text-xl overflow-hidden text-ellipsis w-full">
+        {{producto.nombre}}
+        </span>
+
+        <p
+            class="text-sm font-normal text-neutral-400 overflow-hidden text-ellipsis  w-full">
+        {{producto.descripcion}}
+        </p>
+
+    </div>
+
+
+
+    <div class="flex flex-col w-1/3 max-sm:w-full">
+        <div class="flex items-center gap-2">
+
+            <span class="text-2xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">
+                $ {{producto.precio}}
+        </span>
+        <span class="bg-lime-500  rounded-md text-center w-fit px-2 py-[2px] text-white ">-12%</span>
+
+    </div>
+
+    <small class="text-lg text-neutral-400 line-through overflow-hidden text-ellipsis whitespace-nowrap">
+        $ {{producto.precio}}
+        </small>
+
+        <div class="mt-auto w-full">
+          <app-principal-button
+            [showIcon]="false"
+            text="Eliminar"
+            styleButton="secondary"
+            (onClick)="removeFromCart(producto.idProducto)"
+          ></app-principal-button>
+    </div>
+
+</div>
+
+</div>
+
+      </div>
+      <hr class="border border-neutral-200 w-full" />
+      <div class="p-5 flex items-center justify-between">
+        <div>
+          <app-principal-button text="Vaciar carrito" [showIcon]="false" (onClick)="clearCart()"></app-principal-button>
+        </div>
+
+        <div class="flex justify-end gap-5">
+          <span class="font-bold text-xl">Subtotal:</span>
+          <span class="font-bold text-xl">$ {{totalPrice}}</span>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+    <!-- Pago -->
+    <div class="flex bg-gray-100 w-[500px] min-w-96 h-fit rounded-md flex-col shadow-md border border-zinc-200">
+
+      <h2 class="text-2xl font-bold p-5 ">Pago</h2>
+      <hr class="border border-neutral-200 w-full" />
+
+      <div class="flex flex-col p-5 gap-2">
+
+        <div class="flex justify-between ">
+          <span class=" text-xl">Cantidad de productos:</span>
+          <span class="text-xl">{{(cart | async)?.length}}</span>
+        </div>
+
+        <div class="flex justify-between ">
+          <span class=" text-xl">Descuento:</span>
+          <span class="text-xl">0</span>
+        </div>
+
+
+
+        <div class="flex justify-between ">
+          <span class=" text-xl">Envio:</span>
+          <span class="text-xl">$ 0</span>
+        </div>
+
+        <div class="flex justify-between ">
+          <span class="font-bold text-xl">Total:</span>
+          <span class="font-bold text-xl">$ {{totalPrice}}</span>
+        </div>
+
+      </div>
+
+      <hr class="border border-neutral-200 w-full" />
+
+      <div class="p-5">
+
+        <app-principal-button text="Comprar" [showIcon]="false"></app-principal-button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
