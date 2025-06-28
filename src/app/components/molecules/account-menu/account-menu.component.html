@@ -1,6 +1,7 @@
 <div
   class="rounded-full flex  items-center hover:bg-orange-200  transition duration-150 hover:scale-110 cursor-pointer"
   (click)="toggleMenu()"
+  appClickOutside (clickOutside)="showMenu = false"
 >
   <img
     src="https://picsum.photos/200"

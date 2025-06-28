@@ -45,6 +45,7 @@ import { PenEditIconComponent } from '@components/atoms/icons/pen-edit-icon/pen-
 import { LogOutIconComponent } from '@components/atoms/icons/log-out-icon/log-out-icon.component';
 import { MiniCartComponent } from '@components/molecules/cart/mini-cart.component';
 import { CartComponent } from '@pages/cart/cart.component';
+import { ClickOutsideDirective } from './core/directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { CartComponent } from '@pages/cart/cart.component';
     PenEditIconComponent,
     LogOutIconComponent,
     MiniCartComponent,
-    CartComponent
+    CartComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
