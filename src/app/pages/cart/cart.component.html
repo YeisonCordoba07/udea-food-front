@@ -38,14 +38,14 @@
         <div class="flex items-center gap-2">
 
             <span class="text-2xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">
-                $ {{producto.precio}}
+                {{producto.precio | currency:'USD':'symbol':'1.2-2'}}
         </span>
         <span class="bg-lime-500  rounded-md text-center w-fit px-2 py-[2px] text-white ">-12%</span>
 
     </div>
 
     <small class="text-lg text-neutral-400 line-through overflow-hidden text-ellipsis whitespace-nowrap">
-        $ {{producto.precio}}
+        {{producto.precio | currency:'USD':'symbol':'1.2-2'}}
         </small>
 
         <div class="mt-auto w-full">
@@ -70,7 +70,7 @@
 
         <div class="flex justify-end gap-5">
           <span class="font-bold text-xl">Subtotal:</span>
-          <span class="font-bold text-xl">$ {{totalPrice}}</span>
+          <span class="font-bold text-xl">{{(totalPrice | async | currency:'USD':'symbol':'1.2-2' )}}</span>
         </div>
       </div>
 
@@ -106,7 +106,7 @@
 
         <div class="flex justify-between ">
           <span class="font-bold text-xl">Total:</span>
-          <span class="font-bold text-xl">$ {{totalPrice}}</span>
+          <span class="font-bold text-xl">{{(totalPrice | async | currency:'USD':'symbol':'1.2-2')}}</span>
         </div>
 
       </div>
