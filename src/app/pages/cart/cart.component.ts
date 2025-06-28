@@ -11,20 +11,18 @@ export class CartComponent implements OnInit {
 
   cart = this.cartService.cart$;
   src: string = "assets/images/food1.jpg";
-  totalPrice = this.cart.pipe(
-    map((items) => items.reduce((total, item) => item.precio + total, 0))
-  );
+  totalPrice = this.cartService.totalPrice$;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
-  removeFromCart(idProducto: any) {
-
+  removeFromCart(idProducto: number) {
+    this.cartService.removeFromCart(idProducto)
   }
 
   clearCart() {
-
+    this.cartService.clearCart();
   }
 }

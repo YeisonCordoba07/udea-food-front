@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Producto} from "@core/models/udea.model";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,8 @@ import {BehaviorSubject} from "rxjs";
 export class CartService {
 
   private cartSubject=  new BehaviorSubject<Producto[]>([]);
+
+  private totalPriceSubject = new BehaviorSubject(0);
 
   get cart$() {
     return this.cartSubject.asObservable();
@@ -51,5 +53,11 @@ export class CartService {
   clearCart() {
     this.cartSubject.next([]);
     localStorage.removeItem("cart");
+  }
+
+  get totalPrice$(): Observable<number> {
+    return this.cart$.pipe(
+      map((cart) => cart.reduce((total, item) => total + item.precio, 0))
+    );
   }
 }
