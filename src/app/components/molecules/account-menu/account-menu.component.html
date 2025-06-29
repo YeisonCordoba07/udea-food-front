@@ -30,7 +30,6 @@
 
 
     <!-- User account -->
-    <!-- CAMBIAR CUENTA (CLICK) -->
     <app-account-menu-item
       [idCuenta]="(accountInfo | async)?.usuario?.id!"
       *ngIf="(accountInfo | async)?.usuario?.id !== (accountInfo | async)?.idActivo"
@@ -43,7 +42,6 @@
 
 
     <!-- List of stores -->
-    <!-- (CLICK) CAMBIAR CUENTA ACTIVA (onClick)="handleChangeAccount(store.id)" -->
     <ng-container *ngFor="let store of (accountInfo | async )?.tiendas">
       <app-account-menu-item
         [idCuenta]="store.id"

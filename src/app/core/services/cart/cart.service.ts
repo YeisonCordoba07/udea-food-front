@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
-import {Producto} from "@core/models/udea.model";
-import {BehaviorSubject, map, Observable} from "rxjs";
+import {Injectable, OnDestroy} from '@angular/core';
+import {Producto, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
+import {BehaviorSubject, map, Observable, Subscription} from "rxjs";
+import {LoginService} from "@core/services/login/login.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class CartService implements OnDestroy {
 
   private cartSubject=  new BehaviorSubject<Producto[]>([]);
 
-  private totalPriceSubject = new BehaviorSubject(0);
+  private currentAccount: UsuarioInfo | TiendaInfo | null = null;
+  private loginSubscription!: Subscription;
+
 
   get cart$() {
     return this.cartSubject.asObservable();
@@ -17,17 +20,21 @@ export class CartService {
 
 
 
-  constructor() {
-
+  constructor(private loginService: LoginService) {
     const cart: Producto[] = JSON.parse(localStorage.getItem("cart") || '[]');
     if(cart && cart.length > 0) {
       this.cartSubject.next(cart);
     }
+
+
+    this.loginSubscription = this.loginService.currentAccount$.subscribe(account => {
+      this.currentAccount = account;
+    });
   }
 
 
   addToCart(producto: Producto) {
-    if(producto){
+    if(producto && this.isUserAccount()) {
       const currentCart = this.cartSubject.getValue();
 
       const existingProductIndex = currentCart.findIndex(item => item.idProducto === producto.idProducto);
@@ -44,20 +51,35 @@ export class CartService {
   }
 
   removeFromCart(idProducto: number) {
-    const currentCart = this.cartSubject.getValue();
-    const updatedCart = currentCart.filter(producto => producto.idProducto !== idProducto);
-    this.cartSubject.next(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    if(this.isUserAccount()){
+
+      const currentCart = this.cartSubject.getValue();
+      const updatedCart = currentCart.filter(producto => producto.idProducto !== idProducto);
+      this.cartSubject.next(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   }
 
   clearCart() {
-    this.cartSubject.next([]);
-    localStorage.removeItem("cart");
+    if(this.isUserAccount()) {
+      this.cartSubject.next([]);
+      localStorage.removeItem("cart");
+    }
   }
 
   get totalPrice$(): Observable<number> {
     return this.cart$.pipe(
       map((cart) => cart.reduce((total, item) => total + item.precio, 0))
     );
+  }
+
+  private isUserAccount(): boolean {
+    return this.currentAccount?.tipoCuenta.toLowerCase() === 'usuario';
+  }
+
+  ngOnDestroy(): void {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
   }
 }

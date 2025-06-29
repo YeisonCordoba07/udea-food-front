@@ -17,10 +17,13 @@ export class ProductCardDetailComponent implements OnInit {
 
   @ViewChild(EmptyDialogComponent) emptyDialog!: EmptyDialogComponent;
 
+
   constructor(private router: Router, private cartService: CartService) { }
+
 
   ngOnInit(): void {
   }
+
 
   openDialog() {
     this.emptyDialog.openDialog();
