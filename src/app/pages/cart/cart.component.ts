@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "@core/services/cart/cart.service";
-import {map, reduce} from "rxjs";
+import {GLOBAL} from "@core/constants/services.constants";
+
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,7 @@ import {map, reduce} from "rxjs";
 export class CartComponent implements OnInit {
 
   cart = this.cartService.cart$;
-  src: string = "assets/images/food1.jpg";
+  src: string = GLOBAL.SRC_DEFAULT_RUTE_IMAGE;
   totalPrice = this.cartService.totalPrice$;
 
   constructor(private cartService: CartService) { }

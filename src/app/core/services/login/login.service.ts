@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {API_ROUTES} from "@core/constants/routes.constants";
 import {AccountInfo, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
+import {LOGIN} from "@core/constants/services.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LoginService {
   private accountInfoSubject = new BehaviorSubject<AccountInfo | null>(null);
   private currentAccountSubject = new BehaviorSubject<UsuarioInfo | TiendaInfo | null>(null);
   private isLoggedSubject = new BehaviorSubject<boolean>(false);
-  private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem(LOGIN.LOCALSTORAGE_TOKEN_NAME));
 
 
   constructor(private http: HttpClient) {
@@ -37,6 +38,7 @@ export class LoginService {
   }
 
 
+
   login(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(API_ROUTES.LOGIN_URL, credentials).pipe(
       tap((response: any) => {
@@ -51,8 +53,8 @@ export class LoginService {
     this.currentAccountSubject.next(null);
     this.isLoggedSubject.next(false);
     this.tokenSubject.next(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('accountInfo');
+    localStorage.removeItem(LOGIN.LOCALSTORAGE_TOKEN_NAME);
+    localStorage.removeItem(LOGIN.LOCALSTORAGE_ACCOUNT_INFO_NAME);
   }
 
 
@@ -69,7 +71,7 @@ export class LoginService {
       this.currentAccountSubject.next(newCurrentAccount);
       accountInfo.idActivo = idCuenta;
       this.accountInfoSubject.next(accountInfo);
-      localStorage.setItem('accountInfo', JSON.stringify(accountInfo));
+      localStorage.setItem(LOGIN.LOCALSTORAGE_ACCOUNT_INFO_NAME, JSON.stringify(accountInfo));
     }
  }
 
@@ -78,8 +80,8 @@ export class LoginService {
     this.accountInfoSubject.next(response.accountInfo);
     this.tokenSubject.next(response.token);
     this.isLoggedSubject.next(true);
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('accountInfo', JSON.stringify(response.accountInfo));
+    localStorage.setItem(LOGIN.LOCALSTORAGE_TOKEN_NAME, response.token);
+    localStorage.setItem(LOGIN.LOCALSTORAGE_ACCOUNT_INFO_NAME, JSON.stringify(response.accountInfo));
     this.currentAccountSubject.next(this.chooseCurrentAccount(response.accountInfo));
   }
 
@@ -92,8 +94,8 @@ export class LoginService {
   }
 
   private initializeSession(): void {
-    const token = localStorage.getItem('token');
-    const accountInfo = localStorage.getItem('accountInfo');
+    const token = localStorage.getItem(LOGIN.LOCALSTORAGE_TOKEN_NAME);
+    const accountInfo = localStorage.getItem(LOGIN.LOCALSTORAGE_ACCOUNT_INFO_NAME);
     if (token && accountInfo) {
       this.tokenSubject.next(token);
       this.accountInfoSubject.next(JSON.parse(accountInfo));

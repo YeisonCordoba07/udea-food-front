@@ -18,7 +18,6 @@ export class AccountMenuComponent implements OnInit {
   }
 
   handleChangeAccount(idCuenta: number) {
-    console.log(`Changing account to ID: ${idCuenta}`);
     this.loginService.changeAccount(idCuenta);
   }
 
@@ -27,7 +26,6 @@ export class AccountMenuComponent implements OnInit {
   }
 
   toggleMenu(){
-    console.log("cambio", this.showMenu);
     this.showMenu = !this.showMenu;
   }
 

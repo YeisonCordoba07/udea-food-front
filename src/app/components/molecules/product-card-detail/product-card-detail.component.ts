@@ -3,6 +3,7 @@ import {IngredienteProducto, Producto} from "@core/models/udea.model";
 import {EmptyDialogComponent} from "@components/atoms/empty-dialog/empty-dialog.component";
 import {Router} from "@angular/router";
 import {CartService} from "@core/services/cart/cart.service";
+import {GLOBAL} from "@core/constants/services.constants";
 
 @Component({
   selector: 'app-product-card-detail',
@@ -11,7 +12,7 @@ import {CartService} from "@core/services/cart/cart.service";
 })
 export class ProductCardDetailComponent implements OnInit {
 
-  @Input() src: string = 'assets/images/food1.jpg';
+  @Input() src: string = GLOBAL.SRC_DEFAULT_RUTE_IMAGE;
   @Input() producto: Producto | null = null;
   @Input() ingredients!: IngredienteProducto | null;
 

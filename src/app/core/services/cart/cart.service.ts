@@ -2,6 +2,7 @@ import {Injectable, OnDestroy} from '@angular/core';
 import {Producto, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
 import {BehaviorSubject, map, Observable, Subscription} from "rxjs";
 import {LoginService} from "@core/services/login/login.service";
+import {CART, LOGIN} from "@core/constants/services.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class CartService implements OnDestroy {
 
 
   constructor(private loginService: LoginService) {
-    const cart: Producto[] = JSON.parse(localStorage.getItem("cart") || '[]');
+    const cart: Producto[] = JSON.parse(localStorage.getItem(CART.LOCALSTORAGE_NAME) || '[]');
     if(cart && cart.length > 0) {
       this.cartSubject.next(cart);
     }
@@ -45,7 +46,7 @@ export class CartService implements OnDestroy {
       currentCart.push(producto);
 
       this.cartSubject.next(currentCart);
-      localStorage.setItem("cart", JSON.stringify(currentCart));
+      localStorage.setItem(CART.LOCALSTORAGE_NAME, JSON.stringify(currentCart));
 
     }
   }
@@ -56,14 +57,14 @@ export class CartService implements OnDestroy {
       const currentCart = this.cartSubject.getValue();
       const updatedCart = currentCart.filter(producto => producto.idProducto !== idProducto);
       this.cartSubject.next(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      localStorage.setItem(CART.LOCALSTORAGE_NAME, JSON.stringify(updatedCart));
     }
   }
 
   clearCart() {
     if(this.isUserAccount()) {
       this.cartSubject.next([]);
-      localStorage.removeItem("cart");
+      localStorage.removeItem(CART.LOCALSTORAGE_NAME);
     }
   }
 
@@ -74,7 +75,7 @@ export class CartService implements OnDestroy {
   }
 
   private isUserAccount(): boolean {
-    return this.currentAccount?.tipoCuenta.toLowerCase() === 'usuario';
+    return this.currentAccount?.tipoCuenta.toLowerCase() === LOGIN.ACCOUNT_USERNAME_TYPE_NAME;
   }
 
   ngOnDestroy(): void {
