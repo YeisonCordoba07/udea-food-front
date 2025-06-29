@@ -37,6 +37,8 @@
     ></app-principal-button>
   </div>
 
+
+  <!-- Logged user -->
   <ng-template #logged>
 
     <div class="flex items-center h-full text-orange-500 gap-10 max-sm:gap-3">
@@ -44,7 +46,7 @@
         <a routerLink="#">
           <app-add-circle-dashed-icon></app-add-circle-dashed-icon>
         </a>
-        <a routerLink="#">
+        <a [routerLink]="'/tienda/'+(currentAccount | async)?.id">
           <app-store-icon></app-store-icon>
         </a>
       </ng-container>
