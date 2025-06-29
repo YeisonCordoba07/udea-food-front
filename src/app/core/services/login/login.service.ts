@@ -15,11 +15,9 @@ export class LoginService {
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
 
 
-
   constructor(private http: HttpClient) {
     this.initializeSession();
   }
-
 
 
   get accountInfo$(): Observable<AccountInfo | null> {
@@ -39,7 +37,6 @@ export class LoginService {
   }
 
 
-
   login(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(API_ROUTES.LOGIN_URL, credentials).pipe(
       tap((response: any) => {
@@ -57,6 +54,24 @@ export class LoginService {
     localStorage.removeItem('token');
     localStorage.removeItem('accountInfo');
   }
+
+
+ changeAccount(idCuenta: number): void {
+    const accountInfo = this.accountInfoSubject.getValue();
+    if (accountInfo) {
+      const newCurrentAccount = this.chooseCurrentAccount({
+        ...accountInfo,
+        idActivo: idCuenta
+      });
+      if(!newCurrentAccount) {
+        return;
+      }
+      this.currentAccountSubject.next(newCurrentAccount);
+      accountInfo.idActivo = idCuenta;
+      this.accountInfoSubject.next(accountInfo);
+      localStorage.setItem('accountInfo', JSON.stringify(accountInfo));
+    }
+ }
 
 
   private handleLoginSuccess(response: any): void {
