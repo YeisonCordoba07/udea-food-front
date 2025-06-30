@@ -1,4 +1,4 @@
-<div class="relative w-full gap-1 flex flex-col">
+<div class="relative w-full gap-1 flex flex-col" appClickOutside (clickOutside)="isOpen = false">
 
   <label class="font-semibold text-sm" *ngIf="title">
     {{ title }}
@@ -7,7 +7,7 @@
 
   <!-- Dropdown -->
   <div
-    [class]="'flex border border-gray-300 p-3 rounded-md text-sm items-center justify-between w-full font-semibold  text-black transition-all duration-200 ease-in-out hover:border-orange-500 hover:bg-white h-fit' + isOpen ? 'bg-white border-orange-500 border' : 'bg-gray-50'"
+    [class]="'flex border border-gray-300 p-3 rounded-md text-sm items-center justify-between w-full font-semibold  text-black transition-all duration-200 ease-in-out hover:border-orange-500 hover:bg-white h-fit ' + (isOpen ? 'bg-white border-orange-500 border' : 'bg-gray-50')"
   >
 
     <!-- Selected items -->
@@ -15,10 +15,11 @@
       <ng-container *ngIf="selected.length > 0; else noSelected">
 
         <!--  onClose={()=> handleRemoveSelected(item)} -->
-        <app-tag *ngFor="let item of selected"
-        >item
+        <app-tag *ngFor="let item of selected" (onClose)="handleFilterClick(item)">
+          {{ item }}
         </app-tag>
       </ng-container>
+
       <ng-template #noSelected>
         <p>
           Seleccione una opción
@@ -31,9 +32,10 @@
     <!-- onClick={() => setIsOpen((prev) => !prev)} -->
     <button
       type="button"
-      [class]="'border rounded-md text-sm flex justify-center items-center font-semibold text-black transition-all duration-200 ease-in-out hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 h-10 w-14' + isOpen ? 'border-gray-400' : 'bg-gray-200 border-gray-400'"
+      [class]="'border rounded-md text-sm flex justify-center items-center font-semibold text-black transition-all duration-200 ease-in-out hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 h-10 w-14 ' +  (isOpen ? 'border-gray-400' : 'bg-gray-200 border-gray-400')"
+      (click)="toggleDropdown()"
     >
-      <div [class]="'transition-transform '+ isOpen ? 'rotate-180' : ''">
+      <div [class]="'transition-transform ' + (isOpen ? 'rotate-180' : '')">
         <app-down-arrow-icon></app-down-arrow-icon>
       </div>
     </button>
@@ -47,9 +49,8 @@
 
     <!-- onClick={() => handleFilterClick(value, label)} -->
     <li *ngFor="let option of options"
-        [class]="'dropdownElement cursor-pointer p-2 hover:bg-gray-100 rounded-md'
-
-    + selected.includes(option.label)  ? 'bg-orange-50 text-orange-500 outline-1 outline outline-orange-200'  : ''"
+        [class]="'dropdownElement cursor-pointer p-2 hover:bg-gray-100 rounded-md ' + (selected.includes(option.label) ? ' bg-orange-50 text-orange-500 outline-1 outline outline-orange-200' : '')"
+        (click)="handleFilterClick(option.label)"
     >
       {{ option.label }}
     </li>

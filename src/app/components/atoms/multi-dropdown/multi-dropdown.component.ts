@@ -9,7 +9,7 @@ export class MultiDropdownComponent implements OnInit {
 
   @Input() title: string = "";
   isOpen: boolean = false;
-  @Input() selected!: string;
+  selected: string[] = [];
   @Input() maxSelected: number = 3;
   @Input() options: {value: string | number, label: string}[] = [];
 
@@ -18,6 +18,23 @@ export class MultiDropdownComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.selected.push(this.options[0].label);
+    this.selected.push(this.options[1].label);
   }
 
+  toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
+
+  handleFilterClick(label: string) {
+    const isSelected = this.selected.includes(label);
+    if(this.selected.length >= this.maxSelected && !isSelected) {
+      return; // Prevent selecting more than maxSelected
+    }
+    if(isSelected) {
+      this.selected = this.selected.filter(item => item !== label);
+    } else {
+      this.selected.push(label);
+    }
+  }
 }

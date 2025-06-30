@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-tag',
@@ -7,9 +7,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TagComponent implements OnInit {
 
+  @Output() onClose = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  handleClose() {
+    this.onClose.emit();
+  }
 }
