@@ -1,0 +1,133 @@
+<div class="flex flex-col items-center justify-center h-fit bg-neutral-300 bg-cover bg-center max-lg:p-10">
+  <!-- onSubmit="handleCreateProduct" -->
+  <form
+    [class]="'bg-gray-100 shadow-lg gap-10 flex flex-col rounded-2xl w-[800px] p-14 max-lg:w-full max-sm:p-10 mx-auto mt-10 mb-10 border' + (step === 1 ? 'bg-white' : 'bg-neutral-100')"
+  >
+    <div class="flex items-center justify-center flex-col gap-3">
+      <h1 class="text-3xl font-extrabold">Crear Producto</h1>
+    </div>
+
+    <ng-container *ngIf="step === 1">
+
+      <app-text-input-field
+        label="Nombre del Producto"
+        placeholder="Ejemplo: Hamburguesa"
+
+        value={newProduct.nombre}
+
+      ></app-text-input-field>
+
+      <!--<TextInputField
+        text="Descripción"
+        name="descripcion"
+        inputType="textarea"
+        placeholder="Ejemplo: Hamburguesa con queso y papas"
+        value={newProduct.descripcion}
+        onChange={handleProductChange}
+        isValid={!!errors.descripcion}
+        errorMessage={errors.descripcion}
+      />
+
+      <TextInputField
+        text="Precio"
+        name="precio"
+        inputType="number"
+        placeholder="Ejemplo: 15000"
+        value={newProduct.precio}
+        onChange={handleProductChange}
+        isValid={!!errors.precio}
+        errorMessage={errors.precio}
+      />-->
+
+      <div class="flex flex-col gap-1">
+        <label
+          class="block text-sm font-medium text-gray-900"
+        >
+          Imágenes del Producto
+        </label>
+        <!-- onChange={handleFileChange} -->
+        <input
+          type="file"
+          class="w-full text-slate-500 font-medium text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-orange-500 file:hover:bg-orange-700 file:text-white rounded"
+
+          multiple
+        />
+      </div>
+
+      <app-multi-dropdown
+        title="Categorías (maximo 3)"
+        [options]="options"
+        (optionChange)="handleChangeDropdown()"
+        [maxSelected]="3"
+      ></app-multi-dropdown>
+
+      <!--<FormDropdown
+        subtitle="Sección"
+        options={secciones}
+        onChange={(value)=> setNewProduct((prev) => ({
+      ...prev,
+      idSeccionTienda: parseInt(value, 10),
+      }))
+      }
+      reloadData={fetchSecciones}
+      />-->
+    </ng-container>
+
+
+    <!--
+    {step === 2 && (
+            <>
+    {ingredienteProducto.ingredientes.map(
+    (ingrediente, indexIngrediente) => (
+    <Ingredient
+      key={indexIngrediente}
+      ingrediente={ingrediente}
+      indexIngrediente={indexIngrediente}
+      setIngredienteProducto={setIngredienteProducto}
+    />
+    -->
+
+    <!-- Fin ingrediente -->
+
+    <!--  onClick={() => { const newIngredient = { ...nuevoIngrediente };
+                setIngredienteProducto((prev) => ({
+  ...prev,
+  ingredientes: [...prev.ingredientes, newIngredient],
+  }));
+  }} -->
+    <button
+      class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
+      type="button"
+    >
+      <div class="bg-orange-500 text-white rounded-full p-1">
+        <app-add-section-icon></app-add-section-icon>
+      </div>
+      {{ " " }}
+      Agregar ingrediente
+    </button>
+
+
+    <div class="mt-6">
+
+      <app-principal-button
+        text="Siguiente"
+        *ngIf="step === 1"
+        [showIcon]="false"
+        styleButton="primary"
+        buttonType="button"
+        (onClick)="handleNextStep()"
+      ></app-principal-button>
+
+
+      <app-principal-button
+        *ngIf="step === 2"
+        text="Crear producto"
+        [showIcon]="false"
+        styleButton="primary"
+        buttonType="button"
+        (onClick)="handleNextStep()"
+      ></app-principal-button>
+
+    </div>
+  </form>
+</div>

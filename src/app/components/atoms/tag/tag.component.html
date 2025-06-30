@@ -1,0 +1,32 @@
+<div class="flex items-center justify-between rounded-sm text-sm border border-orange-200">
+
+      <span
+        class="bg-orange-100 text-orange-600 px-2 py-1 h-full rounded-sm text-sm"
+      >
+        <ng-content></ng-content>
+      </span>
+
+
+  <!-- Close button -->
+  <!-- onClick={onClose} -->
+  <button
+    class="bg-orange-50 w-6 h-full text-orange-800 flex items-center justify-center hover:bg-red-300 duration-150 transition-colors"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 6l-12 12" />
+      <path d="M6 6l12 12" />
+    </svg>
+  </button>
+
+</div>
