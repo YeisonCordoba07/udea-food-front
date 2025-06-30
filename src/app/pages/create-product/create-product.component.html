@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center justify-center h-fit bg-neutral-300 bg-cover bg-center max-lg:p-10">
   <!-- onSubmit="handleCreateProduct" -->
   <form
-    [class]="'bg-gray-100 shadow-lg gap-10 flex flex-col rounded-2xl w-[800px] p-14 max-lg:w-full max-sm:p-10 mx-auto mt-10 mb-10 border' + (step === 1 ? 'bg-white' : 'bg-neutral-100')"
+    [class]="'shadow-lg gap-10 flex flex-col rounded-2xl w-[800px] p-14 max-lg:w-full max-sm:p-10 mx-auto mt-10 mb-10 border ' + (step === 1 ? 'bg-white' : 'bg-neutral-100')"
   >
     <div class="flex items-center justify-center flex-col gap-3">
       <h1 class="text-3xl font-extrabold">Crear Producto</h1>
@@ -12,32 +12,23 @@
       <app-text-input-field
         label="Nombre del Producto"
         placeholder="Ejemplo: Hamburguesa"
-
-        value={newProduct.nombre}
-
+        [control]="nombre"
       ></app-text-input-field>
 
-      <!--<TextInputField
-        text="Descripción"
-        name="descripcion"
-        inputType="textarea"
+      <app-text-input-field
+        label="Descripción"
         placeholder="Ejemplo: Hamburguesa con queso y papas"
-        value={newProduct.descripcion}
-        onChange={handleProductChange}
-        isValid={!!errors.descripcion}
-        errorMessage={errors.descripcion}
-      />
+        inputType="textarea"
+        [control]="descripcion"
+      ></app-text-input-field>
 
-      <TextInputField
-        text="Precio"
-        name="precio"
-        inputType="number"
+      <app-text-input-field
+        label="Precio"
         placeholder="Ejemplo: 15000"
-        value={newProduct.precio}
-        onChange={handleProductChange}
-        isValid={!!errors.precio}
-        errorMessage={errors.precio}
-      />-->
+        inputType="number"
+        [control]="precio"
+      ></app-text-input-field>
+
 
       <div class="flex flex-col gap-1">
         <label
