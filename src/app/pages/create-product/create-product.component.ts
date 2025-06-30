@@ -54,4 +54,8 @@ export class CreateProductComponent implements OnInit {
   handleNextStep() {
 
   }
+
+  createProduct() {
+
+  }
 }

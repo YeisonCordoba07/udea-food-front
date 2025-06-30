@@ -38,3 +38,7 @@
   box-shadow: 0 0 15px 2px rgb(0 0 0 / 0.1)
 }
 
+
+.dropdownElement{
+  @apply py-3 rounded-md  px-5 py-3 hover:bg-orange-100 hover:text-orange-600 duration-150 font-medium flex justify-start text-sm cursor-pointer;
+}

@@ -1,1 +1,51 @@
-<p>form-dropdown works!</p>
+<div class="relative w-full gap-1 flex flex-col">
+
+  <label class="font-semibold text-sm" *ngIf="subtitle">
+    {{ subtitle }}
+  </label>
+
+  <!-- Dropdown Button -->
+  <!--  onClick={() => setIsOpen((prev) => !prev)} -->
+  <button
+    (click)="toggleDropdown()"
+    type="button"
+    class="bg-gray-100 border border-gray-300 py-2 px-4 rounded-md text-sm flex justify-between items-center w-full font-semibold text-black transition-all duration-200 ease-in-out  hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 "
+  >
+    <span>{{ selected }}</span>
+    <div [class]="'transition-transform' + (isOpen ? 'rotate-180' : '')">
+      <app-down-arrow-icon></app-down-arrow-icon>
+    </div>
+  </button>
+
+
+  <!-- Dropdown List -->
+
+  <ul
+    class="bg-white border shadow-md flex flex-col w-full p-3 rounded-xl text-black absolute top-full z-10 mt-2"
+    *ngIf="isOpen">
+    <li *ngIf="showCreate" class="
+                   p-2 hover:bg-gray-100 rounded-md flex items-center justify-center h-12"
+
+    >
+      <!--<CreateSection
+        show={showCreateSection}
+        setShow={setShowCreateSection}
+        reloadData={reloadData}
+      />-->
+
+    </li>
+
+
+    <!-- onClick={() => handleFilterClick(value, label)} -->
+    <ng-container *ngFor="let option of options">
+      <li
+        [class]="'dropdownElement cursor-pointer p-2 rounded-md ' +  (selected === option.label ? 'bg-orange-50 text-orange-500' : '')"
+        (click)="handleFilterClick(option.label)"
+      >
+        {{ option.label }}
+      </li>
+    </ng-container>
+
+  </ul>
+
+</div>
