@@ -13,13 +13,11 @@ export class MultiDropdownComponent implements OnInit {
   @Input() maxSelected: number = 3;
   @Input() options: {value: string | number, label: string}[] = [];
 
-  @Output() optionChange = new EventEmitter<string>();
+  @Output() optionChange = new EventEmitter<(string | number)[]>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.selected.push(this.options[0].label);
-    this.selected.push(this.options[1].label);
   }
 
   toggleDropdown() {
@@ -36,5 +34,12 @@ export class MultiDropdownComponent implements OnInit {
     } else {
       this.selected.push(label);
     }
+
+    const selectedValues: (string | number)[] = this.options
+      .filter(option => this.selected.includes(option.label))
+      .map(option => option.value);
+    this.optionChange.emit(selectedValues);
+
+
   }
 }

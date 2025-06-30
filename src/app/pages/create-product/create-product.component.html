@@ -49,7 +49,7 @@
       <app-multi-dropdown
         title="Categorías (maximo 3)"
         [options]="options"
-        (optionChange)="handleChangeDropdown()"
+        (optionChange)="handleChangeDropdown($event)"
         [maxSelected]="3"
       ></app-multi-dropdown>
 
@@ -61,8 +61,8 @@
       reloadData={fetchSecciones}-->
       <app-form-dropdown
         subtitle="Sección"
-        [options]="options"
-        (optionChange)="handleChangeDropdown()"
+        [options]="(secciones$ | async) || []"
+        (optionChange)="handleChangeFormDropdown($event)"
         ></app-form-dropdown>
     </ng-container>
 

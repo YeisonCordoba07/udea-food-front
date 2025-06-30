@@ -49,7 +49,7 @@
 
     <!-- onClick={() => handleFilterClick(value, label)} -->
     <li *ngFor="let option of options"
-        [class]="'dropdownElement cursor-pointer p-2 hover:bg-gray-100 rounded-md ' + (selected.includes(option.label) ? ' bg-orange-50 text-orange-500 outline-1 outline outline-orange-200' : '')"
+        [class]="'dropdownElement cursor-pointer p-2 rounded-md ' + (selected.includes(option.label) ? ' bg-orange-50 text-orange-500 outline-1 outline outline-orange-200' : '')"
         (click)="handleFilterClick(option.label)"
     >
       {{ option.label }}

@@ -12,3 +12,7 @@ export const LOGIN = {
 export const GLOBAL = {
   SRC_DEFAULT_RUTE_IMAGE: 'assets/images/food1.jpg',
 }
+
+export const TIENDA={
+  GET_SECCIONES_BY_ID_TIENDA_URL: 'http://localhost:8080/seccionTienda/buscarPorIdTienda',
+}

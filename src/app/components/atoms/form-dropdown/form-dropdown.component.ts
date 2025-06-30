@@ -12,7 +12,8 @@ export class FormDropdownComponent implements OnInit {
   showCreate: boolean = false;
   @Input() options: {value: string | number, label: string}[] = [];
 
-  @Output() optionChange = new EventEmitter<void>();
+  @Output() optionChange = new EventEmitter<number | string>();
+
 
 
   constructor() { }
@@ -23,7 +24,8 @@ export class FormDropdownComponent implements OnInit {
   handleFilterClick(label: string) {
     if(this.selected !== label) {
       this.selected = label;
-      this.optionChange.emit();
+      const selectedOption = this.options.find(option => option.label === label);
+      this.optionChange.emit(selectedOption?.value);
     }
   }
 
