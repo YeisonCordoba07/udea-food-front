@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Subscription} from "rxjs";
+import {BehaviorSubject, ReplaySubject, Subscription} from "rxjs";
 import {TiendaPerfil} from "@core/models/udea.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {API_ROUTES} from "@core/constants/routes.constants";
@@ -14,7 +14,7 @@ export class TiendaService {
   private tiendaSubject= new BehaviorSubject<TiendaPerfil | null>(null);
   public tienda$ = this.tiendaSubject.asObservable();
 
-  private seccionesSubject = new BehaviorSubject<any[]>([]);
+  private seccionesSubject = new ReplaySubject<any[]>(1);
   public secciones$ = this.seccionesSubject.asObservable();
 
 
@@ -24,44 +24,18 @@ export class TiendaService {
 
   searchTiendaById(idTienda: string): void {
     this.http.get<TiendaPerfil>(`${API_ROUTES.GET_TIENDA_BY_ID_URL}?id=${idTienda}`).subscribe({
-      next: (tienda) => {
-        this.tiendaSubject.next(tienda);
-      },
-      error: (error) => {
-        console.error('Error fetching tienda:', error);
-        this.tiendaSubject.next(null);
-      }
+      next: (tienda) => this.tiendaSubject.next(tienda),
+      error: (error) => console.error('Error fetching tienda:', error)
     });
   }
 
 
   getSeccionesByIdTienda(): void {
-    let idTienda = 0;
-    if(!this.tiendaSubject.getValue()){
-      this.loginSubscription = this.loginService.currentAccount$.subscribe({
-        next: (account) => {
-          if (account && account.id && account.tipoCuenta === LOGIN.ACCOUNT_TIENDA_TYPE_NAME) {
-            idTienda = account.id;
-          } else {
-            console.error('El id de la tienda no existe o el tipo de cuenta no es tienda.');
-            this.tiendaSubject.next(null);
-          }
-        },
-        error: (error) => {
-          console.error('Error fetching account:', error);
-          this.tiendaSubject.next(null);
-        }
-      });
-    }else{
-      this.seccionesSubject.next(this.tiendaSubject.getValue()?.secciones || []);
-      idTienda = this.tiendaSubject.getValue()?.idTienda || 0;
-      return;
-    }
+    const idTienda = this.getIdTienda();
 
     if(idTienda === 0){
       return;
     }
-
 
     const url = `${TIENDA.GET_SECCIONES_BY_ID_TIENDA_URL}?idTienda=${idTienda}`;
 
@@ -78,6 +52,28 @@ export class TiendaService {
         this.seccionesSubject.next([]);
       }
     })
+  }
+
+
+
+
+  private getIdTienda(): number {
+    let idTienda = 0;
+    this.loginSubscription = this.loginService.currentAccount$.subscribe({
+      next: (account) => {
+        if (account && account.id && account.tipoCuenta === LOGIN.ACCOUNT_TIENDA_TYPE_NAME) {
+          idTienda = account.id;
+        } else {
+          console.error('No ha iniciado sesión o el tipo de cuenta no es tienda.');
+          this.tiendaSubject.next(null);
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching account:', error);
+        this.tiendaSubject.next(null);
+      }
+    });
+    return idTienda;
   }
 
 

@@ -26,6 +26,7 @@ export class FormDropdownComponent implements OnInit {
       this.selected = label;
       const selectedOption = this.options.find(option => option.label === label);
       this.optionChange.emit(selectedOption?.value);
+      this.isOpen = false;
     }
   }
 
