@@ -32,8 +32,6 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Secciones:', this.secciones$);
-
 
     this.newProduct = this.fb.group({
       nombre: ['', [Validators.required]],

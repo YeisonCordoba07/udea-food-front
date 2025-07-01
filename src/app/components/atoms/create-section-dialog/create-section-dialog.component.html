@@ -1,0 +1,46 @@
+
+<button (click)="openDialog()" class=" p-2  hover:text-orange-600 duration-150 hover:scale-[101%] mx-1 w-full h-full flex items-center justify-center">
+  <app-add-section-icon></app-add-section-icon>
+</button>
+<app-empty-dialog>
+
+  <div class="flex p-8 gap-5 flex-col">
+    <h3 class="font-bold text-lg py-2">
+      Crear nueva sección
+    </h3>
+
+    <app-text-input-field
+      label="Nombre de la sección"
+      placeholder="Ejemplo: Hamburguesas"
+      [control]="sectionName"
+      errorMessage="Debe escribir un nombre"
+    ></app-text-input-field>
+
+
+
+      <div class="flex gap-5 items-center justify-between w-full text-center">
+        <div class="w-1/2">
+
+          <app-principal-button
+            text="Crear"
+            styleButton="primary"
+            buttonType="submit"
+            [showIcon]="false"
+            (onClick)="handleSubmit()"
+          ></app-principal-button>
+        </div>
+
+        <div class="w-1/2">
+          <app-principal-button
+            text="Cancelar"
+            [showIcon]="false"
+            styleButton="secondary"
+            buttonType="submit"
+            (onClick)="closeDialog()"
+          ></app-principal-button>
+        </div>
+
+      </div>
+  </div>
+
+</app-empty-dialog>

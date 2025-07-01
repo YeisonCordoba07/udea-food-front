@@ -52,6 +52,7 @@ import {CreateProductComponent} from './pages/create-product/create-product.comp
 import {MultiDropdownComponent} from './components/atoms/multi-dropdown/multi-dropdown.component';
 import {TagComponent} from './components/atoms/tag/tag.component';
 import {FormDropdownComponent} from './components/atoms/form-dropdown/form-dropdown.component';
+import {CreateSectionDialogComponent} from './components/atoms/create-section-dialog/create-section-dialog.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {FormDropdownComponent} from './components/atoms/form-dropdown/form-dropd
     CreateProductComponent,
     MultiDropdownComponent,
     TagComponent,
-    FormDropdownComponent
+    FormDropdownComponent,
+    CreateSectionDialogComponent
   ],
   imports: [
     BrowserModule,
