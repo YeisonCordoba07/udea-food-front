@@ -53,6 +53,9 @@ import {MultiDropdownComponent} from './components/atoms/multi-dropdown/multi-dr
 import {TagComponent} from './components/atoms/tag/tag.component';
 import {FormDropdownComponent} from './components/atoms/form-dropdown/form-dropdown.component';
 import {CreateSectionDialogComponent} from './components/atoms/create-section-dialog/create-section-dialog.component';
+import {IngredientOptionComponent} from './components/molecules/ingredient-option/ingredient-option.component';
+import {ToggleComponent} from './components/atoms/toggle/toggle.component';
+import {IngredientComponent} from './components/molecules/ingredient/ingredient.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +104,10 @@ import {CreateSectionDialogComponent} from './components/atoms/create-section-di
     MultiDropdownComponent,
     TagComponent,
     FormDropdownComponent,
-    CreateSectionDialogComponent
+    CreateSectionDialogComponent,
+    IngredientOptionComponent,
+    ToggleComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,

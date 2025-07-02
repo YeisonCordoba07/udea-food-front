@@ -43,7 +43,7 @@
 
     <div class="flex items-center h-full text-orange-500 gap-10 max-sm:gap-3">
       <ng-container *ngIf="(currentAccount  | async)?.tipoCuenta === 'tienda'; else cliente">
-        <a routerLink="#">
+        <a routerLink="crear-producto">
           <app-add-circle-dashed-icon></app-add-circle-dashed-icon>
         </a>
         <a [routerLink]="'/tienda/'+(currentAccount | async)?.id">
