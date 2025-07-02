@@ -19,6 +19,7 @@ export class CreateProductComponent implements OnInit {
   ];
 
   newProduct!: FormGroup;
+  ingredients!: FormGroup;
   secciones$ = this.tiendaService.secciones$.pipe(
     map((secciones: { idSeccionTienda: number; nombre: string }[] | null) =>
       secciones ? secciones.map(seccion => ({ value: seccion.idSeccionTienda, label: seccion.nombre })) : []
@@ -43,6 +44,11 @@ export class CreateProductComponent implements OnInit {
       idSeccionTienda: [0, [Validators.required]],
       idTienda: [0]
     });
+
+    this.ingredients = this.fb.group({
+      idTienda: [0, [Validators.required]],
+      ingredientes: []
+    })
   }
 
   get nombre(){
