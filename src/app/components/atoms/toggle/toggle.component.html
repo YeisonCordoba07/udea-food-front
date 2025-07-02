@@ -1,0 +1,20 @@
+<label class="flex items-center select-none gap-4">
+  <span *ngIf="text">{{ text }}</span>
+  <div class="flex items-center cursor-pointer relative">
+
+    <input type="checkbox"
+           class="peer sr-only"
+           [checked]="value"
+           (change)="handleChange()"
+    />
+
+    <!-- body -->
+    <div
+      class="block h-4 rounded-full w-10 bg-gray-300 peer-checked:bg-orange-200 transition-colors duration-200 shadow-inner"></div>
+
+    <!-- circle -->
+    <div
+      class="w-6 h-6 rounded-full absolute bg-white -left-1 peer-checked:translate-x-6 transition-all duration-200 z-[1] peer-checked:bg-orange-500 toggleShadow"></div>
+  </div>
+
+</label>
