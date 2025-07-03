@@ -37,21 +37,7 @@ export class CreateProductComponent implements OnInit {
     this.ingredientsForm = this.fb.group({
       idTienda: [0, [Validators.required]],
 
-      ingredientes: this.fb.array([
-        this.fb.group({
-          nombre: ['', [Validators.required]],
-          minSeleccion: [0, [Validators.min(0)]],
-          maxSeleccion: [0, [Validators.min(0)]],
-          multiple: [false],
-          opciones: this.fb.array([
-            this.fb.group({
-              nombre: ['', [Validators.required]],
-              costo: [0, [Validators.min(0)]]
-            }),
-          ])
-
-        })
-      ])
+      ingredientes: this.fb.array([])
     })
 
     this.newProductForm = this.fb.group({
@@ -81,7 +67,7 @@ export class CreateProductComponent implements OnInit {
     return this.newProductForm.get('precio') as FormControl;
   }
 
-  get ingredients(): FormArray {
+  get ingredientes(): FormArray {
     return this.ingredientsForm.get('ingredientes') as FormArray;
   }
 
@@ -121,8 +107,8 @@ export class CreateProductComponent implements OnInit {
 
 
   addIngredient() {
-    this.ingredients.push(this.createNewIngredient());
-    console.log('New ingredient added:', this.ingredients.value);
+    this.ingredientes.push(this.createNewIngredient());
+    console.log('New ingredient added:', this.ingredientes.value);
   }
 
 
@@ -141,4 +127,5 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
+  protected readonly FormGroup = FormGroup;
 }

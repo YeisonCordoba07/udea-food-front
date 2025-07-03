@@ -79,9 +79,19 @@
       setIngredienteProducto={setIngredienteProducto}
     />
     -->
-    <ng-container *ngFor="let ingredient of ingredients.controls; let i = index">
-      <app-ingredient [ingredientArray]="ingredient" [indexIngrediente]="i"></app-ingredient>
+
+    <pre>{{ingredientes.value | json}}</pre>
+    <pre>{{newProductForm.value | json}}</pre>
+
+    <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
+      <div [formGroupName]="i">
+        <app-ingredient
+          [ingredientArray]="ingredientes.at(i)"
+          [indexIngrediente]="i"
+        ></app-ingredient>
+      </div>
     </ng-container>
+
 
 
 

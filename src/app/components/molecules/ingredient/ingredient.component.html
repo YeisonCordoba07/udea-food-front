@@ -10,39 +10,27 @@
           </span>
 
     <!-- Titulo -->
-    <!-- onChange = {(e) => {
-          const nuevoNombre = e.target.value;
-          setIngredienteProducto((prev) = > {
-            const ingredientesActualizados = [...prev.ingredientes];
-          ingredientesActualizados[indexIngrediente].nombre = nuevoNombre;
-
-          return {
-          ...prev,
-          ingredientes: ingredientesActualizados,
-          };
-            });
-          }}-->
-    <!--    value = {ingrediente.nombre} -->
     <app-text-input-field
       placeholder="Ejemplo: Tipo de pan"
+      [control]="nombre"
     ></app-text-input-field>
 
     <!-- Opciones -->
     <ul class="flex flex-col gap-4 items-start ml-7">
       {ingrediente.opciones.map((opcion, indexOpcion) => {
-      return (
-      <div key={indexOpcion}>
+
+      <div >
         <IngredientOption opcion={opcion} indexOpcion={indexOpcion} ingrediente={ingrediente}
                           indexIngrediente={indexIngrediente}
                           setIngredienteProducto={setIngredienteProducto}/>
+
+
       </div>
 
-      );
-      })}
     </ul>
 
     <!-- Button to add new option -->
-    <div class="flex ml-7 ">
+<!--    <div class="flex ml-7 ">
       < div class = "w-1/2" >
       < button
       class = "px-4 py-2 rounded-md flex gap-2 font-bold hover:underline-offset-4 hover:underline text-orange-500"
@@ -75,10 +63,10 @@
       Agregar opción
       </button>
     </div>
-  </div>
+  </div>-->
 
   <!-- Max and Min -->
-  <div class="flex gap-5 text-sm mt-5">
+<!--  <div class="flex gap-5 text-sm mt-5">
     <div class="flex gap-5 items-center w-56">
       <span class="font-semibold">Respuestas minimas</span>
       <TextInputField
@@ -151,10 +139,10 @@
       </select>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- Obligatorio y varias respuestas -->
-<div class="flex gap-3 items-center justify-end border-t-2 border-gray-200 py-3 px-5 pb-5">
+<!--<div class="flex gap-3 items-center justify-end border-t-2 border-gray-200 py-3 px-5 pb-5">
   <div class="flex gap-5 border-r border-gray-500 pr-7 text-sm">
     <Toggle
       text="Varias respuestas"
@@ -219,4 +207,4 @@
   </IconButton>
 </div>
 </div>
-</div>
+</div>-->

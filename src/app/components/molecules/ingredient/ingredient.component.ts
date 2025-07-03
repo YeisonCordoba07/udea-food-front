@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormArray} from "@angular/forms";
+import {AbstractControl, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-ingredient',
@@ -8,13 +8,19 @@ import {FormArray} from "@angular/forms";
 })
 export class IngredientComponent implements OnInit {
 
-  @Input() ingredientArray!: FormArray;
+  @Input() ingredientArray!: AbstractControl;
   @Input() indexIngrediente: number = 0;
 
   @Output() onChange = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Index:', this.indexIngrediente);
+    console.log('Ingredient:', this.ingredientArray.value);
+  }
+
+  get nombre(): FormControl {
+    return this.ingredientArray.get('nombre') as FormControl;
   }
 
 }
