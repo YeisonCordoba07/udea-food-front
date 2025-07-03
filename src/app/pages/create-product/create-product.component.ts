@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TiendaService} from "@core/services/tienda/tienda.service";
 import {map} from "rxjs";
 import {ProductService} from "@core/services/product/product.service";
@@ -19,8 +19,8 @@ export class CreateProductComponent implements OnInit {
     {value: 4, label: "Internacional del norte de china"},
   ];
 
-  newProduct!: FormGroup;
-  ingredients!: FormGroup;
+  newProductForm!: FormGroup;
+  ingredientsForm!: FormGroup;
   secciones$ = this.tiendaService.secciones$.pipe(
     map((secciones: { idSeccionTienda: number; nombre: string }[] | null) =>
       secciones ? secciones.map(seccion => ({value: seccion.idSeccionTienda, label: seccion.nombre})) : []
@@ -33,12 +33,28 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ingredients = this.fb.group({
+
+    this.ingredientsForm = this.fb.group({
       idTienda: [0, [Validators.required]],
-      ingredientes: []
+
+      ingredientes: this.fb.array([
+        this.fb.group({
+          nombre: ['', [Validators.required]],
+          minSeleccion: [0, [Validators.min(0)]],
+          maxSeleccion: [0, [Validators.min(0)]],
+          multiple: [false],
+          opciones: this.fb.array([
+            this.fb.group({
+              nombre: ['', [Validators.required]],
+              costo: [0, [Validators.min(0)]]
+            }),
+          ])
+
+        })
+      ])
     })
 
-    this.newProduct = this.fb.group({
+    this.newProductForm = this.fb.group({
       nombre: ['', [Validators.required]],
       descripcion: [''],
       precio: [0, [Validators.min(0)]],
@@ -47,32 +63,39 @@ export class CreateProductComponent implements OnInit {
       categorias: [[]],
       idSeccionTienda: [0, [Validators.required, Validators.min(1)]],
       idTienda: [0, ],
-      ingredienteProducto: [this.ingredients.value]
+      ingredienteProducto: this.ingredientsForm
     });
 
 
   }
 
   get nombre() {
-    return this.newProduct.get('nombre') as FormControl;
+    return this.newProductForm.get('nombre') as FormControl;
   }
 
   get descripcion() {
-    return this.newProduct.get('descripcion') as FormControl;
+    return this.newProductForm.get('descripcion') as FormControl;
   }
 
   get precio() {
-    return this.newProduct.get('precio') as FormControl;
+    return this.newProductForm.get('precio') as FormControl;
   }
 
+  get ingredients(): FormArray {
+    return this.ingredientsForm.get('ingredientes') as FormArray;
+  }
+
+
+
+
   handleChangeDropdown(event: (string | number)[]) {
-    this.newProduct.patchValue({categorias: event});
-    console.log('Product categories updated:', this.newProduct.value);
+    this.newProductForm.patchValue({categorias: event});
+    console.log('Product categories updated:', this.newProductForm.value);
   }
 
   handleChangeFormDropdown(event: number | string) {
-    this.newProduct.patchValue({idSeccionTienda: event});
-    console.log('Selected section:', this.newProduct.value.idSeccionTienda);
+    this.newProductForm.patchValue({idSeccionTienda: event});
+    console.log('Selected section:', this.newProductForm.value.idSeccionTienda);
   }
 
   handleNextStep() {
@@ -81,12 +104,12 @@ export class CreateProductComponent implements OnInit {
 
   createProduct() {
     console.log("hola amigos de");
-    if (this.newProduct.invalid) {
+    if (this.newProductForm.invalid) {
       console.error('Form is invalid');
       return;
     }
 
-    this.productService.createProduct(this.newProduct.value).subscribe({
+    this.productService.createProduct(this.newProductForm.value).subscribe({
       next: (response) => {
         console.log('Product created successfully:', response);
       },
@@ -95,4 +118,27 @@ export class CreateProductComponent implements OnInit {
       }
     });
   }
+
+
+  addIngredient() {
+    this.ingredients.push(this.createNewIngredient());
+    console.log('New ingredient added:', this.ingredients.value);
+  }
+
+
+  private createNewIngredient(): FormGroup {
+    return this.fb.group({
+      nombre: ['', Validators.required],
+      minSeleccion: [0, [Validators.min(0)]],
+      maxSeleccion: [0, [Validators.min(0)]],
+      multiple: [false],
+      opciones: this.fb.array([
+        this.fb.group({
+          nombre: ['', Validators.required],
+          costo: [0, [Validators.min(0)]]
+        })
+      ])
+    });
+  }
+
 }

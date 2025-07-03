@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormArray} from "@angular/forms";
 
 @Component({
   selector: 'app-ingredient',
@@ -7,6 +8,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class IngredientComponent implements OnInit {
 
+  @Input() ingredientArray!: FormArray;
+  @Input() indexIngrediente: number = 0;
+
+  @Output() onChange = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
