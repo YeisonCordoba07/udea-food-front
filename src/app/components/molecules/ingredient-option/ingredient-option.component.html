@@ -1,9 +1,9 @@
 <li class="flex items-center gap-4">
   <!-- Detail Circle or Square -->
-  <span
+  <!--<span
     [class]="'w-6 h-6 border-2 border-gray-300 ' +
     ingrediente.multiple ? 'rounded-md' : 'rounded-full'"
-  ></span>
+  ></span>-->
 
   <!-- Option name -->
 
@@ -12,24 +12,24 @@
     handleChangeOption(newNameOption, 'nombre');
     }} -->
   <div class="justify-center items-center flex-1">
-    <TextInputField
+    <!-- <TextInputField
       text=""
       name="nombre"
       inputType="text"
       placeholder="Ejemplo: Oregano"
       value={opcion.nombre}
 
-    />
-    <app-text-input-field
+    />-->
+    <!--<app-text-input-field
       label="Descripción"
       placeholder="Ejemplo: Oregano"
       inputType="textarea"
       [control]="descripcion"
-    ></app-text-input-field>
+    ></app-text-input-field>-->
   </div>
 
   <!--Option price -->
-  <div class="flex w-1/4">
+  <!-- <div class="flex w-1/4">
     <TextInputField
       text=""
       name="costo"
@@ -44,13 +44,13 @@
     handleChangeOption(newCostOption, 'costo');
     }}
     />
-  </div>
+  </div>-->
 
   <!-- Button to remove option -->
-  <div
+  <!--<div
     class="hover:bg-red-200 rounded-full p-2 transition-all duration-150 cursor-pointer flex justify-center items-center"
     onClick={handleRemoveOption}
   >
     <app-close-icon></app-close-icon>
-  </div>
+  </div>-->
 </li>

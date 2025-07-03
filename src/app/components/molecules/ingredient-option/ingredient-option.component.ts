@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IngredientOptionComponent implements OnInit {
 
-  @Input() ingredient;
+  @Input() ingredient!: IngredientOptionComponent;
   constructor() { }
 
   ngOnInit(): void {

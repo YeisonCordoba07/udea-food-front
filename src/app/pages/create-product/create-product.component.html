@@ -115,13 +115,12 @@
 
 
       <app-principal-button
-        *ngIf="step === 2"
         text="Crear producto"
         [showIcon]="false"
         styleButton="primary"
-        buttonType="button"
-        (onClick)="handleNextStep()"
+        buttonType="submit"
       ></app-principal-button>
+      <button type="submit">crear normal</button>
 
     </div>
   </form>
