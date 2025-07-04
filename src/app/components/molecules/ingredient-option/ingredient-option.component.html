@@ -7,50 +7,28 @@
 
   <!-- Option name -->
 
-  <!-- onChange={(e: ReactChangeEvent<HTMLInputElement>) => {
-    const newNameOption = e.target.value;
-    handleChangeOption(newNameOption, 'nombre');
-    }} -->
   <div class="justify-center items-center flex-1">
-    <!-- <TextInputField
-      text=""
-      name="nombre"
-      inputType="text"
+    <app-text-input-field
       placeholder="Ejemplo: Oregano"
-      value={opcion.nombre}
-
-    />-->
-    <!--<app-text-input-field
-      label="Descripción"
-      placeholder="Ejemplo: Oregano"
-      inputType="textarea"
-      [control]="descripcion"
-    ></app-text-input-field>-->
+      [control]="nombre"
+    ></app-text-input-field>
   </div>
 
   <!--Option price -->
-  <!-- <div class="flex w-1/4">
-    <TextInputField
-      text=""
-      name="costo"
-      inputType="number"
+  <div class="flex w-1/4">
+
+    <app-text-input-field
       placeholder="Precio: 0"
-      value={opcion.costo}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-    const newCostOption = e.target.value;
-    if(parseInt(newCostOption) < 0){
-    return
-    }
-    handleChangeOption(newCostOption, 'costo');
-    }}
-    />
-  </div>-->
+      inputType="number"
+      [control]="costo"
+    ></app-text-input-field>
+  </div>
 
   <!-- Button to remove option -->
-  <!--<div
+  <div
     class="hover:bg-red-200 rounded-full p-2 transition-all duration-150 cursor-pointer flex justify-center items-center"
-    onClick={handleRemoveOption}
+    (click)="handleRemoveOption()"
   >
     <app-close-icon></app-close-icon>
-  </div>-->
+  </div>
 </li>

@@ -11,200 +11,209 @@
 
     <!-- Titulo -->
     <app-text-input-field
+      label="Texto ingrediente:"
       placeholder="Ejemplo: Tipo de pan"
       [control]="nombre"
     ></app-text-input-field>
 
     <!-- Opciones -->
     <ul class="flex flex-col gap-4 items-start ml-7">
-      {ingrediente.opciones.map((opcion, indexOpcion) => {
 
-      <div >
-        <IngredientOption opcion={opcion} indexOpcion={indexOpcion} ingrediente={ingrediente}
-                          indexIngrediente={indexIngrediente}
-                          setIngredienteProducto={setIngredienteProducto}/>
+
+      <ng-container *ngFor="let option of options.controls; let j = index">
+        <app-ingredient-option
+          [options]="options.at(j)"
+          (onDelete)="handleRemoveOption(j)"
+        ></app-ingredient-option>
+      </ng-container>
+      <div>
 
 
       </div>
 
     </ul>
 
+    <!--  </div></div>-->
+
     <!-- Button to add new option -->
-<!--    <div class="flex ml-7 ">
-      < div class = "w-1/2" >
-      < button
-      class = "px-4 py-2 rounded-md flex gap-2 font-bold hover:underline-offset-4 hover:underline text-orange-500"
-      type = "button"
-      onClick = {() => {
-      console.log("Agregar opción clickeado");
-      setIngredienteProducto((prev) = > {
-      const ingredientesActualizados = prev.ingredientes.map(
-        (ingrediente, i) = > {
-      if (i === indexIngrediente) {
-      return {
-      ...ingrediente,
-      opciones: [
-      ...ingrediente.opciones,
-      { nombre: "", costo: 0 },
-      ],
-      };
-      }
-      return ingrediente;
-      }
-      );
-      return {
-      ...prev,
-      ingredientes: ingredientesActualizados,
-      };
-      });
-      }}
-      >
-      <AddSectionIcon/>
-      Agregar opción
-      </button>
-    </div>
-  </div>-->
+    <!-- onClick = {() => {
+          console.log("Agregar opción clickeado");
+          setIngredienteProducto((prev) = > {
+          const ingredientesActualizados = prev.ingredientes.map(
+            (ingrediente, i) = > {
+          if (i === indexIngrediente) {
+          return {
+          ...ingrediente,
+          opciones: [
+          ...ingrediente.opciones,
+          { nombre: "", costo: 0 },
+          ],
+          };
+          }
+          return ingrediente;
+          }
+          );
+          return {
+          ...prev,
+          ingredientes: ingredientesActualizados,
+          };
+          });
+          }}-->
+    <div class="flex ml-7 ">
+      <div class="w-1/2">
+        <button
+          class="px-4 py-2 rounded-md flex gap-2 font-bold hover:underline-offset-4 hover:underline text-orange-500"
+          type="button"
+          (click)="handleAddOption()"
 
-  <!-- Max and Min -->
-<!--  <div class="flex gap-5 text-sm mt-5">
-    <div class="flex gap-5 items-center w-56">
-      <span class="font-semibold">Respuestas minimas</span>
-      <TextInputField
-        text=""
-        name=""
-        inputType="number"
-        placeholder="Ejemplo: 15000"
-        value={ingrediente.minSeleccion}
-        onChange={(e)
-      => {
-      if(parseInt(e.target.value) >= ingrediente.opciones.length + 1 || parseInt(e.target.value) < 0){
-      return
-      }
-      setIngredienteProducto((prev) => {
-
-      const ingredientesActualizados = [...prev.ingredientes];
-      ingredientesActualizados[indexIngrediente].minSeleccion =
-      parseInt(e.target.value);
-
-      if(ingredientesActualizados[indexIngrediente].minSeleccion >
-      ingredientesActualizados[indexIngrediente].maxSeleccion
-      || ingredientesActualizados[indexIngrediente].maxSeleccion > ingrediente.opciones.length){
-      ingredientesActualizados[indexIngrediente].maxSeleccion = ingredientesActualizados[indexIngrediente].minSeleccion;
-      }
-
-      if(ingredientesActualizados[indexIngrediente].minSeleccion >= 2){
-      ingredientesActualizados[indexIngrediente].multiple = true;
-      }
-      return { ...prev, ingredientes: ingredientesActualizados };
-      });
-      }}
-
-      />
-
+        >
+          <app-add-section-icon></app-add-section-icon>
+          Agregar opción
+        </button>
+      </div>
     </div>
 
-    <div class="flex items-center gap-5">
-      <span class="font-semibold">Respuestas máximas</span>
-      <select
-        disabled={!ingrediente.multiple}
-        value={ingrediente.maxSeleccion}
-        class={`shadow-inner shadow-gray-300 w-20 h-8 flex justify-center items-center text-center rounded-md
-        ${ingrediente.multiple ? "bg-neutral-100" : "bg-gray-300 text-gray-400 cursor-not-allowed"}`}
-      onChange={(e) => {
-      const maxSeleccion = parseInt(e.target.value);
-      if(maxSeleccion > ingrediente.opciones.length) return;
-      setIngredienteProducto((prev) => {
-      const ingredientesActualizados = [...prev.ingredientes];
-      ingredientesActualizados[indexIngrediente].maxSeleccion =
-        maxSeleccion;
+    <!-- Max and Min -->
+    <div class="flex gap-5 text-sm mt-5">
+      <div class="flex gap-5 items-center w-56">
+        <span class="font-semibold">Respuestas minimas</span>
+        <!--          onChange={(e)
+                  => {
+                  if(parseInt(e.target.value) >= ingrediente.opciones.length + 1 || parseInt(e.target.value) < 0){
+                  return
+                  }
+                  setIngredienteProducto((prev) => {
 
-        if(maxSeleccion < ingredientesActualizados[indexIngrediente].minSeleccion){
-      ingredientesActualizados[indexIngrediente].minSeleccion = maxSeleccion;
-      }
-      if(maxSeleccion === 1){
-      ingredientesActualizados[indexIngrediente].multiple = false;
-      }
-      return { ...prev, ingredientes: ingredientesActualizados };
-      });
-      }}
-      >
-      {Array.from(
-      { length: ingrediente.opciones.length },
-      (_, i) => i + 1
-    ).map((num) => (
-      <option key={num} value={num}>
-      {num}
-      </option>
-    ))}
-      </select>
+                  const ingredientesActualizados = [...prev.ingredientes];
+                  ingredientesActualizados[indexIngrediente].minSeleccion =
+                  parseInt(e.target.value);
+
+                  if(ingredientesActualizados[indexIngrediente].minSeleccion >
+                  ingredientesActualizados[indexIngrediente].maxSeleccion
+                  || ingredientesActualizados[indexIngrediente].maxSeleccion > ingrediente.opciones.length){
+                  ingredientesActualizados[indexIngrediente].maxSeleccion = ingredientesActualizados[indexIngrediente].minSeleccion;
+                  }
+
+                  if(ingredientesActualizados[indexIngrediente].minSeleccion >= 2){
+                  ingredientesActualizados[indexIngrediente].multiple = true;
+                  }
+                  return { ...prev, ingredientes: ingredientesActualizados };
+                  });
+                  }}-->
+
+        <app-text-input-field
+          inputType="number"
+          placeholder="Ejemplo: 15000"
+          [control]="minSeleccion"
+        ></app-text-input-field>
+
+      </div>
+
+      <div class="flex items-center gap-5">
+        <span class="font-semibold">Respuestas máximas</span>
+
+        <!--          onChange={(e) => {
+                  const maxSeleccion = parseInt(e.target.value);
+                  if(maxSeleccion > ingrediente.opciones.length) return;
+                  setIngredienteProducto((prev) => {
+                  const ingredientesActualizados = [...prev.ingredientes];
+                  ingredientesActualizados[indexIngrediente].maxSeleccion =
+                    maxSeleccion;
+
+                    if(maxSeleccion < ingredientesActualizados[indexIngrediente].minSeleccion){
+                  ingredientesActualizados[indexIngrediente].minSeleccion = maxSeleccion;
+                  }
+                  if(maxSeleccion === 1){
+                  ingredientesActualizados[indexIngrediente].multiple = false;
+                  }
+                  return { ...prev, ingredientes: ingredientesActualizados };
+                  });
+                  }}
+
+                    disabled={!ingrediente.multiple}
+                    value={ingrediente.maxSeleccion}
+
+                  -->
+        <select
+
+          class="'shadow-inner shadow-gray-300 w-20 h-8 flex justify-center items-center text-center rounded-md' + (ingrediente.multiple ? 'bg-neutral-100' : 'bg-gray-300 text-gray-400 cursor-not-allowed')"
+
+
+        >
+          <!--          {Array.from(
+                    { length: ingrediente.opciones.length },
+                    (_, i) => i + 1
+                  ).map((num) => (
+                    <option value={num}>
+                      {num}
+                    </option>-->
+
+        </select>
+      </div>
     </div>
   </div>
-</div>-->
 
-<!-- Obligatorio y varias respuestas -->
-<!--<div class="flex gap-3 items-center justify-end border-t-2 border-gray-200 py-3 px-5 pb-5">
-  <div class="flex gap-5 border-r border-gray-500 pr-7 text-sm">
-    <Toggle
-      text="Varias respuestas"
-      value={ingrediente.multiple}
-      onChange={(isChecked)
-    => {
-    setIngredienteProducto((prev) => {
-    const ingredientesActualizados = [...prev.ingredientes];
-    ingredientesActualizados[indexIngrediente].multiple = isChecked;
-    if (!isChecked) {
-    ingredientesActualizados[indexIngrediente].maxSeleccion = 1;
-    ingredientesActualizados[indexIngrediente].minSeleccion = 1;
-    }
-    return { ...prev, ingredientes: ingredientesActualizados };
-    });
-    }}
-    />
+  <!-- Obligatorio y varias respuestas -->
+  <div class="flex gap-3 items-center justify-end border-t-2 border-gray-200 py-3 px-5 pb-5">
+    <div class="flex gap-5 border-r border-gray-500 pr-7 text-sm">
+      <!--        onChange={(isChecked)
+              => {
+              setIngredienteProducto((prev) => {
+              const ingredientesActualizados = [...prev.ingredientes];
+              ingredientesActualizados[indexIngrediente].multiple = isChecked;
+              if (!isChecked) {
+              ingredientesActualizados[indexIngrediente].maxSeleccion = 1;
+              ingredientesActualizados[indexIngrediente].minSeleccion = 1;
+              }
+              return { ...prev, ingredientes: ingredientesActualizados };
+              });
+              }}-->
 
-    <Toggle
-      text="Obligatorio"
-      value={ingrediente.minSeleccion>= 1}
-      onChange={(isChecked) => {
-      const minSeleccion = isChecked ? 1 : 0;
-      setIngredienteProducto((prev) = > {
-      const ingredientesActualizados = [...prev.ingredientes];
-    ingredientesActualizados[indexIngrediente].minSeleccion =
-      minSeleccion;
+      <!--          value={ingrediente.multiple}-->
+      <app-toggle text="Varias respuestas"></app-toggle>
 
-    if (
-    isChecked &&
-    ingredientesActualizados[indexIngrediente].maxSeleccion <= 0
-  ) {
-      ingredientesActualizados[indexIngrediente].maxSeleccion = 1;
-      }
+      <!--        value={ingrediente.minSeleccion>= 1}
+              onChange={(isChecked) => {
+              const minSeleccion = isChecked ? 1 : 0;
+              setIngredienteProducto((prev) = > {
+              const ingredientesActualizados = [...prev.ingredientes];
+            ingredientesActualizados[indexIngrediente].minSeleccion =
+              minSeleccion;
 
-      return {...prev, ingredientes: ingredientesActualizados };
-      });
-      }}
-      />
+            if (
+            isChecked &&
+            ingredientesActualizados[indexIngrediente].maxSeleccion <= 0
+          ) {
+              ingredientesActualizados[indexIngrediente].maxSeleccion = 1;
+              }
+
+              return {...prev, ingredientes: ingredientesActualizados };
+              });
+              }}-->
+      <app-toggle text="Obligatorio"></app-toggle>
+    </div>
+
+    <!--      onClick = {() => {
+          setIngredienteProducto((prev) = > {
+          const ingredientesActualizados = [...prev.ingredientes].filter(
+        (_, j) = > {
+          if (j !== indexIngrediente) {
+          return true;
+          }
+          return false;
+          }
+          );
+          return {
+          ...prev,
+          ingredientes: ingredientesActualizados,
+          };
+          });
+          }}-->
+    <div>
+      <!--      <IconButton>
+              <TrashIcon/>
+            </IconButton>-->
+      iconos
+    </div>
   </div>
-
-  < div
-  onClick = {() => {
-  setIngredienteProducto((prev) = > {
-  const ingredientesActualizados = [...prev.ingredientes].filter(
-(_, j) = > {
-  if (j !== indexIngrediente) {
-  return true;
-  }
-  return false;
-  }
-  );
-  return {
-  ...prev,
-  ingredientes: ingredientesActualizados,
-  };
-  });
-  }}
-  >
-  <IconButton>
-    <TrashIcon/>
-  </IconButton>
 </div>
-</div>
-</div>-->

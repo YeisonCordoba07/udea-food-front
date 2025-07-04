@@ -127,5 +127,4 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
-  protected readonly FormGroup = FormGroup;
 }

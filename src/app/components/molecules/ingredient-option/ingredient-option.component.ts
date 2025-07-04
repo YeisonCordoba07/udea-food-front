@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AbstractControl, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-ingredient-option',
@@ -7,10 +8,21 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IngredientOptionComponent implements OnInit {
 
-  @Input() ingredient!: IngredientOptionComponent;
+  @Input() options!: AbstractControl;
+  @Output() onDelete = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  get nombre(): FormControl {
+    return this.options.get('nombre') as FormControl;
+  }
+  get costo(): FormControl {
+    return this.options.get('costo') as FormControl;
+  }
+
+  handleRemoveOption() {
+    this.onDelete.emit();
+  }
 }

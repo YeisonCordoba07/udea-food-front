@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormControl} from "@angular/forms";
+import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-ingredient',
@@ -22,5 +22,28 @@ export class IngredientComponent implements OnInit {
   get nombre(): FormControl {
     return this.ingredientArray.get('nombre') as FormControl;
   }
+  get minSeleccion():FormControl{
+    return this.ingredientArray.get('minSeleccion') as FormControl;
+  }
+  get maxSeleccion():FormControl{
+    return this.ingredientArray.get('maxSeleccion') as FormControl;
+  }
 
+  get options(): FormArray{
+    return this.ingredientArray.get('opciones') as FormArray;
+  }
+
+
+
+  handleRemoveOption(j: number) {
+    console.log(" ",j);
+    this.options.removeAt(j);
+  }
+
+  handleAddOption() {
+    this.options.push(new FormGroup({
+      nombre: new FormControl(''),
+      costo: new FormControl(0, [Validators.min(0)])
+    }))
+  }
 }
