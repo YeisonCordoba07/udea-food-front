@@ -11,6 +11,7 @@ export class IngredientComponent implements OnInit {
   @Input() ingredientArray!: AbstractControl;
   @Input() indexIngrediente: number = 0;
 
+
   @Output() onChange = new EventEmitter<void>();
   constructor() { }
 
@@ -27,6 +28,9 @@ export class IngredientComponent implements OnInit {
   }
   get maxSeleccion():FormControl{
     return this.ingredientArray.get('maxSeleccion') as FormControl;
+  }
+  get multiple():FormControl {
+    return this.ingredientArray.get('multiple') as FormControl;
   }
 
   get options(): FormArray{

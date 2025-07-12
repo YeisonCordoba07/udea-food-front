@@ -10,6 +10,8 @@ export class IngredientOptionComponent implements OnInit {
 
   @Input() options!: AbstractControl;
   @Output() onDelete = new EventEmitter<void>();
+  @Input() multiple!: AbstractControl;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,6 +22,10 @@ export class IngredientOptionComponent implements OnInit {
   }
   get costo(): FormControl {
     return this.options.get('costo') as FormControl;
+  }
+
+  get isMultiple(): boolean{
+    return this.multiple.value;
   }
 
   handleRemoveOption() {

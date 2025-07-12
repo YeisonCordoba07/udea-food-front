@@ -24,6 +24,7 @@
         <app-ingredient-option
           [options]="options.at(j)"
           (onDelete)="handleRemoveOption(j)"
+          [multiple]="multiple"
         ></app-ingredient-option>
       </ng-container>
       <div>
