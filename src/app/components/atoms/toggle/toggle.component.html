@@ -4,8 +4,8 @@
 
     <input type="checkbox"
            class="peer sr-only"
-           [checked]="value"
-           (change)="handleChange()"
+           [(ngModel)]="value"
+           (ngModelChange)="handleChange()"
     />
 
     <!-- body -->

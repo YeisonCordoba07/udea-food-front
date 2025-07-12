@@ -50,4 +50,9 @@ export class IngredientComponent implements OnInit {
       costo: new FormControl(0, [Validators.min(0)])
     }))
   }
+
+  handleMultipleOptions($event: boolean) {
+    this.multiple.setValue($event);
+    console.log('Multiple changed:', $event);
+  }
 }

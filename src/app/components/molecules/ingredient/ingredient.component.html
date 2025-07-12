@@ -171,7 +171,7 @@
               }}-->
 
       <!--          value={ingrediente.multiple}-->
-      <app-toggle text="Varias respuestas"></app-toggle>
+      <app-toggle text="Varias respuestas" (onChange)="handleMultipleOptions($event)"></app-toggle>
 
       <!--        value={ingrediente.minSeleccion>= 1}
               onChange={(isChecked) => {
