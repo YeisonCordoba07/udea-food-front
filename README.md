@@ -1,6 +1,6 @@
 # UdeAFood 2: Plataforma de Pedidos de Comida
 
-Este proyecto busca desarrollar una plataforma de pedidos de comida, inspirada en aplicaciones como **Rappi**, **DidiFood** y **Uber Eats**, pero enfocada en las tiendas de la **Universidad de Antioquia**.
+Este proyecto busca desarrollar una plataforma de pedidos de comida inspirada en aplicaciones como **Rappi**, **DidiFood** y **Uber Eats**, pero enfocada en las tiendas de la **Universidad de Antioquia**.
 
 Con esta aplicación, los usuarios pueden crear sus propias tiendas y gestionar sus productos, mientras que los clientes pueden explorar, buscar y comprar la oferta gastronómica disponible.
 
