@@ -41,6 +41,8 @@ export class IngredientComponent implements OnInit {
     return this.ingredientArray.get('opciones') as FormArray;
   }
 
+
+
   showRespuestasMaximas(): boolean{
     return this.multiple.value === true;
   }
@@ -68,5 +70,23 @@ export class IngredientComponent implements OnInit {
 
   handleObligatorio($event: boolean) {
     this.obligatorio.setValue($event);
+    if($event){
+      this.minSeleccion.setValue(1);
+    }else{
+      this.minSeleccion.setValue(0);
+    }
   }
+
+  get optionsArray(): { value: number; label: string }[] {
+    return Array.from({ length: this.options.length }, (_, i) => ({
+      value: i + 1,
+      label: `${i + 1}`,
+    }));
+  }
+
+
+  handleMaxSeleccionChange(selectedValue: number | string): void {
+    this.maxSeleccion.setValue(selectedValue);
+  }
+
 }

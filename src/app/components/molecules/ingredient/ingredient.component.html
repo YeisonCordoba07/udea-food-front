@@ -136,21 +136,13 @@
                     value={ingrediente.maxSeleccion}
 
                   -->
-        <select
 
-          class="'shadow-inner shadow-gray-300 w-20 h-8 flex justify-center items-center text-center rounded-md' + (ingrediente.multiple ? 'bg-neutral-100' : 'bg-gray-300 text-gray-400 cursor-not-allowed')"
+        <app-form-dropdown
+          [options]="optionsArray"
+          [showCreateSection]="false"
 
-
-        >
-          <!--          {Array.from(
-                    { length: ingrediente.opciones.length },
-                    (_, i) => i + 1
-                  ).map((num) => (
-                    <option value={num}>
-                      {num}
-                    </option>-->
-
-        </select>
+          (optionChange)="handleMaxSeleccionChange($event)"
+        ></app-form-dropdown>
       </div>
     </div>
   </div>

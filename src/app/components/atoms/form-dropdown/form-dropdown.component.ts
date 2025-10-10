@@ -12,6 +12,7 @@ export class FormDropdownComponent implements OnInit {
   @Input() options: {value: string | number, label: string}[] = [];
 
   @Output() optionChange = new EventEmitter<number | string>();
+  @Input() showCreateSection: boolean = true;
 
 
 
