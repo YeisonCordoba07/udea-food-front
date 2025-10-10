@@ -118,6 +118,7 @@ export class CreateProductComponent implements OnInit {
       minSeleccion: [0, [Validators.min(0)]],
       maxSeleccion: [0, [Validators.min(0)]],
       multiple: [false],
+      obligatorio: false,
       opciones: this.fb.array([
         this.fb.group({
           nombre: ['', Validators.required],

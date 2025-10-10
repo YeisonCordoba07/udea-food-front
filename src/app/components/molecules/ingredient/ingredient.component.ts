@@ -33,6 +33,10 @@ export class IngredientComponent implements OnInit {
     return this.ingredientArray.get('multiple') as FormControl;
   }
 
+  get obligatorio():FormControl {
+    return this.ingredientArray.get('obligatorio') as FormControl;
+  }
+
   get options(): FormArray{
     return this.ingredientArray.get('opciones') as FormArray;
   }
@@ -53,6 +57,9 @@ export class IngredientComponent implements OnInit {
 
   handleMultipleOptions($event: boolean) {
     this.multiple.setValue($event);
-    console.log('Multiple changed:', $event);
+  }
+
+  handleObligatorio($event: boolean) {
+    this.obligatorio.setValue($event);
   }
 }

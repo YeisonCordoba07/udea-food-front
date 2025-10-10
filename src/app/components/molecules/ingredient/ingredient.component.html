@@ -76,7 +76,8 @@
 
     <!-- Max and Min -->
     <div class="flex gap-5 text-sm mt-5">
-      <div class="flex gap-5 items-center w-56">
+      <div *ngIf="multiple.value === true && obligatorio.value === true" class="flex gap-5 items-center w-56">
+
         <span class="font-semibold">Respuestas minimas</span>
         <!--          onChange={(e)
                   => {
@@ -110,7 +111,7 @@
 
       </div>
 
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-5" *ngIf="multiple.value === true">
         <span class="font-semibold">Respuestas máximas</span>
 
         <!--          onChange={(e) => {
@@ -191,7 +192,7 @@
               return {...prev, ingredientes: ingredientesActualizados };
               });
               }}-->
-      <app-toggle text="Obligatorio"></app-toggle>
+      <app-toggle text="Obligatorio" (onChange)="handleObligatorio($event)"></app-toggle>
     </div>
 
     <!--      onClick = {() => {
