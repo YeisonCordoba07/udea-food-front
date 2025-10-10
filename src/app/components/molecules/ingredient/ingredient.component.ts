@@ -41,6 +41,13 @@ export class IngredientComponent implements OnInit {
     return this.ingredientArray.get('opciones') as FormArray;
   }
 
+  showRespuestasMaximas(): boolean{
+    return this.multiple.value === true;
+  }
+
+  showRespuestasMinimas(): boolean{
+    return this.multiple.value === true && this.obligatorio.value === true
+  }
 
 
   handleRemoveOption(j: number) {
