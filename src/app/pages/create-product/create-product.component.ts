@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {TiendaService} from "@core/services/tienda/tienda.service";
 import {map} from "rxjs";
 import {ProductService} from "@core/services/product/product.service";
+import {maxSeleccionValidator, minSeleccionValidator} from "@shared/validators/custom-validators";
 
 @Component({
   selector: 'app-create-product',
@@ -113,19 +114,44 @@ export class CreateProductComponent implements OnInit {
 
 
   private createNewIngredient(): FormGroup {
-    return this.fb.group({
+    const opcionesArray = this.fb.array([
+      this.fb.group({
+        nombre: ['', Validators.required],
+        costo: [0, [Validators.min(0)]]
+      })
+    ]);
+
+    const minSeleccionControl = this.fb.control(0, Validators.required);
+    const maxSeleccionControl = this.fb.control(0, Validators.required);
+
+    const ingredientGroup = this.fb.group({
       nombre: ['', Validators.required],
-      minSeleccion: [0, [Validators.min(0)]],
-      maxSeleccion: [0, [Validators.min(0)]],
+      minSeleccion: minSeleccionControl,
+      maxSeleccion: maxSeleccionControl,
       multiple: [false],
       obligatorio: false,
-      opciones: this.fb.array([
-        this.fb.group({
-          nombre: ['', Validators.required],
-          costo: [0, [Validators.min(0)]]
-        })
-      ])
+      opciones: opcionesArray
     });
+
+    // Suscribirse a los cambios en el número de opciones
+    opcionesArray.valueChanges.subscribe(() => {
+      const maxOptions = opcionesArray.length;
+
+      // Actualizar validadores dinámicamente
+      minSeleccionControl.setValidators([
+        Validators.required,
+        minSeleccionValidator(maxOptions)
+      ]);
+      minSeleccionControl.updateValueAndValidity();
+
+      maxSeleccionControl.setValidators([
+        Validators.required,
+        maxSeleccionValidator(minSeleccionControl, maxOptions)
+      ]);
+      maxSeleccionControl.updateValueAndValidity();
+    });
+
+    return ingredientGroup;
   }
 
 }

@@ -10,6 +10,9 @@ export class IngredientComponent implements OnInit {
 
   @Input() ingredientArray!: AbstractControl;
   @Input() indexIngrediente: number = 0;
+  minLimit: number= 0;
+  maxLimit: number= 0;
+
 
 
   @Output() onChange = new EventEmitter<void>();
@@ -52,6 +55,8 @@ export class IngredientComponent implements OnInit {
   }
 
 
+
+
   handleRemoveOption(j: number) {
     console.log(" ",j);
     this.options.removeAt(j);
@@ -66,6 +71,16 @@ export class IngredientComponent implements OnInit {
 
   handleMultipleOptions($event: boolean) {
     this.multiple.setValue($event);
+    if(!$event){
+
+    }
+    if(this.obligatorio.value && !$event){
+      this.minSeleccion.setValue(1);
+
+    }
+    else if(!this.obligatorio.value && !$event){
+      this.minSeleccion.setValue(0);
+    }
   }
 
   handleObligatorio($event: boolean) {
@@ -77,11 +92,31 @@ export class IngredientComponent implements OnInit {
     }
   }
 
+  handleChangeOptions($event: boolean, option: "o" | "m"){
+    if(option === "o"){
+      this.handleObligatorio($event);
+    }else{
+      this.handleMultipleOptions($event);
+    }
+
+    if(this.multiple.value && this.obligatorio.value){
+      this.minSeleccion.setValue(1);
+
+      if(this.minSeleccion.value + 1 <= this.options.length){
+        this.maxSeleccion.setValue(this.minSeleccion.value + 1);
+      }else{
+        this.maxSeleccion.setValue(this.options.length);
+      }
+    }
+  }
+
   get optionsArray(): { value: number; label: string }[] {
-    return Array.from({ length: this.options.length }, (_, i) => ({
-      value: i + 1,
-      label: `${i + 1}`,
-    }));
+    return Array.from({ length: this.options.length }, (_, i) => i + 1)
+      .filter(num => num >= this.minSeleccion.value && num <= this.options.length)
+      .map(num => ({
+        value: num,
+        label: `${num}`,
+      }));
   }
 
 
