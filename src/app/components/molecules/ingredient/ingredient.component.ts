@@ -10,8 +10,6 @@ export class IngredientComponent implements OnInit {
 
   @Input() ingredientArray!: AbstractControl;
   @Input() indexIngrediente: number = 0;
-  minLimit: number= 0;
-  maxLimit: number= 0;
 
 
 
@@ -46,6 +44,7 @@ export class IngredientComponent implements OnInit {
 
 
 
+
   showRespuestasMaximas(): boolean{
     return this.multiple.value === true;
   }
@@ -69,17 +68,19 @@ export class IngredientComponent implements OnInit {
     }))
   }
 
+
+
   handleMultipleOptions($event: boolean) {
     this.multiple.setValue($event);
-    if(!$event){
 
-    }
     if(this.obligatorio.value && !$event){
       this.minSeleccion.setValue(1);
+      this.maxSeleccion.setValue(1);
 
     }
     else if(!this.obligatorio.value && !$event){
       this.minSeleccion.setValue(0);
+      this.maxSeleccion.setValue(1);
     }
   }
 
@@ -91,6 +92,9 @@ export class IngredientComponent implements OnInit {
       this.minSeleccion.setValue(0);
     }
   }
+
+
+
 
   handleChangeOptions($event: boolean, option: "o" | "m"){
     if(option === "o"){

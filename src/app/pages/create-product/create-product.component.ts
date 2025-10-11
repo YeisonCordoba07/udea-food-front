@@ -107,6 +107,8 @@ export class CreateProductComponent implements OnInit {
   }
 
 
+
+
   addIngredient() {
     this.ingredientes.push(this.createNewIngredient());
     console.log('New ingredient added:', this.ingredientes.value);
