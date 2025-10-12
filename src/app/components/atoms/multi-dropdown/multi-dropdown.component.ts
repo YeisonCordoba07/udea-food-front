@@ -11,25 +11,48 @@ export class MultiDropdownComponent implements OnInit {
   isOpen: boolean = false;
   selected: string[] = [];
   @Input() maxSelected: number = 3;
-  @Input() options: {value: string | number, label: string}[] = [];
+  @Input() options: { value: string | number, label: string }[] = [];
+  @Input() initialOptions: number[] | undefined;
 
   @Output() optionChange = new EventEmitter<(string | number)[]>();
 
-  constructor() { }
+
+
+  constructor() {
+  }
+
+
 
   ngOnInit(): void {
+    if (!this.initialOptions) return;
+
+    this.selected = this.options.filter(option => {
+
+      const value = typeof option.value === 'string' ? parseInt(option.value) : option.value;
+
+      if (this.initialOptions?.includes(value)) {
+        return true;
+      }
+      return false;
+    }).map(finalOption => finalOption.label);
+
+    console.log("Selected: ", this.selected);
   }
+
+
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
 
+
+
   handleFilterClick(label: string) {
     const isSelected = this.selected.includes(label);
-    if(this.selected.length >= this.maxSelected && !isSelected) {
+    if (this.selected.length >= this.maxSelected && !isSelected) {
       return; // Prevent selecting more than maxSelected
     }
-    if(isSelected) {
+    if (isSelected) {
       this.selected = this.selected.filter(item => item !== label);
     } else {
       this.selected.push(label);

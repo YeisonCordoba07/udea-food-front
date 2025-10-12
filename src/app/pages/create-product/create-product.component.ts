@@ -73,6 +73,10 @@ export class CreateProductComponent implements OnInit {
     return this.ingredientsForm.get('ingredientes') as FormArray;
   }
 
+  get categorias(){
+    return this.newProductForm.get('categorias') as FormControl;
+  }
+
 
 
   handleChangeDropdown(event: (string | number)[]) {

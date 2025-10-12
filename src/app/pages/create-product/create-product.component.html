@@ -29,6 +29,7 @@
         placeholder="Ejemplo: 15000"
         inputType="number"
         [control]="precio"
+        errorMessage="El precio no puede ser menor a 0"
       ></app-text-input-field>
 
 
@@ -52,6 +53,7 @@
         [options]="options"
         (optionChange)="handleChangeDropdown($event)"
         [maxSelected]="3"
+        [initialOptions]="categorias.value"
       ></app-multi-dropdown>
 
 
