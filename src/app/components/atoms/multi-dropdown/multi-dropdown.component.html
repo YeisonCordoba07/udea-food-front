@@ -10,11 +10,11 @@
     [class]="'flex border border-gray-300 p-3 rounded-md text-sm items-center justify-between w-full font-semibold  text-black transition-all duration-200 ease-in-out hover:border-orange-500 hover:bg-white h-fit ' + (isOpen ? 'bg-white border-orange-500 border' : 'bg-gray-50')"
   >
 
+
     <!-- Selected items -->
     <div class="w-5/6 flex flex-wrap gap-2">
       <ng-container *ngIf="selected.length > 0; else noSelected">
 
-        <!--  onClose={()=> handleRemoveSelected(item)} -->
         <app-tag *ngFor="let item of selected" (onClose)="handleFilterClick(item)">
           {{ item }}
         </app-tag>
@@ -29,7 +29,6 @@
 
 
     <!-- Button -->
-    <!-- onClick={() => setIsOpen((prev) => !prev)} -->
     <button
       type="button"
       [class]="'border rounded-md text-sm flex justify-center items-center font-semibold text-black transition-all duration-200 ease-in-out hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 h-10 w-14 ' +  (isOpen ? 'border-gray-400' : 'bg-gray-200 border-gray-400')"
@@ -47,7 +46,7 @@
     class="bg-white border shadow-md flex flex-col w-full gap-[1px] p-3 rounded-xl text-black absolute top-full z-10 mt-2"
     *ngIf="isOpen">
 
-    <!-- onClick={() => handleFilterClick(value, label)} -->
+
     <li *ngFor="let option of options"
         [class]="'dropdownElement cursor-pointer p-2 rounded-md ' + (selected.includes(option.label) ? ' bg-orange-50 text-orange-500 outline-1 outline outline-orange-200' : '')"
         (click)="handleFilterClick(option.label)"
