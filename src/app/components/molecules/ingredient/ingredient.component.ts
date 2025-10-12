@@ -13,14 +13,15 @@ export class IngredientComponent implements OnInit {
   @Output() onDeleteIngredient = new EventEmitter<number>();
 
 
-
   @Output() onChange = new EventEmitter<void>();
   constructor() { }
+
 
   ngOnInit(): void {
     console.log('Index:', this.indexIngrediente);
     console.log('Ingredient:', this.ingredientArray.value);
   }
+
 
   get nombre(): FormControl {
     return this.ingredientArray.get('nombre') as FormControl;
@@ -42,6 +43,17 @@ export class IngredientComponent implements OnInit {
   get options(): FormArray{
     return this.ingredientArray.get('opciones') as FormArray;
   }
+
+
+  get optionsArray(): { value: number; label: string }[] {
+    return Array.from({ length: this.options.length }, (_, i) => i + 1)
+      .filter(num => num >= this.minSeleccion.value && num <= this.options.length)
+      .map(num => ({
+        value: num,
+        label: `${num}`,
+      }));
+  }
+
 
 
 
@@ -94,43 +106,15 @@ export class IngredientComponent implements OnInit {
     }
   }
 
-
-
-
-  handleChangeOptions($event: boolean, option: "o" | "m"){
-    if(option === "o"){
-      this.handleObligatorio($event);
-    }else{
-      this.handleMultipleOptions($event);
-    }
-
-    if(this.multiple.value && this.obligatorio.value){
-      this.minSeleccion.setValue(1);
-
-      if(this.minSeleccion.value + 1 <= this.options.length){
-        this.maxSeleccion.setValue(this.minSeleccion.value + 1);
-      }else{
-        this.maxSeleccion.setValue(this.options.length);
-      }
-    }
+  handleMaxSeleccionChange(selectedValue: number | string): void {
+    this.maxSeleccion.setValue(selectedValue);
   }
+
+
 
   deleteIngredient(): void{
     this.onDeleteIngredient.emit(this.indexIngrediente);
   }
 
-  get optionsArray(): { value: number; label: string }[] {
-    return Array.from({ length: this.options.length }, (_, i) => i + 1)
-      .filter(num => num >= this.minSeleccion.value && num <= this.options.length)
-      .map(num => ({
-        value: num,
-        label: `${num}`,
-      }));
-  }
-
-
-  handleMaxSeleccionChange(selectedValue: number | string): void {
-    this.maxSeleccion.setValue(selectedValue);
-  }
 
 }

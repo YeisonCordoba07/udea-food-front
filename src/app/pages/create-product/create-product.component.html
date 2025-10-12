@@ -54,12 +54,7 @@
         [maxSelected]="3"
       ></app-multi-dropdown>
 
-      <!--  onChange={(value)=> setNewProduct((prev) => ({
-      ...prev,
-      idSeccionTienda: parseInt(value, 10),
-      }))
-      }
-      reloadData={fetchSecciones}-->
+
       <app-form-dropdown
         subtitle="Sección"
         [options]="(secciones$ | async) || []"
@@ -96,12 +91,7 @@
 
     <!-- Fin ingrediente -->
 
-    <!--  onClick={() => { const newIngredient = { ...nuevoIngrediente };
-                setIngredienteProducto((prev) => ({
-  ...prev,
-  ingredientes: [...prev.ingredientes, newIngredient],
-  }));
-  }} -->
+
     <button
       class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
       type="button"
