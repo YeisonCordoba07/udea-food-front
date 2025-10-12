@@ -125,12 +125,11 @@
       <app-toggle text="Obligatorio" (onChange)="handleObligatorio($event)"></app-toggle>
     </div>
 
-    <div>
-      <!--      <IconButton>
-              <TrashIcon/>
 
-            </IconButton>-->
-      <app-trash-icon></app-trash-icon>
+    <div>
+      <button (click)="deleteIngredient()">
+        <app-trash-icon></app-trash-icon>
+      </button>
     </div>
   </div>
 </div>

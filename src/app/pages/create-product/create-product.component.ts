@@ -53,8 +53,9 @@ export class CreateProductComponent implements OnInit {
       ingredienteProducto: this.ingredientsForm
     });
 
-
   }
+
+
 
   get nombre() {
     return this.newProductForm.get('nombre') as FormControl;
@@ -74,7 +75,6 @@ export class CreateProductComponent implements OnInit {
 
 
 
-
   handleChangeDropdown(event: (string | number)[]) {
     this.newProductForm.patchValue({categorias: event});
     console.log('Product categories updated:', this.newProductForm.value);
@@ -88,6 +88,16 @@ export class CreateProductComponent implements OnInit {
   handleNextStep() {
     this.step = this.step + 1;
   }
+
+
+
+
+
+  removeIngredient($event: number){
+    this.ingredientes.removeAt($event);
+    console.log('Ingredient removed at index:', $event);
+  }
+
 
   createProduct() {
     console.log("hola amigos de");

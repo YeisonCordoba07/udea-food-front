@@ -87,6 +87,7 @@
         <app-ingredient
           [ingredientArray]="ingredientes.at(i)"
           [indexIngrediente]="i"
+          (onDeleteIngredient)="removeIngredient($event)"
         ></app-ingredient>
     </ng-container>
 

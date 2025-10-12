@@ -10,6 +10,7 @@ export class IngredientComponent implements OnInit {
 
   @Input() ingredientArray!: AbstractControl;
   @Input() indexIngrediente: number = 0;
+  @Output() onDeleteIngredient = new EventEmitter<number>();
 
 
 
@@ -112,6 +113,10 @@ export class IngredientComponent implements OnInit {
         this.maxSeleccion.setValue(this.options.length);
       }
     }
+  }
+
+  deleteIngredient(): void{
+    this.onDeleteIngredient.emit(this.indexIngrediente);
   }
 
   get optionsArray(): { value: number; label: string }[] {
