@@ -78,12 +78,27 @@
 
     <pre>{{newProductForm.value | json}}</pre>
 
-    <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
-        <app-ingredient
-          [ingredientArray]="ingredientes.at(i)"
-          [indexIngrediente]="i"
-          (onDeleteIngredient)="removeIngredient($event)"
-        ></app-ingredient>
+    <ng-container *ngIf="step === 2">
+      <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
+          <app-ingredient
+            [ingredientArray]="ingredientes.at(i)"
+            [indexIngrediente]="i"
+            (onDeleteIngredient)="removeIngredient($event)"
+          ></app-ingredient>
+      </ng-container>
+
+
+      <button
+        class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
+        type="button"
+        (click)="addIngredient()"
+      >
+        <div class="bg-orange-500 text-white rounded-full p-1">
+          <app-add-section-icon></app-add-section-icon>
+        </div>
+
+        <span>Agregar ingrediente</span>
+      </button>
     </ng-container>
 
 
@@ -92,17 +107,6 @@
     <!-- Fin ingrediente -->
 
 
-    <button
-      class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
-      type="button"
-      (click)="addIngredient()"
-    >
-      <div class="bg-orange-500 text-white rounded-full p-1">
-        <app-add-section-icon></app-add-section-icon>
-      </div>
-
-      <span>Agregar ingrediente</span>
-    </button>
 
 
 
@@ -118,14 +122,25 @@
         (onClick)="handleNextStep()"
       ></app-principal-button>
 
-
-      <app-principal-button
-        *ngIf="step == 2"
-        text="Crear producto"
-        [showIcon]="false"
-        styleButton="primary"
-        buttonType="submit"
-      ></app-principal-button>
+      <div class="flex gap-5 w-full" >
+        <app-principal-button
+          class="flex-1"
+          text="Anterior"
+          *ngIf="step === 2"
+          [showIcon]="false"
+          styleButton="secondary"
+          buttonType="button"
+          (onClick)="handlePreviousStep()"
+        ></app-principal-button>
+          <app-principal-button
+            class="flex-1"
+            *ngIf="step == 2"
+            text="Crear producto"
+            [showIcon]="false"
+            styleButton="primary"
+            buttonType="submit"
+          ></app-principal-button>
+      </div>
 
     </div>
   </form>

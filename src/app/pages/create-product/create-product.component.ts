@@ -89,6 +89,10 @@ export class CreateProductComponent implements OnInit {
     this.step = this.step + 1;
   }
 
+  handlePreviousStep(){
+    this.step = this.step - 1;
+  }
+
 
 
 
