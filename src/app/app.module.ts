@@ -57,6 +57,7 @@ import {IngredientOptionComponent} from './components/molecules/ingredient-optio
 import {ToggleComponent} from './components/atoms/toggle/toggle.component';
 import {IngredientComponent} from './components/molecules/ingredient/ingredient.component';
 import {CloseIconComponent} from './components/atoms/icons/close-icon/close-icon.component';
+import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import {CloseIconComponent} from './components/atoms/icons/close-icon/close-icon
     IngredientOptionComponent,
     ToggleComponent,
     IngredientComponent,
-    CloseIconComponent
+    CloseIconComponent,
+    TrashIconComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@
       label="Texto ingrediente:"
       placeholder="Ejemplo: Tipo de pan"
       [control]="nombre"
+      errorMessage="Campo obligatorio"
     ></app-text-input-field>
 
     <!-- Opciones -->
@@ -127,8 +128,9 @@
     <div>
       <!--      <IconButton>
               <TrashIcon/>
+
             </IconButton>-->
-      iconos
+      <app-trash-icon></app-trash-icon>
     </div>
   </div>
 </div>
