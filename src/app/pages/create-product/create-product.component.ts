@@ -4,6 +4,8 @@ import {TiendaService} from "@core/services/tienda/tienda.service";
 import {map} from "rxjs";
 import {ProductService} from "@core/services/product/product.service";
 import {maxSeleccionValidator, minSeleccionValidator} from "@shared/validators/custom-validators";
+import {CategoriesService} from "@core/services/categories/categories.service";
+import {Categoria} from "@core/models/udea.model";
 
 @Component({
   selector: 'app-create-product',
@@ -20,6 +22,9 @@ export class CreateProductComponent implements OnInit {
     {value: 4, label: "Internacional del norte de china"},
   ];
 
+  categories: Categoria[] = [];
+  categoriesFormated: { value: number; label: string; }[] = [];
+
   newProductForm!: FormGroup;
   ingredientsForm!: FormGroup;
   secciones$ = this.tiendaService.secciones$.pipe(
@@ -29,11 +34,29 @@ export class CreateProductComponent implements OnInit {
   );
 
 
-  constructor(private fb: FormBuilder, private tiendaService: TiendaService, private productService: ProductService) {
+  constructor(private fb: FormBuilder, private tiendaService: TiendaService, private productService: ProductService, private categoriesService: CategoriesService) {
     this.tiendaService.getSeccionesByIdTienda();
+
   }
 
   ngOnInit(): void {
+
+
+    // Load categories
+    this.categoriesService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+        this.categoriesFormated = data.map(cat => ({
+          value: cat.idCategoria,
+          label: cat.nombre
+        }));
+        console.log('Categories fetched:', this.categories);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+
 
     this.ingredientsForm = this.fb.group({
       idTienda: [0, [Validators.required]],
@@ -49,12 +72,11 @@ export class CreateProductComponent implements OnInit {
       imagenes: [[]],
       categorias: [[]],
       idSeccionTienda: [0, [Validators.required, Validators.min(1)]],
-      idTienda: [0, ],
+      idTienda: [0,],
       ingredienteProducto: this.ingredientsForm
     });
 
   }
-
 
 
   get nombre() {
@@ -73,14 +95,13 @@ export class CreateProductComponent implements OnInit {
     return this.ingredientsForm.get('ingredientes') as FormArray;
   }
 
-  get categorias(){
+  get categorias() {
     return this.newProductForm.get('categorias') as FormControl;
   }
 
-  get idSeccionTienda(){
+  get idSeccionTienda() {
     return this.newProductForm.get('idSeccionTienda') as FormControl;
   }
-
 
 
   handleChangeDropdown(event: (string | number)[]) {
@@ -97,15 +118,12 @@ export class CreateProductComponent implements OnInit {
     this.step = this.step + 1;
   }
 
-  handlePreviousStep(){
+  handlePreviousStep() {
     this.step = this.step - 1;
   }
 
 
-
-
-
-  removeIngredient($event: number){
+  removeIngredient($event: number) {
     this.ingredientes.removeAt($event);
     console.log('Ingredient removed at index:', $event);
   }
@@ -127,8 +145,6 @@ export class CreateProductComponent implements OnInit {
       }
     });
   }
-
-
 
 
   addIngredient() {

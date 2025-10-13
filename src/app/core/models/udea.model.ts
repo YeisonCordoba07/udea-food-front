@@ -3,6 +3,10 @@ export interface Categoria {
   nombre: string;
   descripcion: string | null;
 }
+export interface ShortCategoria{
+  idCategoria: number;
+  nombre: string;
+}
 
 export interface ProductoIngredienteRequest {
   idProducto: number;

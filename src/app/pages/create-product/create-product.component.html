@@ -50,7 +50,7 @@
 
       <app-multi-dropdown
         title="Categorías (maximo 3)"
-        [options]="auxiliarCategories"
+        [options]="categoriesFormated"
         (optionChange)="handleChangeDropdown($event)"
         [maxSelected]="3"
         [initialOptions]="categorias.value"
