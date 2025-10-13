@@ -34,6 +34,7 @@ export class TiendaService {
     const idTienda = this.getIdTienda();
 
     if(idTienda === 0){
+      console.log("No se pudo obtener el id de la tienda || TIENDA.SERVICE");
       return;
     }
 

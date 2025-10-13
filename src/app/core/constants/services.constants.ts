@@ -20,3 +20,7 @@ export const TIENDA={
 export const PRODUCTO = {
   CREATE_PRODUCT_URL:"http://localhost:8080/producto/save"
 }
+
+export const CATEGORIA = {
+  GET_ALL_CATEGORIES_URL: 'http://localhost:8080/categoria/getAll',
+}

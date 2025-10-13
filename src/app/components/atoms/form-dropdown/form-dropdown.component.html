@@ -8,13 +8,15 @@
   <button
     (click)="toggleDropdown()"
     type="button"
-    class="bg-gray-100 border border-gray-300 py-2 px-4 rounded-md text-sm flex justify-between items-center w-full font-semibold text-black transition-all duration-200 ease-in-out  hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 min-w-24"
+    [class]="'bg-gray-100 border border-gray-300 py-2 px-4 rounded-md text-sm flex justify-between items-center w-full font-semibold text-black transition-all duration-200 ease-in-out  hover:bg-orange-100 hover:text-orange-600 hover:border-orange-600 min-w-24 '+ (!isValid ? 'border-red-500 bg-red-100': '')"
   >
     <span>{{ selected }}</span>
-    <div [class]="'transition-transform' + (isOpen ? 'rotate-180' : '')">
+    <div [class]="'transition-transform' + (isOpen ? 'rotate-180' : '') + (!isValid ? ' text-red-700' : '')">
       <app-down-arrow-icon></app-down-arrow-icon>
     </div>
   </button>
+
+  <small class="text-red-600 font-semibold" *ngIf="!isValid">{{errorMessage}}</small>
 
 
   <!-- Dropdown List -->
@@ -44,6 +46,7 @@
         {{ option.label }}
       </li>
     </ng-container>
+
 
   </ul>
 

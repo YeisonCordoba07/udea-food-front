@@ -11,7 +11,7 @@
     <ng-container *ngIf="step === 1">
 
       <app-text-input-field
-        label="Nombre del Producto"
+        label="Nombre del Producto *"
         placeholder="Ejemplo: Hamburguesa"
         [control]="nombre"
         errorMessage="El nombre es obligatorio"
@@ -50,7 +50,7 @@
 
       <app-multi-dropdown
         title="Categorías (maximo 3)"
-        [options]="options"
+        [options]="auxiliarCategories"
         (optionChange)="handleChangeDropdown($event)"
         [maxSelected]="3"
         [initialOptions]="categorias.value"
@@ -58,9 +58,11 @@
 
 
       <app-form-dropdown
-        subtitle="Sección"
+        subtitle="Sección *"
         [options]="(secciones$ | async) || []"
         (optionChange)="handleChangeFormDropdown($event)"
+        [initialValue]="idSeccionTienda.value"
+        errorMessage="La sección es obligatoria"
         ></app-form-dropdown>
     </ng-container>
 
@@ -122,7 +124,9 @@
         styleButton="primary"
         buttonType="button"
         (onClick)="handleNextStep()"
+        [disabled]="newProductForm.invalid"
       ></app-principal-button>
+
 
       <div class="flex gap-5 w-full" >
         <app-principal-button
@@ -134,6 +138,7 @@
           buttonType="button"
           (onClick)="handlePreviousStep()"
         ></app-principal-button>
+
           <app-principal-button
             class="flex-1"
             *ngIf="step == 2"

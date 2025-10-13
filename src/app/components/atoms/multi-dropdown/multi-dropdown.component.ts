@@ -36,7 +36,6 @@ export class MultiDropdownComponent implements OnInit {
       return false;
     }).map(finalOption => finalOption.label);
 
-    console.log("Selected: ", this.selected);
   }
 
 

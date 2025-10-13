@@ -13,7 +13,7 @@ import {maxSeleccionValidator, minSeleccionValidator} from "@shared/validators/c
 export class CreateProductComponent implements OnInit {
 
   step: number = 1;
-  options = [
+  auxiliarCategories = [
     {value: 1, label: "Platos principales"},
     {value: 2, label: "Postres"},
     {value: 3, label: "Bebidas"},
@@ -75,6 +75,10 @@ export class CreateProductComponent implements OnInit {
 
   get categorias(){
     return this.newProductForm.get('categorias') as FormControl;
+  }
+
+  get idSeccionTienda(){
+    return this.newProductForm.get('idSeccionTienda') as FormControl;
   }
 
 
