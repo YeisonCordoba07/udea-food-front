@@ -15,6 +15,7 @@ export const GLOBAL = {
 
 export const TIENDA={
   GET_SECCIONES_BY_ID_TIENDA_URL: 'http://localhost:8080/seccionTienda/buscarPorIdTienda',
+  CREATE_SECCION_URL: 'http://localhost:8080/seccionTienda/crear',
 }
 
 export const PRODUCTO = {
