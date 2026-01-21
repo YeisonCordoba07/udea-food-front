@@ -12,11 +12,16 @@ export class FiltersService {
   constructor() {
   }
 
-  updateFilters(value: string, newFilter: string) {
+  updateFilters(filterName: string, value: string) {
     const currentFilters = this.filters.getValue();
-    const updatedFilters = {...currentFilters, [value]: newFilter};
+    const updatedFilters = {...currentFilters, [filterName]: value};
 
     this.filters.next(updatedFilters);
     console.log("nuevo", this.filters.getValue());
   }
+
+  getCurrentFilters() {
+    return this.filters.getValue();
+  }
+
 }

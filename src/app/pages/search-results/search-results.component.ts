@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Filters, Producto} from "@core/models/udea.model";
+import {Filters, Producto, Tienda} from "@core/models/udea.model";
 import {initialFilterState} from "@core/constants/filter.constants";
 import {Subscription} from "rxjs";
 import {SearchService} from "@core/services/search.service";
@@ -17,6 +17,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   private productoSubscription$!: Subscription;
   productos: Producto[] = [];
+  tiendas: Tienda[] = [];
 
 
   constructor(private searchService: SearchService, private filtersService: FiltersService) { }
@@ -27,6 +28,12 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       (productos)=>{
         this.productos = productos;
       });
+    
+    this.searchService.tiendas$.subscribe(
+        (tiendas)=>{
+            this.tiendas = tiendas;
+        }
+    )
 
     this.filtersSubscription$ = this.filtersService.filters$.subscribe(
       (filters: Filters) => {
