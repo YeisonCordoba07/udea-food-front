@@ -37,11 +37,16 @@ El proyecto se encuentra en desarrolo y en el futuro se agregarán nuevas mejora
 
 # Resultados
 
+<img width="1306" height="905" alt="2  Login" src="https://github.com/user-attachments/assets/6f6c8036-581d-4a10-9415-2f6896fd08f5" />
 
-![UdeAFood2 - Inicio](https://github.com/user-attachments/assets/1fca68e6-a6d4-46c1-9f07-d2a8614c68ff)
 ___
-![UdeAFood2 - Menu perfil](https://github.com/user-attachments/assets/8ec3cf61-0f11-4ba9-848e-b05f4575cc49)
+
+<img width="1306" height="748" alt="1  Inicio con sesion iniciada" src="https://github.com/user-attachments/assets/2badd241-e787-4454-9028-50a25bcc6be5" />
 ___
+
+<img width="1306" height="748" alt="1 1 Inicio con menú de usuario" src="https://github.com/user-attachments/assets/02331e10-d46b-4f5a-91f2-90d94fac172f" />
+___
+
 ![UdeAFood2 - Busqueda tiendas](https://github.com/user-attachments/assets/c9838e7f-a591-4adb-a6a4-1412adcc5c88)
 ___
 ![UdeAFood2 - Busqueda productos](https://github.com/user-attachments/assets/4ba61c11-4aa0-4b10-93fb-c6904cb7b06b)
@@ -58,9 +63,9 @@ ___
 ___
 ![UdeAFood2 - Crear producto - Desplegable](https://github.com/user-attachments/assets/f87f6321-29a0-4285-bed0-5d83d04bb1f5)
 ___
-![UdeAFood2 - Crear producto - Ingredientes](https://github.com/user-attachments/assets/1dd18a33-02f2-4ab0-9aed-2946870394cd)
-___
-![UdeAFood2 - Menu perfil](https://github.com/user-attachments/assets/07682f20-d928-49c5-8a2a-e9696dd2ff03)
+
+<img width="1306" height="3557" alt="7  Creación de ingredientes adicionales" src="https://github.com/user-attachments/assets/e84e6932-b39e-4df1-ae00-cab0ba77d5e8" />
+
 ___
 ![UdeAFood2 - Configuracion](https://github.com/user-attachments/assets/b3f6d61e-41f1-4854-8f47-67c47e8c297a)
 ___
