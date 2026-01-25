@@ -8,6 +8,10 @@
       <h1 class="text-3xl font-extrabold">Crear Producto</h1>
     </div>
 
+
+
+
+    <!-- Step 2 -->
     <ng-container *ngIf="step === 1">
 
       <app-text-input-field
@@ -67,21 +71,9 @@
     </ng-container>
 
 
-    <!--
-    {step === 2 && (
-            <>
-    {ingredienteProducto.ingredientes.map(
-    (ingrediente, indexIngrediente) => (
-    <Ingredient
-      key={indexIngrediente}
-      ingrediente={ingrediente}
-      indexIngrediente={indexIngrediente}
-      setIngredienteProducto={setIngredienteProducto}
-    />
-    -->
 
-    <pre>{{newProductForm.value | json}}</pre>
 
+    <!-- Step 2 -->
     <ng-container *ngIf="step === 2">
       <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
           <app-ingredient
@@ -104,17 +96,12 @@
         <span>Agregar ingrediente</span>
       </button>
     </ng-container>
-
-
-
-
     <!-- Fin ingrediente -->
 
 
 
 
-
-
+    <!-- Buttons: next, previous, and create -->
     <div class="mt-6">
 
       <app-principal-button
@@ -137,6 +124,7 @@
           styleButton="secondary"
           buttonType="button"
           (onClick)="handlePreviousStep()"
+          [disabled]="newProductForm.invalid"
         ></app-principal-button>
 
           <app-principal-button
