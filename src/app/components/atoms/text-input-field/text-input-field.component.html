@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <small *ngIf="control.invalid && (control.touched || inputType=='number')" class="text-red-600 ps-1">
+    <small *ngIf="control.invalid && (control.touched || inputType=='number')" class="text-red-600 ps-1 absolute">
       {{ errorMessage }}
     </small>
   </div>
