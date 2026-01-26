@@ -1,19 +1,24 @@
 <div class="flex flex-col items-center justify-center h-fit bg-neutral-300 bg-cover bg-center max-lg:p-10">
 
   <form
-    [formGroup]="newProduct" (ngSubmit)="createProduct()"
+    [formGroup]="newProductForm" (ngSubmit)="createProduct()"
     [class]="'shadow-lg gap-10 flex flex-col rounded-2xl w-[800px] p-14 max-lg:w-full max-sm:p-10 mx-auto mt-10 mb-10 border ' + (step === 1 ? 'bg-white' : 'bg-neutral-100')"
   >
     <div class="flex items-center justify-center flex-col gap-3">
       <h1 class="text-3xl font-extrabold">Crear Producto</h1>
     </div>
 
+
+
+
+    <!-- Step 2 -->
     <ng-container *ngIf="step === 1">
 
       <app-text-input-field
-        label="Nombre del Producto"
+        label="Nombre del Producto *"
         placeholder="Ejemplo: Hamburguesa"
         [control]="nombre"
+        errorMessage="El nombre es obligatorio"
       ></app-text-input-field>
 
       <app-text-input-field
@@ -28,9 +33,13 @@
         placeholder="Ejemplo: 15000"
         inputType="number"
         [control]="precio"
+        errorMessage="El precio no puede ser menor a 0"
       ></app-text-input-field>
 
 
+
+
+      <!-- IMAGENES -->
       <div class="flex flex-col gap-1">
         <label
           class="block text-sm font-medium text-gray-900"
@@ -46,62 +55,64 @@
         />
       </div>
 
+
+
+
       <app-multi-dropdown
         title="Categorías (maximo 3)"
-        [options]="options"
+        [options]="categoriesFormated"
         (optionChange)="handleChangeDropdown($event)"
         [maxSelected]="3"
+        [initialOptions]="categorias.value"
       ></app-multi-dropdown>
 
-      <!--  onChange={(value)=> setNewProduct((prev) => ({
-      ...prev,
-      idSeccionTienda: parseInt(value, 10),
-      }))
-      }
-      reloadData={fetchSecciones}-->
+
       <app-form-dropdown
-        subtitle="Sección"
+        subtitle="Sección *"
         [options]="(secciones$ | async) || []"
         (optionChange)="handleChangeFormDropdown($event)"
+        [initialValue]="idSeccionTienda.value"
+        errorMessage="La sección es obligatoria"
         ></app-form-dropdown>
     </ng-container>
 
 
-    <!--
-    {step === 2 && (
-            <>
-    {ingredienteProducto.ingredientes.map(
-    (ingrediente, indexIngrediente) => (
-    <Ingredient
-      key={indexIngrediente}
-      ingrediente={ingrediente}
-      indexIngrediente={indexIngrediente}
-      setIngredienteProducto={setIngredienteProducto}
-    />
-    -->
 
+
+    <!-- Step 2 -->
+    <ng-container *ngIf="step === 2">
+
+      <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
+
+          <app-ingredient
+            [ingredientArray]="ingredientes.at(i)"
+            [indexIngrediente]="i"
+            (onDeleteIngredient)="removeIngredient($event)"
+          ></app-ingredient>
+
+      </ng-container>
+
+
+      <button
+        class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
+        type="button"
+        (click)="addIngredient()"
+      >
+        <div class="bg-orange-500 text-white rounded-full p-1">
+          <app-add-section-icon></app-add-section-icon>
+        </div>
+
+        <span>Agregar ingrediente</span>
+      </button>
+
+    </ng-container>
     <!-- Fin ingrediente -->
 
-    <!--  onClick={() => { const newIngredient = { ...nuevoIngrediente };
-                setIngredienteProducto((prev) => ({
-  ...prev,
-  ingredientes: [...prev.ingredientes, newIngredient],
-  }));
-  }} -->
-    <button
-      class="flex gap-2 items-center text-orange-500 font-bold transition-transform duration-200  hover:scale-105 w-fit ml-3"
-      type="button"
-    >
-      <div class="bg-orange-500 text-white rounded-full p-1">
-        <app-add-section-icon></app-add-section-icon>
-      </div>
-
-      <span>Agregar ingrediente</span>
-    </button>
-
-    <app-toggle></app-toggle>
 
 
+
+
+    <!-- Buttons: next, previous, and create -->
     <div class="mt-6">
 
       <app-principal-button
@@ -111,17 +122,31 @@
         styleButton="primary"
         buttonType="button"
         (onClick)="handleNextStep()"
+        [disabled]="newProductForm.invalid"
       ></app-principal-button>
 
 
-      <app-principal-button
-        *ngIf="step === 2"
-        text="Crear producto"
-        [showIcon]="false"
-        styleButton="primary"
-        buttonType="button"
-        (onClick)="handleNextStep()"
-      ></app-principal-button>
+      <div class="flex gap-5 w-full" >
+        <app-principal-button
+          class="flex-1"
+          text="Anterior"
+          *ngIf="step === 2"
+          [showIcon]="false"
+          styleButton="secondary"
+          buttonType="button"
+          (onClick)="handlePreviousStep()"
+          [disabled]="newProductForm.invalid"
+        ></app-principal-button>
+
+          <app-principal-button
+            class="flex-1"
+            *ngIf="step == 2"
+            text="Crear producto"
+            [showIcon]="false"
+            styleButton="primary"
+            buttonType="submit"
+          ></app-principal-button>
+      </div>
 
     </div>
   </form>

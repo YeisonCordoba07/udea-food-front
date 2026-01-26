@@ -10,14 +10,23 @@ export class FormDropdownComponent implements OnInit {
   selected: string = "";
   isOpen: boolean = false;
   @Input() options: {value: string | number, label: string}[] = [];
+  @Input() initialValue: string | number | undefined;
+  @Input() isValid: boolean = true;
+  @Input() errorMessage: string | undefined;
 
   @Output() optionChange = new EventEmitter<number | string>();
+  @Input() showCreateSection: boolean = true;
 
 
 
   constructor() { }
 
   ngOnInit(): void {
+    if(this.initialValue){
+      const foundOption = this.options.find(option => option.value === this.initialValue);
+
+      this.selected = foundOption ? foundOption.label : '';
+    }
   }
 
   handleFilterClick(label: string) {

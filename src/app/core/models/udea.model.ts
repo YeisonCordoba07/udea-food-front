@@ -3,14 +3,21 @@ export interface Categoria {
   nombre: string;
   descripcion: string | null;
 }
+export interface ShortCategoria{
+  idCategoria: number;
+  nombre: string;
+}
 
-export interface ProductoOld {
+export interface ProductoIngredienteRequest {
   idProducto: number;
   nombre: string;
   descripcion: string;
   precio: number;
   disponibilidad: boolean;
   categorias: Categoria[];
+  imagenes?: string[];
+  idTienda: number;
+  ingredienteProducto: IngredienteProductoRequest;
 }
 
 export interface Producto {

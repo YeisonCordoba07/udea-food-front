@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TiendaService} from "@core/services/tienda/tienda.service";
 import {map} from "rxjs";
+import {ProductService} from "@core/services/product/product.service";
+import {maxSeleccionValidator, minSeleccionValidator} from "@shared/validators/custom-validators";
+import {CategoriesService} from "@core/services/categories/categories.service";
+import {Categoria} from "@core/models/udea.model";
 
 @Component({
   selector: 'app-create-product',
@@ -11,65 +15,183 @@ import {map} from "rxjs";
 export class CreateProductComponent implements OnInit {
 
   step: number = 1;
-  options = [
-    { value: 1, label: "Platos principales" },
-    { value: 2, label: "Postres" },
-    { value: 3, label: "Bebidas" },
-    { value: 4, label: "Internacional del norte de china" },
+  auxiliarCategories = [
+    {value: 1, label: "Platos principales"},
+    {value: 2, label: "Postres"},
+    {value: 3, label: "Bebidas"},
+    {value: 4, label: "Internacional del norte de china"},
   ];
 
-  newProduct!: FormGroup;
+  categories: Categoria[] = [];
+  categoriesFormated: { value: number; label: string; }[] = [];
+
+  newProductForm!: FormGroup;
+  ingredientsForm!: FormGroup;
   secciones$ = this.tiendaService.secciones$.pipe(
     map((secciones: { idSeccionTienda: number; nombre: string }[] | null) =>
-      secciones ? secciones.map(seccion => ({ value: seccion.idSeccionTienda, label: seccion.nombre })) : []
+      secciones ? secciones.map(seccion => ({value: seccion.idSeccionTienda, label: seccion.nombre})) : []
     )
   );
 
 
+  constructor(private fb: FormBuilder, private tiendaService: TiendaService, private productService: ProductService, private categoriesService: CategoriesService) {
+    this.tiendaService.getSeccionesByIdTienda();
 
-  constructor(private fb: FormBuilder, private tiendaService: TiendaService) {
-      this.tiendaService.getSeccionesByIdTienda();
   }
 
   ngOnInit(): void {
 
-    this.newProduct = this.fb.group({
+
+    // Load categories
+    this.categoriesService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+        this.categoriesFormated = data.map(cat => ({
+          value: cat.idCategoria,
+          label: cat.nombre
+        }));
+        console.log('Categories fetched:', this.categories);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+
+
+    this.ingredientsForm = this.fb.group({
+      idTienda: [0, [Validators.required]],
+
+      ingredientes: this.fb.array([])
+    })
+
+    this.newProductForm = this.fb.group({
       nombre: ['', [Validators.required]],
       descripcion: [''],
-      precio: [0],
+      precio: [0, [Validators.min(0)]],
       disponibilidad: [true],
       imagenes: [[]],
       categorias: [[]],
-      idSeccionTienda: [0, [Validators.required]],
-      idTienda: [0]
+      idSeccionTienda: [0, [Validators.required, Validators.min(1)]],
+      idTienda: [0,],
+      ingredienteProducto: this.ingredientsForm
+    });
+
+  }
+
+
+  get nombre() {
+    return this.newProductForm.get('nombre') as FormControl;
+  }
+
+  get descripcion() {
+    return this.newProductForm.get('descripcion') as FormControl;
+  }
+
+  get precio() {
+    return this.newProductForm.get('precio') as FormControl;
+  }
+
+  get ingredientes(): FormArray {
+    return this.ingredientsForm.get('ingredientes') as FormArray;
+  }
+
+  get categorias() {
+    return this.newProductForm.get('categorias') as FormControl;
+  }
+
+  get idSeccionTienda() {
+    return this.newProductForm.get('idSeccionTienda') as FormControl;
+  }
+
+
+  handleChangeDropdown(event: (string | number)[]) {
+    this.newProductForm.patchValue({categorias: event});
+    console.log('Product categories updated:', this.newProductForm.value);
+  }
+
+  handleChangeFormDropdown(event: number | string) {
+    this.newProductForm.patchValue({idSeccionTienda: event});
+    console.log('Selected section:', this.newProductForm.value.idSeccionTienda);
+  }
+
+  handleNextStep() {
+    this.step = this.step + 1;
+  }
+
+  handlePreviousStep() {
+    this.step = this.step - 1;
+  }
+
+
+  removeIngredient($event: number) {
+    this.ingredientes.removeAt($event);
+    console.log('Ingredient removed at index:', $event);
+  }
+
+
+  createProduct() {
+    console.log("hola amigos de");
+    if (this.newProductForm.invalid) {
+      console.error('Form is invalid');
+      return;
+    }
+
+    this.productService.createProduct(this.newProductForm.value).subscribe({
+      next: (response) => {
+        console.log('Product created successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error creating product:', error);
+      }
     });
   }
 
-  get nombre(){
-    return this.newProduct.get('nombre') as FormControl;
-  }
-  get descripcion(){
-    return this.newProduct.get('descripcion') as FormControl;
-  }
-  get precio(){
-    return this.newProduct.get('precio') as FormControl;
+
+  addIngredient() {
+    this.ingredientes.push(this.createNewIngredient());
+    console.log('New ingredient added:', this.ingredientes.value);
   }
 
-  handleChangeDropdown(event: (string | number)[]) {
-    this.newProduct.patchValue({ categorias: event });
-    console.log('Product categories updated:', this.newProduct.value);
+
+  private createNewIngredient(): FormGroup {
+    const opcionesArray = this.fb.array([
+      this.fb.group({
+        nombre: ['', Validators.required],
+        costo: [0, [Validators.min(0)]]
+      })
+    ]);
+
+    const minSeleccionControl = this.fb.control(0, Validators.required);
+    const maxSeleccionControl = this.fb.control(0, Validators.required);
+
+    const ingredientGroup = this.fb.group({
+      nombre: ['', Validators.required],
+      minSeleccion: minSeleccionControl,
+      maxSeleccion: maxSeleccionControl,
+      multiple: [false],
+      obligatorio: false,
+      opciones: opcionesArray
+    });
+
+    // Suscribirse a los cambios en el número de opciones
+    opcionesArray.valueChanges.subscribe(() => {
+      const maxOptions = opcionesArray.length;
+
+      // Actualizar validadores dinámicamente
+      minSeleccionControl.setValidators([
+        Validators.required,
+        minSeleccionValidator(maxOptions)
+      ]);
+      minSeleccionControl.updateValueAndValidity();
+
+      maxSeleccionControl.setValidators([
+        Validators.required,
+        maxSeleccionValidator(minSeleccionControl, maxOptions)
+      ]);
+      maxSeleccionControl.updateValueAndValidity();
+    });
+
+    return ingredientGroup;
   }
 
-  handleChangeFormDropdown(event: number | string){
-    this.newProduct.patchValue({ idSeccionTienda: event });
-    console.log('Selected section:', this.newProduct.value.idSeccionTienda);
-}
-
-  handleNextStep() {
-
-  }
-
-  createProduct() {
-
-  }
 }

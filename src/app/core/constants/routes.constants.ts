@@ -10,6 +10,7 @@ export const API_ROUTES = {
     SETTINGS: '/admin/settings'
   },
   SEARCH_PRODUCT_BY_NAME_URL: "http://localhost:8080/producto/buscarPorNombreProducto",
+  SEARCH_TIENDAS_BY_NAME_URL: "http://localhost:8080/tienda/buscarPorNombre",
 
   GET_TIENDA_BY_ID_URL:"http://localhost:8080/tienda/perfilTienda",
   LOGIN_URL:"http://localhost:8080/auth/login"

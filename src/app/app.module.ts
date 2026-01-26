@@ -56,6 +56,8 @@ import {CreateSectionDialogComponent} from './components/atoms/create-section-di
 import {IngredientOptionComponent} from './components/molecules/ingredient-option/ingredient-option.component';
 import {ToggleComponent} from './components/atoms/toggle/toggle.component';
 import {IngredientComponent} from './components/molecules/ingredient/ingredient.component';
+import {CloseIconComponent} from './components/atoms/icons/close-icon/close-icon.component';
+import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +109,9 @@ import {IngredientComponent} from './components/molecules/ingredient/ingredient.
     CreateSectionDialogComponent,
     IngredientOptionComponent,
     ToggleComponent,
-    IngredientComponent
+    IngredientComponent,
+    CloseIconComponent,
+    TrashIconComponent
   ],
   imports: [
     BrowserModule,

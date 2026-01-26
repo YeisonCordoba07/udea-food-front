@@ -101,6 +101,8 @@ export class LoginService {
       this.accountInfoSubject.next(JSON.parse(accountInfo));
       this.isLoggedSubject.next(true);
       this.currentAccountSubject.next(this.chooseCurrentAccount(JSON.parse(accountInfo)));
+    }else{
+      this.logout();
     }
   }
 

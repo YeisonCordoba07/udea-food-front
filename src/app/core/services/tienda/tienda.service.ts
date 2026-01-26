@@ -34,6 +34,7 @@ export class TiendaService {
     const idTienda = this.getIdTienda();
 
     if(idTienda === 0){
+      console.log("No se pudo obtener el id de la tienda || TIENDA.SERVICE");
       return;
     }
 
@@ -46,6 +47,7 @@ export class TiendaService {
     this.http.get<any[]>(url, {headers}).subscribe({
       next: (secciones) => {
         this.seccionesSubject.next(secciones);
+        console.log("Secciones fetched:", secciones);
       },
       error: (error) => {
         console.error('Error fetching secciones:', error);
@@ -74,6 +76,23 @@ export class TiendaService {
       }
     });
     return idTienda;
+  }
+
+
+  createSeccion(seccionName: string){
+    const url = TIENDA.CREATE_SECCION_URL;
+    const idTienda = this.getIdTienda();
+
+    const newSeccion = {
+      nombre: seccionName,
+      idTienda: idTienda
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem(LOGIN.LOCALSTORAGE_TOKEN_NAME)}`
+    });
+
+    return this.http.post<{message: string}>(url, newSeccion, {headers});
   }
 
 

@@ -1,0 +1,35 @@
+<li class="flex items-center gap-3">
+  <!-- Detail Circle or Square -->
+  <span
+    [class]="'w-6 h-6 border-2 border-gray-300 ' +
+    (isMultiple ? 'rounded-md' : 'rounded-full')"
+  ></span>
+
+  <!-- Option name -->
+
+  <div class="justify-center items-center flex-1">
+    <app-text-input-field
+      placeholder="Ejemplo: Oregano"
+      [control]="nombre"
+      errorMessage="El nombre es obligatorio"
+    ></app-text-input-field>
+  </div>
+
+  <!--Option price -->
+  <div class="flex w-1/3">
+
+    <app-text-input-field
+      placeholder="Precio: 0"
+      inputType="number"
+      [control]="costo"
+    ></app-text-input-field>
+  </div>
+
+  <!-- Button to remove option -->
+  <div
+    class="hover:bg-red-200 rounded-full p-2 transition-all duration-150 cursor-pointer flex justify-center items-center"
+    (click)="handleRemoveOption()"
+  >
+    <app-close-icon></app-close-icon>
+  </div>
+</li>
