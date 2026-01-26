@@ -37,6 +37,9 @@
       ></app-text-input-field>
 
 
+
+
+      <!-- IMAGENES -->
       <div class="flex flex-col gap-1">
         <label
           class="block text-sm font-medium text-gray-900"
@@ -51,6 +54,9 @@
           multiple
         />
       </div>
+
+
+
 
       <app-multi-dropdown
         title="Categorías (maximo 3)"
@@ -75,12 +81,15 @@
 
     <!-- Step 2 -->
     <ng-container *ngIf="step === 2">
+
       <ng-container *ngFor="let ingredient of ingredientes.controls; let i = index">
+
           <app-ingredient
             [ingredientArray]="ingredientes.at(i)"
             [indexIngrediente]="i"
             (onDeleteIngredient)="removeIngredient($event)"
           ></app-ingredient>
+
       </ng-container>
 
 
@@ -95,6 +104,7 @@
 
         <span>Agregar ingrediente</span>
       </button>
+
     </ng-container>
     <!-- Fin ingrediente -->
 
