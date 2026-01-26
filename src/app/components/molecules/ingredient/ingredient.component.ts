@@ -76,7 +76,7 @@ export class IngredientComponent implements OnInit {
 
   handleAddOption() {
     this.options.push(new FormGroup({
-      nombre: new FormControl(''),
+      nombre: new FormControl('', Validators.required),
       costo: new FormControl(0, [Validators.min(0)])
     }))
   }
