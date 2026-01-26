@@ -99,10 +99,21 @@ export class IngredientComponent implements OnInit {
 
   handleObligatorio($event: boolean) {
     this.obligatorio.setValue($event);
-    if($event){
+    if($event && this.multiple.value){
       this.minSeleccion.setValue(1);
-    }else{
+      this.maxSeleccion.setValue(this.options.length);
+    }
+    else if($event && this.multiple.value === false){
+      this.minSeleccion.setValue(1);
+      this.maxSeleccion.setValue(1);
+    }
+    else if($event === false && this.multiple.value === true){
       this.minSeleccion.setValue(0);
+      this.maxSeleccion.setValue(this.options.length);
+    }
+    else if ($event === false && this.multiple.value === false){
+      this.minSeleccion.setValue(0);
+      this.maxSeleccion.setValue(1);
     }
   }
 
