@@ -5,13 +5,13 @@
 
 <div class="flex flex-wrap gap-4 p-4">
 
-  <ng-container *ngIf="filters.mostrarSolo=== 'Productos'">
+  <ng-container *ngIf="filters.mostrarSolo.toLowerCase() ==='productos'">
       <ng-container *ngFor="let producto of productos$ | async">
         <app-product-card [producto]="producto"></app-product-card>
       </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="filters.mostrarSolo=== 'Tiendas'" >
+  <ng-container *ngIf="filters.mostrarSolo.toLowerCase()=== 'tiendas'" >
     <ng-container *ngFor="let tienda of tiendas$ | async">
       Tienda
     </ng-container>

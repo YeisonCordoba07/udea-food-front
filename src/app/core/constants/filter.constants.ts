@@ -8,15 +8,15 @@ export const emptyFilterState: Filters = {
 };
 
 export const initialFilterState: Filters = {
-  mostrarSolo: "Productos",
-  buscarEn: "Todas las tiendas",
-  ordenarPor: "Nombre",
-  tipoOrden: "Ascendente",
+  mostrarSolo: "productos",
+  buscarEn: "todas las tiendas",
+  ordenarPor: "nombre",
+  tipoOrden: "ascendente",
 };
 
 export const filterOptions = {
-  mostrarSolo: ["Productos", "Tiendas"],
-  buscarEn: ["Todas las tiendas", "Formales", "Informales"],
-  ordenarPor: ["Nombre", "Precio"],
-  tipoOrden: ["Ascendente", "Descendente"],
+  mostrarSolo: ["productos", "tiendas"],
+  buscarEn: ["todas las tiendas", "formales", "informales"],
+  ordenarPor: ["nombre", "precio"],
+  tipoOrden: ["ascendente", "aescendente"],
 };
