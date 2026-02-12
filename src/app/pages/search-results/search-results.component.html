@@ -1,18 +1,18 @@
 <app-category></app-category>
 <app-filter-bar></app-filter-bar>
-<h1>Numero de resultados {{productos.length}} | {{tiendas.length}}</h1>
+<h1>Numero de resultados {{(productos$ | async)?.length}} | {{(tiendas$ | async)?.length}}</h1>
 
 
 <div class="flex flex-wrap gap-4 p-4">
 
   <ng-container *ngIf="filters.mostrarSolo=== 'Productos'">
-      <ng-container *ngFor="let producto of productos">
+      <ng-container *ngFor="let producto of productos$ | async">
         <app-product-card [producto]="producto"></app-product-card>
       </ng-container>
   </ng-container>
 
   <ng-container *ngIf="filters.mostrarSolo=== 'Tiendas'" >
-    <ng-container *ngFor="let tienda of tiendas">
+    <ng-container *ngFor="let tienda of tiendas$ | async">
       Tienda
     </ng-container>
   </ng-container>

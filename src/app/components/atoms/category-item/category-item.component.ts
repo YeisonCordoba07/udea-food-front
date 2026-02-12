@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-item',
@@ -8,9 +9,20 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CategoryItemComponent implements OnInit {
 
   @Input() text: string = "";
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  searchByCategoriaId(){
+
+  }
+
+  searchByNombreCategoria(){
+    this.router.navigate(["/resultados"], {
+        queryParams: {categoria: this.text}
+    })
   }
 
 }

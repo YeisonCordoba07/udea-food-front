@@ -19,7 +19,9 @@ export const TIENDA={
 }
 
 export const PRODUCTO = {
-  CREATE_PRODUCT_URL:"http://localhost:8080/producto/save"
+  CREATE_PRODUCT_URL:"http://localhost:8080/producto/save",
+  SEARCH_PRODUCTS_BY_CATEGORIA_NAME: "http://localhost:8080/producto/buscarPorNombreCategoria",
+  SEARCH_PRODUCTS_BY_ID_CATEGORIA: "http://localhost:8080/producto/buscarPorIdCategoria"
 }
 
 export const CATEGORIA = {

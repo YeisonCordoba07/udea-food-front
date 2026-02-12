@@ -3,6 +3,7 @@ import {Filters} from "@core/models/udea.model";
 import {filterOptions} from "@core/constants/filter.constants";
 import {FiltersService} from "@core/services/filters/filters.service";
 import {Subscription} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filter-bar',
@@ -17,7 +18,7 @@ export class FilterBarComponent implements OnInit, OnDestroy {
   protected readonly filterOptions = filterOptions;
 
 
-  constructor(private filtersService: FiltersService) {}
+  constructor(private filtersService: FiltersService, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -26,6 +27,11 @@ export class FilterBarComponent implements OnInit, OnDestroy {
     this.subscription = this.filtersService.filters$.subscribe(
       (filters: Filters) => {
         this.filters = filters;
+
+        this.router.navigate(["/resultados"], {
+        queryParams: filters,
+        queryParamsHandling: 'merge',
+    });
       }
     );
   }
@@ -40,6 +46,16 @@ export class FilterBarComponent implements OnInit, OnDestroy {
 
   onFilterChange(filterKey: keyof typeof filterOptions, newValue: string): void {
     this.filtersService.updateFilters(filterKey, newValue);
+
+
+    const currentFilters = { ...this.filters, [filterKey]: newValue };
+
+
+    this.router.navigate(["/resultados"], {
+        queryParams: currentFilters,
+        queryParamsHandling: 'merge',
+    });
+
   }
 
 }

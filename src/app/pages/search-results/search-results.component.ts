@@ -1,55 +1,50 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Filters, Producto, Tienda} from "@core/models/udea.model";
-import {initialFilterState} from "@core/constants/filter.constants";
-import {Subscription} from "rxjs";
-import {SearchService} from "@core/services/search.service";
-import {FiltersService} from "@core/services/filters/filters.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Filters, Producto, Tienda } from "@core/models/udea.model";
+import { initialFilterState } from "@core/constants/filter.constants";
+import { Observable, Subscription } from "rxjs";
+import { SearchService } from "@core/services/search.service";
+import { FiltersService } from "@core/services/filters/filters.service";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css']
+    selector: 'app-search-results',
+    templateUrl: './search-results.component.html',
+    styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
 
-  private filtersSubscription$!: Subscription;
-  filters: Filters = initialFilterState;
+    filters: Filters = initialFilterState;
+    productos$!: Observable<Producto[]>;
+    tiendas$!: Observable<Tienda[]>;
 
-  private productoSubscription$!: Subscription;
-  productos: Producto[] = [];
-  tiendas: Tienda[] = [];
-
-
-  constructor(private searchService: SearchService, private filtersService: FiltersService) { }
+    private filtersSubscription$!: Subscription;
 
 
-  ngOnInit(): void {
-    this.productoSubscription$ = this.searchService.productos$.subscribe(
-      (productos)=>{
-        this.productos = productos;
-      });
-    
-    this.searchService.tiendas$.subscribe(
-        (tiendas)=>{
-            this.tiendas = tiendas;
+
+    constructor(
+        private searchService: SearchService, 
+        private filtersService: FiltersService,
+        private route: ActivatedRoute) { }
+
+
+    ngOnInit(): void {
+        this.filtersSubscription$ = this.filtersService.filters$.subscribe(
+            (filters: Filters) => {
+                this.filters = filters;
+            }
+        );
+
+        this.productos$ = this.searchService.productos$;
+
+        this.tiendas$ = this.searchService.tiendas$;
+
+    }
+
+
+    ngOnDestroy(): void {
+        if (this.filtersSubscription$) {
+            this.filtersSubscription$.unsubscribe();
         }
-    )
-
-    this.filtersSubscription$ = this.filtersService.filters$.subscribe(
-      (filters: Filters) => {
-        this.filters = filters;
-      }
-    )
-  }
-
-
-  ngOnDestroy(): void {
-    if (this.productoSubscription$) {
-      this.productoSubscription$.unsubscribe();
     }
-    if (this.filtersSubscription$) {
-      this.filtersSubscription$.unsubscribe();
-    }
-  }
 
 }
