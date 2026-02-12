@@ -28,10 +28,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-        this.filtersSubscription$ = this.filtersService.filters$.subscribe(
-            (filters: Filters) => {
-                this.filters = filters;
+        this.filtersSubscription$ = this.filtersService.filters$.subscribe({
+            next: (f: Filters)=>{
+                this.filters = f;
+                this.searchService.searchByName(this.route.snapshot.queryParams["q"])
+                console.log("SNAPSHOT: ", this.route.snapshot.queryParams["q"]);
             }
+        }
+
         );
 
         this.productos$ = this.searchService.productos$;
