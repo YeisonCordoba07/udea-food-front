@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit {
     this.searchService.searchByName(query);
 
     this.router.navigate(['/resultados'], {
-      queryParams: { q: query }
+      queryParams: { q: query },
+       queryParamsHandling: 'merge'
     });
 
   }
