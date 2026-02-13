@@ -18,5 +18,5 @@ export const filterOptions = {
   mostrarSolo: ["productos", "tiendas"],
   buscarEn: ["todas las tiendas", "formales", "informales"],
   ordenarPor: ["nombre", "precio"],
-  tipoOrden: ["ascendente", "aescendente"],
+  tipoOrden: ["ascendente", "descendente"],
 };
