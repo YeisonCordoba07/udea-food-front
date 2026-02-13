@@ -1,6 +1,11 @@
 <button
   (click)="searchByNombreCategoria()"
-  class="bg-zinc-200 hover:bg-lime-300 py-2 px-4 text-zinc-700 hover:text-zinc-800 rounded-full duration-200 hover:scale-105 text-sm"
+  [ngClass]="{
+    'bg-lime-300 text-zinc-600 font-bold': activedCategory.toLowerCase() === text.toLowerCase(),
+    'bg-zinc-200 text-zinc-600': activedCategory.toLowerCase() !== text.toLowerCase()
+    }"
+  class="hover:bg-lime-300 py-2 px-4  hover:text-zinc-800 rounded-full duration-200 hover:scale-105 text-sm"
+
 >
   {{ text }}
 </button>

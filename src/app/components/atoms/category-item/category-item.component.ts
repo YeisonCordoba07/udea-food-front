@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from '@core/services/search.service';
 
 @Component({
@@ -10,10 +10,15 @@ import { SearchService } from '@core/services/search.service';
 export class CategoryItemComponent implements OnInit {
 
   @Input() text: string = "";
+  activedCategory: string = "todas";
 
-  constructor(private router: Router, private searchService: SearchService) { }
+  constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute) { }
 
+  
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params =>{
+        this.activedCategory = params["categoria"];
+    })
   }
 
   searchByCategoriaId(){
