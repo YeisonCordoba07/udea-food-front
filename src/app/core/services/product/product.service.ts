@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LOGIN, PRODUCTO} from "@core/constants/services.constants";
 import {LoginService} from "@core/services/login/login.service";
@@ -8,7 +8,7 @@ import {ProductoIngredienteRequest} from "@core/models/udea.model";
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements OnDestroy {
 
   private loginSubscription!: Subscription;
 
@@ -23,10 +23,13 @@ export class ProductService {
       newProducto.idTienda = idTienda;
       newProducto.ingredienteProducto.idTienda = idTienda;
     }
+
     console.log("token JWT: ", localStorage.getItem(LOGIN.LOCALSTORAGE_TOKEN_NAME))
+    
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem(LOGIN.LOCALSTORAGE_TOKEN_NAME)}`
     });
+
     return this.http.post(PRODUCTO.CREATE_PRODUCT_URL, newProducto, {headers});
 
   }
@@ -48,6 +51,14 @@ export class ProductService {
       }
     });
     return idTienda;
+  }
+
+
+
+  ngOnDestroy(): void {
+      if(this.loginSubscription){
+        this.loginSubscription.unsubscribe();
+      }
   }
 
 
