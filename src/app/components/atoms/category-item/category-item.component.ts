@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from '@core/services/search.service';
 
 @Component({
   selector: 'app-category-item',
@@ -10,7 +11,7 @@ export class CategoryItemComponent implements OnInit {
 
   @Input() text: string = "";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
@@ -20,8 +21,9 @@ export class CategoryItemComponent implements OnInit {
   }
 
   searchByNombreCategoria(){
+    this.searchService.searchByNombreCategoria(this.text.toLowerCase());
     this.router.navigate(["/resultados"], {
-        queryParams: {categoria: this.text},
+        queryParams: {categoria: this.text.toLowerCase()},
         queryParamsHandling: "merge"
     })
   }

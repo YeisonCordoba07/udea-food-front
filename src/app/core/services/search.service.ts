@@ -31,11 +31,15 @@ export class SearchService implements OnDestroy {
 
 
   searchByName(query: string): void {
+    if(query === ""){
+        return
+    }
     let currentFilters!: Filters;
 
     this.filterSubscription$ = this.filtersService.filters$.subscribe(f => {
         currentFilters = f;
     });
+
 
     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
         
@@ -62,6 +66,9 @@ export class SearchService implements OnDestroy {
     }
   }
 
+
+
+
   searchByName2(query: string): void {
     let currentFilters!: Filters;
 
@@ -80,7 +87,6 @@ export class SearchService implements OnDestroy {
         console.log("En search service no se definió la URL.");
     }
             
-
   }
 
 
@@ -102,7 +108,11 @@ export class SearchService implements OnDestroy {
 
 
   searchByNombreCategoria(nombreCategoria: string){
-    return this.http.get<Producto[]>(`${PRODUCTO.SEARCH_PRODUCTS_BY_CATEGORIA_NAME}?categoria=${nombreCategoria}`);
+    return this.http.get<Producto[]>(`${PRODUCTO.SEARCH_PRODUCTS_BY_CATEGORIA_NAME}?categoria=${nombreCategoria}`).subscribe({
+        next: (p: Producto[])=>{
+            this.productosSubject.next(p);
+        }
+    });
   }
 
 

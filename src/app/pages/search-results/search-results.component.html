@@ -1,8 +1,31 @@
 <app-category></app-category>
 <app-filter-bar></app-filter-bar>
-<h1>Numero de resultados {{(productos$ | async)?.length}} | {{(tiendas$ | async)?.length}}</h1>
 
 
+<!-- Texts with number of results -->
+<span 
+*ngIf="(productos$ | async)?.length !== 0 || 
+(tiendas$ | async)?.length !== 0" 
+class="text-gray-400 w-full mt-2 ml-4 inline-block">
+    <span *ngIf="(productos$ | async)?.length !== 0">
+        {{(productos$ | async)?.length}}
+    </span>
+        <span *ngIf="(tiendas$ | async)?.length !== 0">
+        {{(tiendas$ | async)?.length}}
+    </span>
+    resultados
+</span>
+
+
+
+<h1 class="text-4xl text-gray-500 font-extrabold w-full text-center mt-10 mb-10" *ngIf="(productos$ | async)?.length === 0 && (tiendas$ | async)?.length === 0">
+    Sin resultados
+</h1>
+
+
+
+
+<!-- Results -->
 <div class="flex flex-wrap gap-4 p-4">
 
   <ng-container *ngIf="filters.mostrarSolo.toLowerCase() ==='productos'">

@@ -31,12 +31,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.filtersSubscription$ = this.filtersService.filters$.subscribe({
             next: (f: Filters)=>{
                 this.filters = f;
-                this.searchService.searchByName(this.route.snapshot.queryParams["q"])
+                this.searchService.searchByName(this.route.snapshot.queryParams["q"]);
                 console.log("SNAPSHOT: ", this.route.snapshot.queryParams["q"]);
             }
-        }
-
-        );
+        });
 
         this.productos$ = this.searchService.productos$;
 
