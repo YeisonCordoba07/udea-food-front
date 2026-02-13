@@ -21,7 +21,8 @@ export class CategoryItemComponent implements OnInit {
 
   searchByNombreCategoria(){
     this.router.navigate(["/resultados"], {
-        queryParams: {categoria: this.text}
+        queryParams: {categoria: this.text},
+        queryParamsHandling: "merge"
     })
   }
 
