@@ -46,6 +46,8 @@ export class SearchService implements OnDestroy {
         this.http.get<Producto[]>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}`)
             .subscribe({
             next: (productos) => {
+                console.log("---PRODUCTOS: ", productos)
+                this.tiendasSubject.next([])
                 this.productosSubject.next(productos);
             },
             error: (error) => {
@@ -57,6 +59,7 @@ export class SearchService implements OnDestroy {
         this.http.get<Tienda[]>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}`)
         .subscribe({
             next: (tiendas) =>{
+                this.productosSubject.next([]);
                 this.tiendasSubject.next(tiendas);
             },
             error: (error) => {

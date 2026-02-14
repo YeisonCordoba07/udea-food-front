@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
 
-    filters: Filters = initialFilterState;
+    filters!: Filters;
     productos$!: Observable<Producto[]>;
     tiendas$!: Observable<Tienda[]>;
 
@@ -29,18 +29,20 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.filtersSubscription$ = this.filtersService.filters$.subscribe({
-            next: (f: Filters)=>{
-                this.filters = f;
+            next: (f: Filters) => {
+                this.filters = f;               
+               
                 this.searchService.searchByName(this.route.snapshot.queryParams["q"]);
+               
                 console.log("SNAPSHOT: ", this.route.snapshot.queryParams["q"]);
             }
         });
-
         this.productos$ = this.searchService.productos$;
-
         this.tiendas$ = this.searchService.tiendas$;
 
     }
+
+    
 
 
     ngOnDestroy(): void {

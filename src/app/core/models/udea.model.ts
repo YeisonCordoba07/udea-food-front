@@ -76,6 +76,7 @@ export interface Filters {
   buscarEn: string;
   ordenarPor: string;
   tipoOrden: string;
+  categoria: string;
 }
 
 export interface AccountInfo {

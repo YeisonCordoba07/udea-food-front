@@ -1,5 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FiltersService } from '@core/services/filters/filters.service';
 import { SearchService } from '@core/services/search.service';
 import { Subscription } from 'rxjs';
 
@@ -14,7 +15,7 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
   activedCategory: string = "todas";
   routeSubscription!: Subscription;
 
-  constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute, private filtersService: FiltersService) { }
 
 
   ngOnInit(): void {
@@ -35,10 +36,8 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
     if(this.text.toLowerCase() !== "todas"){
         this.searchService.searchByNombreCategoria(this.text.toLowerCase());
     }
-    this.router.navigate(["/resultados"], {
-        queryParams: {categoria: this.text.toLowerCase()},
-        queryParamsHandling: "merge"
-    })
+    this.router.navigate(["/resultados"]),
+    this.filtersService.updateFilters("categoria", this.text.toLowerCase());
   }
 
 
