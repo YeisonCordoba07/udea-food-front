@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Filters, Producto, Tienda } from "@core/models/udea.model";
-import { initialFilterState } from "@core/constants/filter.constants";
 import { Observable, Subscription } from "rxjs";
 import { SearchService } from "@core/services/search.service";
 import { FiltersService } from "@core/services/filters/filters.service";
