@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 
-import { BehaviorSubject, Observable, Subscription, of } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import {API_ROUTES} from "@core/constants/routes.constants";
 import {Filters, Producto, Tienda} from "@core/models/udea.model";
 import { FiltersService } from './filters/filters.service';

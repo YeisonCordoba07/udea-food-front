@@ -3,7 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+html, body{
+    overflow-x: hidden;
+}
 .lateralShadow{
   box-shadow:
     inset -12px 0px 10px  -1px rgba(0, 0, 0, 0.12),
