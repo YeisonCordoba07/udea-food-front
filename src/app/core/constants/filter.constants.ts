@@ -10,7 +10,7 @@ export const emptyFilterState: Filters = {
 
 export const initialFilterState: Filters = {
   mostrarSolo: "productos",
-  buscarEn: "todas las tiendas",
+  buscarEn: "todas",
   ordenarPor: "nombre",
   tipoOrden: "ascendente",
   categoria: "todas"
@@ -18,7 +18,7 @@ export const initialFilterState: Filters = {
 
 export const filterOptions = {
   mostrarSolo: ["productos", "tiendas"],
-  buscarEn: ["todas las tiendas", "formales", "informales"],
+  buscarEn: ["todas", "formales", "informales"],
   ordenarPor: ["nombre", "precio"],
   tipoOrden: ["ascendente", "descendente"],
   categoria: [
