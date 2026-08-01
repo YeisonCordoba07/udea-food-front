@@ -43,7 +43,7 @@ export class SearchService implements OnDestroy {
 
     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
         
-        this.http.get<Producto[]>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}`)
+        this.http.get<Producto[]>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
             .subscribe({
             next: (productos) => {
                 console.log("---PRODUCTOS: ", productos)
