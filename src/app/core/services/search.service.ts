@@ -56,9 +56,10 @@ export class SearchService implements OnDestroy {
         });
 
     }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
-        this.http.get<Tienda[]>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}`)
+        this.http.get<Tienda[]>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
         .subscribe({
             next: (tiendas) =>{
+                console.log("---TIENDAS: ", tiendas)
                 this.productosSubject.next([]);
                 this.tiendasSubject.next(tiendas);
             },
@@ -73,6 +74,9 @@ export class SearchService implements OnDestroy {
 
 
   searchByName2(query: string): void {
+        if(query === ""){
+        return
+    }
     let currentFilters!: Filters;
 
     this.filterSubscription$ = this.filtersService.filters$.subscribe(f => {
@@ -83,7 +87,7 @@ export class SearchService implements OnDestroy {
  
     if(url){
 
-        this.http.get<Producto[] | Tienda[]>(`${url}?nombre=${query}`).subscribe(res=>{
+        this.http.get<Producto[] | Tienda[]>(`${url}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`).subscribe(res=>{
             this.results.next(res);
         });
     }else{
@@ -95,10 +99,15 @@ export class SearchService implements OnDestroy {
 
   private defineUrl(currentFilters: Filters){
     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
+        
         return API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL
+
     }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
+
         return API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL
+
     }else{
+
         return undefined
     }
   }
