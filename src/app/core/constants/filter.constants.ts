@@ -18,7 +18,7 @@ export const initialFilterState: Filters = {
 
 export const filterOptions = {
   mostrarSolo: ["productos", "tiendas"],
-  buscarEn: ["todas", "formales", "informales"],
+  buscarEn: ["todas", "formal", "informal"],
   ordenarPor: ["nombre", "precio"],
   tipoOrden: ["ascendente", "descendente"],
   categoria: [

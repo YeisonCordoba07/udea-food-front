@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 
 import { BehaviorSubject, Subscription } from 'rxjs';
 import {API_ROUTES} from "@core/constants/routes.constants";
-import {Filters, Producto, Tienda} from "@core/models/udea.model";
+import {Filters, Producto, ProductoSearchResult, Tienda, TiendaSearchResult} from "@core/models/udea.model";
 import { FiltersService } from './filters/filters.service';
 import { filterOptions } from '@core/constants/filter.constants';
 import { PRODUCTO } from '@core/constants/services.constants';
@@ -43,12 +43,12 @@ export class SearchService implements OnDestroy {
 
     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
         
-        this.http.get<Producto[]>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
+        this.http.get<ProductoSearchResult>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
             .subscribe({
             next: (productos) => {
                 console.log("---PRODUCTOS: ", productos)
                 this.tiendasSubject.next([])
-                this.productosSubject.next(productos);
+                this.productosSubject.next(productos.results);
             },
             error: (error) => {
                 console.error('Error fetching products:', error);
@@ -56,12 +56,13 @@ export class SearchService implements OnDestroy {
         });
 
     }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
-        this.http.get<Tienda[]>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
+
+        this.http.get<TiendaSearchResult>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
         .subscribe({
             next: (tiendas) =>{
                 console.log("---TIENDAS: ", tiendas)
                 this.productosSubject.next([]);
-                this.tiendasSubject.next(tiendas);
+                this.tiendasSubject.next(tiendas.results);
             },
             error: (error) => {
                 console.error('Error fetching stores:', error);

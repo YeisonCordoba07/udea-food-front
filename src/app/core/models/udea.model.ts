@@ -20,6 +20,10 @@ export interface ProductoIngredienteRequest {
   ingredienteProducto: IngredienteProductoRequest;
 }
 
+
+
+
+
 export interface Producto {
   idProducto: number;
   nombre: string;
@@ -124,4 +128,25 @@ export interface Ingrediente{
 export interface Opciones{
   nombre: string;
   costo: number;
+}
+
+
+// -------------------------------------
+
+export interface ProductoSearchResult {
+    results: Producto[];
+    pageInfo: PageInfo;
+}
+
+export interface TiendaSearchResult {
+    results: Tienda[];
+    pageInfo: PageInfo;
+}
+
+
+export interface PageInfo {
+    page: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
 }

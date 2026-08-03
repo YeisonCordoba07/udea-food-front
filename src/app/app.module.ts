@@ -58,6 +58,9 @@ import {ToggleComponent} from './components/atoms/toggle/toggle.component';
 import {IngredientComponent} from './components/molecules/ingredient/ingredient.component';
 import {CloseIconComponent} from './components/atoms/icons/close-icon/close-icon.component';
 import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginationButtonComponent } from '@components/atoms/pagination-button/pagination-button.component';
+
 
 @NgModule({
   declarations: [
@@ -111,7 +114,9 @@ import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon
     ToggleComponent,
     IngredientComponent,
     CloseIconComponent,
-    TrashIconComponent
+    TrashIconComponent,
+    PaginationComponent,
+    PaginationButtonComponent,
   ],
   imports: [
     BrowserModule,

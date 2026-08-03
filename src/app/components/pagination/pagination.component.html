@@ -1,0 +1,38 @@
+<div class="border-t border-gray-300 p-4 pt-7 mt-5 gap-3 w-full font-bold flex justify-center">
+
+    <!-- left button -->
+    <app-pagination-button
+    typePaginationButton="left"
+    ></app-pagination-button>
+
+<!-- --------------------------------------------------------------------- -->
+
+    <!-- curren page -->
+    <app-pagination-button
+    typePaginationButton="page"
+    [numberPage]="2"
+    ></app-pagination-button>
+    
+    <app-pagination-button
+    typePaginationButton="page"
+    [numberPage]="3"
+    [isActive]="true"
+    ></app-pagination-button>
+
+    <!-- separation -->
+    <span class="flex justify-center text-center items-center">de</span>
+
+    <!-- final page -->
+    <app-pagination-button
+    typePaginationButton="page"
+    [numberPage]="50"
+    ></app-pagination-button>
+
+<!-- --------------------------------------------------------------------- -->
+
+    <!-- right button -->
+    <app-pagination-button
+    typePaginationButton="right"
+    ></app-pagination-button>
+
+</div>
