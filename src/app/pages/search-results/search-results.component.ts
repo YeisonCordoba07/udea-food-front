@@ -5,7 +5,6 @@ import { SearchService } from "@core/services/search.service";
 import { FiltersService } from "@core/services/filters/filters.service";
 import { ActivatedRoute } from '@angular/router';
 
-import { PaginationComponent } from '@components/pagination/pagination.component';
 
 @Component({
     selector: 'app-search-results',

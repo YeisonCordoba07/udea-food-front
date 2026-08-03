@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 
 import { BehaviorSubject, Subscription } from 'rxjs';
 import {API_ROUTES} from "@core/constants/routes.constants";
-import {Filters, Producto, ProductoSearchResult, Tienda, TiendaSearchResult} from "@core/models/udea.model";
+import {Filters, PageInfo, Producto, ProductoSearchResult, Tienda, TiendaSearchResult} from "@core/models/udea.model";
 import { FiltersService } from './filters/filters.service';
 import { filterOptions } from '@core/constants/filter.constants';
 import { PRODUCTO } from '@core/constants/services.constants';
@@ -20,13 +20,19 @@ export class SearchService implements OnDestroy {
   private tiendasSubject = new BehaviorSubject<Tienda[]>([]);
   tiendas$ = this.tiendasSubject.asObservable();
 
-  private results = new BehaviorSubject<Producto[] | Tienda[]>([]);
-  results$ = this.results.asObservable();
-
+  private paginationSubject = new BehaviorSubject<PageInfo>({
+    page: 0,
+    size: 0,
+    totalElements: 0,
+    totalPages:0
+});
+  pagination$ = this.paginationSubject.asObservable();
 
   private filterSubscription$!: Subscription;
 
   constructor(private readonly http: HttpClient, private filtersService: FiltersService) { }
+
+  
 
 
 
@@ -43,12 +49,13 @@ export class SearchService implements OnDestroy {
 
     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
         
-        this.http.get<ProductoSearchResult>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
+        this.http.get<ProductoSearchResult>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}`)
             .subscribe({
             next: (productos) => {
                 console.log("---PRODUCTOS: ", productos)
                 this.tiendasSubject.next([])
                 this.productosSubject.next(productos.results);
+                this.setPaginationInfo(productos);
             },
             error: (error) => {
                 console.error('Error fetching products:', error);
@@ -57,12 +64,13 @@ export class SearchService implements OnDestroy {
 
     }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
 
-        this.http.get<TiendaSearchResult>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`)
+        this.http.get<TiendaSearchResult>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}`)
         .subscribe({
             next: (tiendas) =>{
                 console.log("---TIENDAS: ", tiendas)
                 this.productosSubject.next([]);
                 this.tiendasSubject.next(tiendas.results);
+                this.setPaginationInfo(tiendas);
             },
             error: (error) => {
                 console.error('Error fetching stores:', error);
@@ -74,44 +82,64 @@ export class SearchService implements OnDestroy {
 
 
 
-  searchByName2(query: string): void {
-        if(query === ""){
-        return
-    }
-    let currentFilters!: Filters;
+//   searchByName2(query: string): void {
+//         if(query === ""){
+//         return
+//     }
+//     let currentFilters!: Filters;
 
-    this.filterSubscription$ = this.filtersService.filters$.subscribe(f => {
-        currentFilters = f;
-    });
+//     this.filterSubscription$ = this.filtersService.filters$.subscribe(f => {
+//         currentFilters = f;
+//     });
 
-    let url = this.defineUrl(currentFilters)
+//     let url = this.defineUrl(currentFilters)
  
-    if(url){
+//     if(url){
 
-        this.http.get<Producto[] | Tienda[]>(`${url}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`).subscribe(res=>{
-            this.results.next(res);
-        });
-    }else{
-        console.log("En search service no se definió la URL.");
-    }
+//         this.http.get<Producto[] | Tienda[]>(`${url}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}`).subscribe(res=>{
+//             this.results.next(res);
+//         });
+//     }else{
+//         console.log("En search service no se definió la URL.");
+//     }
             
-  }
+//   }
 
 
-  private defineUrl(currentFilters: Filters){
-    if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
+//   private defineUrl(currentFilters: Filters){
+//     if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]){
         
-        return API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL
+//         return API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL
 
-    }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
+//     }else if(currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]){
 
-        return API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL
+//         return API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL
 
-    }else{
+//     }else{
 
-        return undefined
+//         return undefined
+//     }
+//   }
+
+
+  setPaginationInfo(pageResut: TiendaSearchResult | ProductoSearchResult): void {
+    let pageInfo = {
+        page: 0,
+        size: 0,
+        totalElements: 0,
+        totalPages:0
     }
+    pageInfo.page = pageResut.page;
+    pageInfo.size = pageResut.size;
+    pageInfo.totalElements = pageResut.totalElements;
+    pageInfo.totalPages = pageResut.totalPages;
+    this.paginationSubject.next(pageInfo);
   }
+
+  getPaginationInfo(): PageInfo {
+    return this.paginationSubject.getValue();
+  }
+
 
 
   searchByIdCategoria(idCategoria: number){

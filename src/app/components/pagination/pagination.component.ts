@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PaginationButtonComponent } from '@components/atoms/pagination-button/pagination-button.component';
+import { Component, inject, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-pagination',
@@ -8,13 +8,11 @@ import { PaginationButtonComponent } from '@components/atoms/pagination-button/p
 })
 export class PaginationComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  changePage(): void{
-    
-  }
 
 }

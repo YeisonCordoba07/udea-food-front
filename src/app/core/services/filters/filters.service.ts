@@ -12,7 +12,7 @@ export class FiltersService {
   constructor() {
   }
 
-  updateFilters(filterName: string, value: string) {
+  updateFilters(filterName: string, value: string | number) {
     const currentFilters = this.filters.getValue();
     const updatedFilters = {...currentFilters, [filterName]: value};
 

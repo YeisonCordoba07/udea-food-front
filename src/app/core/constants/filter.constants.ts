@@ -5,7 +5,9 @@ export const emptyFilterState: Filters = {
   buscarEn: "",
   ordenarPor: "",
   tipoOrden: "",
-  categoria: ""
+  categoria: "",
+  page: 0,
+  size: 6,
 };
 
 export const initialFilterState: Filters = {
@@ -13,7 +15,9 @@ export const initialFilterState: Filters = {
   buscarEn: "todas",
   ordenarPor: "nombre",
   tipoOrden: "ascendente",
-  categoria: "todas"
+  categoria: "todas",
+  page: 0,
+  size: 2,
 };
 
 export const filterOptions = {

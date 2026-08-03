@@ -1,27 +1,16 @@
     <button 
-    (click)="handleClick()"
+    (click)="changePage()"
+    [disabled]="disabledButton()"
     class="py-2 px-4 rounded-lg border duration-150 h-full"
-    [ngClass]="{
-        'bg-orange-500 border-orange-500 text-white scale-110 cursor-default': isActive,
-        'bg-white border-neutral-400  text-black hover:bg-orange-100 hover:border-orange-500 hover:text-orange-500 hover:scale-110': !isActive
-    }"
-    >
+    [ngClass]="buttonClasses"
+>
+    <ng-container *ngIf="typePaginationButton === 'previous'">
+        <svg class="size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <span class="sr-only">Anterior</span>
+    </ng-container>
 
-        <ng-container *ngIf="typePaginationButton === 'left'">
-
-            <svg class="size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-
-            <span class="sr-only">Anterior</span>
-        </ng-container>
-        
-        <ng-container *ngIf="typePaginationButton === 'right'">
-
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            <span class="sr-only">Siguiente</span>
-        </ng-container>
-
-        <ng-container *ngIf="typePaginationButton === 'page'">
-            <span class="flex justify-center text-center items-center">{{numberPage}}</span>
-        </ng-container>
-
-    </button>
+    <ng-container *ngIf="typePaginationButton === 'next'">
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        <span class="sr-only">Siguiente</span>
+    </ng-container>
+</button>

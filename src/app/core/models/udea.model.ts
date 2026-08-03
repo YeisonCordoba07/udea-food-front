@@ -81,6 +81,8 @@ export interface Filters {
   ordenarPor: string;
   tipoOrden: string;
   categoria: string;
+  page: number;
+  size: number;
 }
 
 export interface AccountInfo {
@@ -135,16 +137,21 @@ export interface Opciones{
 
 export interface ProductoSearchResult {
     results: Producto[];
-    pageInfo: PageInfo;
+    page: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
 }
 
 export interface TiendaSearchResult {
     results: Tienda[];
-    pageInfo: PageInfo;
+    page: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
 }
 
-
-export interface PageInfo {
+export interface PageInfo{
     page: number;
     size: number;
     totalElements: number;
