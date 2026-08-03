@@ -20,6 +20,9 @@ export class NavbarComponent implements OnInit {
   }
 
   search(query: string): void {
+    if(query === ""){
+        return
+    }
     this.searchService.searchByName(query);
 
     this.router.navigate(['/resultados'], {

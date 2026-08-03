@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PageInfo } from '@core/models/udea.model';
 import { FiltersService } from '@core/services/filters/filters.service';
 import { SearchService } from '@core/services/search.service';
@@ -34,12 +34,10 @@ export class PaginationButtonComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-        //this.currentPage = this.filterService.getCurrentFilters().page;
 
         this.paginationSubscription = this.searchService.pagination$.subscribe({
             next: (pageInfo) => {
                 this.paginationInfo = pageInfo;
-                console.log("PAGINACTION-BUTTON= page info:", pageInfo);
             },
             error: (e) => {
                 console.log("ERROR EN PAGINACION BUTTON:", e)
@@ -49,7 +47,6 @@ export class PaginationButtonComponent implements OnInit, OnDestroy {
         this.filtersSubscription = this.filterService.filters$.subscribe({
             next: (filters) => {
                 this.currentPage = filters.page;
-                console.log("PAGINACTION-BUTTON= filters->PAGE:", filters.page);
             },
             error: (e) => {
                 console.log("ERROR EN PAGINACION BUTTON FILTROS:", e)

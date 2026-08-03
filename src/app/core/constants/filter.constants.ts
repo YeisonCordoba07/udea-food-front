@@ -1,4 +1,4 @@
-import {Filters} from "@core/models/udea.model";
+import {Filters, PageInfo} from "@core/models/udea.model";
 
 export const emptyFilterState: Filters = {
   mostrarSolo: "",
@@ -19,6 +19,7 @@ export const initialFilterState: Filters = {
   page: 0,
   size: 2,
 };
+
 
 export const filterOptions = {
   mostrarSolo: ["productos", "tiendas"],
@@ -47,4 +48,12 @@ export const filterOptions = {
     "panaderia y reposteria",
     "helados"
   ]
+};
+
+
+export const emptyPageInfo: PageInfo = {
+    page: 0,
+    size: 0,
+    totalElements: 0,
+    totalPages: 0,
 };

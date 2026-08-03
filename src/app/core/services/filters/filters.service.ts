@@ -17,7 +17,7 @@ export class FiltersService {
     const updatedFilters = {...currentFilters, [filterName]: value};
 
     this.filters.next(updatedFilters);
-    console.log("nuevo", this.filters.getValue());
+    console.log("FILTER.SERVICE nuevo: ", this.filters.getValue());
   }
 
   getCurrentFilters() {
