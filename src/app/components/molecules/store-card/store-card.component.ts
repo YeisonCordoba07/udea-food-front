@@ -9,10 +9,8 @@ import { Tienda } from '@core/models/udea.model';
 export class StoreCardComponent implements OnInit {
   @Input() src: string = 'assets/images/food1.jpg';
   @Input() tienda!: Tienda;
-  @Input() heartFillColor: string = '#f97316';
-  @Input() heartStrokeColor: string = 'gray';
-  @Input() heartStrokeWidth: number = 1.5;
 
+  
   constructor() { }
 
   ngOnInit(): void {

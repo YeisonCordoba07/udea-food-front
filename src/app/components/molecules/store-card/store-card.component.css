@@ -17,23 +17,3 @@
   font-weight: 400;
   text-align: center;
 }
-
-/* .roundedCard {
-  border-radius: 100px 100px 8px 8px;
-}
-
-.cardTienda {
-  width: 200px;
-}
-@media (max-width: 640px) {
-  .cardTienda {
-    width: 30%;
-  }
-}
-
-@media (max-width: 550px) {
-  .cardTienda {
-    width: 45%;
-    min-width: 180px;
-  }
-} */
