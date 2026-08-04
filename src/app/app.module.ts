@@ -61,6 +61,9 @@ import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon
 import { PaginationComponent } from './components/molecules/pagination/pagination.component';
 import { PaginationButtonComponent } from '@components/atoms/pagination-button/pagination-button.component';
 import { StoreCardComponent } from './components/molecules/store-card/store-card.component';
+import { WatchIconComponent } from './components/atoms/icons/watch-icon/watch-icon.component';
+import { MapPinOutlineIconComponent } from './components/atoms/icons/map-pin-outline-icon/map-pin-outline-icon.component';
+import { HeartOutlineIconComponent } from './components/atoms/icons/heart-outline-icon/heart-outline-icon.component';
 
 
 @NgModule({
@@ -119,6 +122,9 @@ import { StoreCardComponent } from './components/molecules/store-card/store-card
     PaginationComponent,
     PaginationButtonComponent,
     StoreCardComponent,
+    WatchIconComponent,
+    MapPinOutlineIconComponent,
+    HeartOutlineIconComponent,
   ],
   imports: [
     BrowserModule,

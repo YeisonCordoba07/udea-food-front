@@ -36,7 +36,7 @@ class="text-gray-400 w-full mt-2 ml-4 inline-block">
 
   <ng-container *ngIf="filters.mostrarSolo.toLowerCase()=== 'tiendas'" >
     <ng-container *ngFor="let tienda of tiendas$ | async">
-        <app-store-card [title]="tienda.nombre" [description]="tienda.descripcion" [tienda]="tienda"></app-store-card>
+        <app-store-card [tienda]="tienda"></app-store-card>
        
     </ng-container>
   </ng-container>

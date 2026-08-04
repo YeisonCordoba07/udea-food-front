@@ -1,22 +1,73 @@
-<a
-	[routerLink]="tienda.idTienda ? ['/tienda', tienda.idTienda] : null"
-	class="relative border border-gray-200 flex flex-col h-72 p-4 font-bold gap-4 items-start shadow-lg hover:shadow-xl hover:border-orange-300 duration-200 ease-out overflow-hidden rounded-lg cardTienda roundedCard"
->
-	<img
-		[src]="src"
-		[alt]="tienda.nombre || title || 'Tienda'"
-		width="300"
-		height="300"
-		class="bg-no-repeat max-h-56 object-cover mx-auto max-sm:max-h-40 max-sm:max-w-full max-sm:w-auto mb-1 rounded-full"
-	/>
+<a [routerLink]="tienda.idTienda ? ['/tienda', tienda.idTienda] : null"
+    class="relative store-card border border-gray-200 flex flex-col gap-4 items-start shadow-lg duration-200 ease-out overflow-hidden rounded-xl w-[420px] h-60 hover:border-orange-400 hover:shadow-lg hover:shadow-orange-100">
 
-	<div class="flex gap-2 flex-col w-full h-fit">
-		<span class="text-lg text-ellipsis line-clamp-2 w-full max-h-14">
-			{{ title || tienda.nombre || 'Tienda' }}
-		</span>
+    <div class="w-full h-1/2 bg-white mt-auto px-3 pb-3">
 
-		<p class="text-sm text-neutral-500 text-ellipsis line-clamp-2 h-fit font-normal w-full">
-			{{ description || tienda.descripcion || 'Sin descripción disponible.' }}
-		</p>
-	</div>
+        <div class="w-full h-full flex gap-3 min-w-0">
+
+            <img [src]="src" [alt]="tienda.nombre || 'Tienda'" width="80" height="80"
+                class="bg-no-repeat max-h-80 max-w-80 object-cover mr-auto -mt-4 rounded-full border-8 border-white w-20 h-20" />
+
+
+            <div class="flex flex-col w-full h-fit min-w-0 mt-2">
+
+                <!-- name of store -->
+                <span class="text-lg text-ellipsis line-clamp-2 w-full max-h-14 font-bold">
+                    {{ tienda.nombre || 'Tienda' }}
+                </span>
+
+                <!-- description of store -->
+                <p class="text-sm text-neutral-800 text-ellipsis line-clamp-1 h-fit font-normal w-full">
+                    {{ tienda.descripcion || 'Sin descripción disponible.' }}
+                </p>
+
+                <!-- icons -->
+                <div class="flex overflow-hidden gap-2 items-center mt-4 w-full min-w-0">
+
+                    <div class="store-card__info-container">
+                        <div class="scale-75 text-orange-400">
+                            <app-star-icon></app-star-icon>
+                        </div>
+                        <span class="store-card__icon-container">{{tienda.calificacion}}
+                            ({{tienda.cantidadCalificaciones}})</span>
+                    </div>
+
+
+                    <span>‧</span>
+
+
+                    <div class="store-card__info-container">
+                        <div class=" text-lime-500">
+                            <app-watch-icon></app-watch-icon>
+                        </div>
+                        <span class="store-card__icon-container">25-35 min</span>
+                    </div>
+
+
+                    <span>‧</span>
+
+
+                    <div class="store-card__info-container min-w-0 flex-[1_1_0%] max-w-full">
+                        <div class="scale-90 text-orange-500">
+                            <app-map-pin-outline-icon></app-map-pin-outline-icon>
+                        </div>
+                        <span
+                            class="store-card__icon-container block min-w-0 w-0 flex-1 overflow-hidden whitespace-nowrap text-ellipsis">
+                            {{ tienda.ubicacion }}
+                        </span>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <span class="absolute top-3 right-3 duration-150 bg-lime-500 text-white font-bold px-5 py-1 text-xs rounded-md">
+        Abierto
+    </span>
+
 </a>

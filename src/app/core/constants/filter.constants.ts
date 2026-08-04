@@ -11,7 +11,7 @@ export const emptyFilterState: Filters = {
 };
 
 export const initialFilterState: Filters = {
-  mostrarSolo: "productos",
+  mostrarSolo: "tiendas",
   buscarEn: "todas",
   ordenarPor: "nombre",
   tipoOrden: "ascendente",
