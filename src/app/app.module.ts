@@ -60,6 +60,7 @@ import {CloseIconComponent} from './components/atoms/icons/close-icon/close-icon
 import {TrashIconComponent} from './components/atoms/icons/trash-icon/trash-icon.component';
 import { PaginationComponent } from './components/molecules/pagination/pagination.component';
 import { PaginationButtonComponent } from '@components/atoms/pagination-button/pagination-button.component';
+import { StoreCardComponent } from './components/molecules/store-card/store-card.component';
 
 
 @NgModule({
@@ -117,6 +118,7 @@ import { PaginationButtonComponent } from '@components/atoms/pagination-button/p
     TrashIconComponent,
     PaginationComponent,
     PaginationButtonComponent,
+    StoreCardComponent,
   ],
   imports: [
     BrowserModule,

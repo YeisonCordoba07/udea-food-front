@@ -1,0 +1,22 @@
+<a
+	[routerLink]="tienda.idTienda ? ['/tienda', tienda.idTienda] : null"
+	class="relative border border-gray-200 flex flex-col h-72 p-4 font-bold gap-4 items-start shadow-lg hover:shadow-xl hover:border-orange-300 duration-200 ease-out overflow-hidden rounded-lg cardTienda roundedCard"
+>
+	<img
+		[src]="src"
+		[alt]="tienda.nombre || title || 'Tienda'"
+		width="300"
+		height="300"
+		class="bg-no-repeat max-h-56 object-cover mx-auto max-sm:max-h-40 max-sm:max-w-full max-sm:w-auto mb-1 rounded-full"
+	/>
+
+	<div class="flex gap-2 flex-col w-full h-fit">
+		<span class="text-lg text-ellipsis line-clamp-2 w-full max-h-14">
+			{{ title || tienda.nombre || 'Tienda' }}
+		</span>
+
+		<p class="text-sm text-neutral-500 text-ellipsis line-clamp-2 h-fit font-normal w-full">
+			{{ description || tienda.descripcion || 'Sin descripción disponible.' }}
+		</p>
+	</div>
+</a>
