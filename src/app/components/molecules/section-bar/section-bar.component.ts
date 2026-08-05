@@ -25,4 +25,10 @@ export class SectionBarComponent implements OnInit {
     this.sectionContainer.nativeElement.scrollBy({ left: 100, behavior: 'smooth' });
   }
 
+  switchSection(newSection: string): void{
+    if(newSection !== this.activeSection){
+        this.activeSection = newSection;
+    }
+  }
+
 }
