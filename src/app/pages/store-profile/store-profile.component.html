@@ -1,0 +1,65 @@
+<div class="store-profile--background rounded-xl mx-5 my-5 p-5 flex flex-col">
+
+
+    <div class="flex flex-col md:flex-row gap-5 items-center">
+        <img class="w-48 h-48 object-cover rounded-full border-[12px] border-white" src="assets/images/food1.jpg"
+            alt="store" width="300" height="300" />
+
+        <div class="flex flex-col gap-2">
+
+            <!-- store'name -->
+            <h2 class="font-bold text-3xl text-white">{{ tienda.nombre }}</h2>
+
+            <div class="flex gap-3 text-sm">
+
+                <!-- start -->
+                <div class="flex text-amber-400 items-center">
+                    <span class="scale-75">
+                        <app-star-icon></app-star-icon>
+                    </span>
+                    <span class="font-medium">{{ tienda.calificacion }}
+                        <span class="font-medium">({{tienda.cantidadCalificaciones}})</span>
+                    </span>
+                </div>
+
+                <span class="text-white font-extrabold">‧</span>
+
+                <!-- categories -->
+                <span class="rounded-xl bg-orange-500 text-white px-4" *ngFor="let category of tienda.categorias">
+                    {{category}}
+                </span>
+
+            </div>
+
+            <!-- description -->
+            <p class="text-gray-300 line-clamp-4 text-ellipsis w-full max-w-96 flex text-base">
+                {{ tienda.descripcion }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="rounded-xl h-32 flex mt-5 w-full overflow-hidden bg-neutral-900/60 backdrop-blur-lg items-stretch">
+
+        <app-icon-info-store text="Laureles" label="Dirección">
+              <app-map-pin-outline-icon></app-map-pin-outline-icon>
+        </app-icon-info-store>
+
+        <app-icon-info-store text="3145555555" label="Telefono">
+              <app-phone-filled-icons></app-phone-filled-icons>
+        </app-icon-info-store>
+
+        <app-icon-info-store text="$3500" label="Domicilio">
+             <app-moped-icons></app-moped-icons>
+        </app-icon-info-store>
+
+        <app-icon-info-store [text]="tienda.fechaCreacion" label="Fecha de creación">
+              <app-calendar-icon></app-calendar-icon>
+        </app-icon-info-store>
+
+    </div>
+
+
+</div>

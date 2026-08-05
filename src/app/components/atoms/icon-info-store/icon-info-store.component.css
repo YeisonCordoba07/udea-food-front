@@ -1,0 +1,32 @@
+:host {
+	display: flex;
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+:host(:not(:last-child)) {
+	border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.icon-info-store {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem 1.25rem;
+	background-color: rgba(64, 64, 64, 0.55);
+}
+
+.icon-info-store__icon {
+	color: #fb923c;
+	transform: scale(1.5);
+}
+
+.icon-info-store__text {
+	color: #ffffff;
+}
+
+.icon-info-store__label {
+	color: #a3a3a3;
+	font-size: 0.875rem;
+}

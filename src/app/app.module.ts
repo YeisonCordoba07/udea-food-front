@@ -64,6 +64,11 @@ import { StoreCardComponent } from './components/molecules/store-card/store-card
 import { WatchIconComponent } from './components/atoms/icons/watch-icon/watch-icon.component';
 import { MapPinOutlineIconComponent } from './components/atoms/icons/map-pin-outline-icon/map-pin-outline-icon.component';
 import { HeartOutlineIconComponent } from './components/atoms/icons/heart-outline-icon/heart-outline-icon.component';
+import { StoreProfileComponent } from './pages/store-profile/store-profile.component';
+import { PhoneFilledIconsComponent } from './components/atoms/icons/phone-filled-icons/phone-filled-icons.component';
+import { MopedIconsComponent } from './components/atoms/icons/moped-icons/moped-icons.component';
+import { CalendarIconComponent } from './components/atoms/icons/calendar-icon/calendar-icon.component';
+import { IconInfoStoreComponent } from './components/atoms/icon-info-store/icon-info-store.component';
 
 
 @NgModule({
@@ -125,6 +130,11 @@ import { HeartOutlineIconComponent } from './components/atoms/icons/heart-outlin
     WatchIconComponent,
     MapPinOutlineIconComponent,
     HeartOutlineIconComponent,
+    StoreProfileComponent,
+    PhoneFilledIconsComponent,
+    MopedIconsComponent,
+    CalendarIconComponent,
+    IconInfoStoreComponent,
   ],
   imports: [
     BrowserModule,
