@@ -36,8 +36,12 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
     if(this.text.toLowerCase() !== "todas"){
         this.searchService.searchByNombreCategoria(this.text.toLowerCase());
     }
-    this.router.navigate(["/resultados"]),
+    this.router.navigate(["/resultados"]);
     this.filtersService.updateFilters("categoria", this.text.toLowerCase());
+  }
+
+  isActive():boolean{
+    return this.activedCategory.toLocaleLowerCase() === this.text.toLocaleLowerCase();
   }
 
 
