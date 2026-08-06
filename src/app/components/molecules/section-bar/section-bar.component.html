@@ -1,21 +1,21 @@
-<div class="px-4 py-3 mb-4 flex items-center justify-between bg-gray-100 sticky top-0 z-10 overflow-hidden gap-5">
+<div class="px-4 py-3 flex items-center justify-between sticky top-0 z-10 overflow-hidden gap-5 border bg-border-200 rounded-t-xl bg-neutral-100">
 
 
     <div class="flex items-center gap-5 w-3/4">
         <h2 class="text-lg font-bold">Secciones</h2>
 
-        <div class='flex gap-2 overflow-x-hidden items-center   w-full ' #sectionContainer>
+        <div class='flex gap-2 overflow-x-hidden items-center w-full ' #sectionContainer>
             <ng-container *ngFor="let section of secciones; let i = index">
 
 
                 <!-- acticar la seccion (click) -->
                 <!-- en a [href]="'#' + section.nombre" -->
                 <a (click)="switchSection(section.nombre)"
-                    [ngClass]="{'px-4 py-2 relative transition-colors duration-150 whitespace-nowrap rounded-lg cursor-pointer': true,
+                    [ngClass]="{'px-4 py-2 relative transition-colors duration-150 whitespace-nowrap rounded-lg cursor-pointer  font-bold': true,
 
-                    'text-white font-bold bg-gradient-to-r from-orange-500 to-orange-600' : activeSection === section.nombre, 
+                    'text-white bg-gradient-to-r from-orange-500 to-orange-600' : activeSection === section.nombre, 
                     
-                    'text-black hover:bg-orange-100 hover:text-orange-500 hover:border-orange-500 border border-neutral-300 bg-neutral-200': activeSection !== section.nombre
+                    'text-black hover:bg-orange-100 hover:text-orange-500 hover:border-orange-500 bg-neutral-200 border bg-border-300': activeSection !== section.nombre
                 } 
         
                     

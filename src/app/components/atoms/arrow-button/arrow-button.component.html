@@ -1,8 +1,15 @@
 <button
-  (click)="buttonClicked"
-  class="bg-neutral-300 rounded-full p-2  hover:bg-lime-400 duration-200
-  hover:scale-110 mx-1 h-9 w-9"
+  (click)="buttonClicked()"
+  class="rounded-full p-2 duration-150
+  hover:scale-110 mx-1 h-9 w-9  flex items-center justify-center
+  bg-gradient-to-r from-orange-400 to-orange-500 text-white 
+  hover:from-orange-500 hover:to-orange-600
+  "
 >
   <app-left-arrow-icon *ngIf="direction === 'left'"></app-left-arrow-icon>
   <app-right-arrow-icon *ngIf="direction === 'right'"></app-right-arrow-icon>
 </button>
+
+
+  <!-- class="bg-neutral-300 rounded-full p-2  hover:bg-lime-400 duration-200
+  hover:scale-110 mx-1 h-9 w-9" -->

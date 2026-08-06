@@ -1,20 +1,36 @@
-<section *ngIf="tienda$ | async as tienda">
-  <!-- <app-perfil-tienda [tienda]="tienda"></app-perfil-tienda> -->
-  <app-store-profile [tienda]="tienda"></app-store-profile>
-  <app-section-bar [secciones]="tienda.secciones"></app-section-bar>
+<section *ngIf="tienda$ | async as tienda" class="flex flex-col px-5 gap-5 mt-5">
+    <!-- <app-perfil-tienda [tienda]="tienda"></app-perfil-tienda> -->
 
-  <div class="flex flex-col px-5 gap-5">
-    <div  class="flex flex-col gap-3 border-b border-b-gray-300 pb-10" *ngFor="let seccion of tienda.secciones">
-      <h1 class="text-2xl font-bold">{{seccion.nombre}}</h1>
-      <div class="flex gap-4 w-full h-fit flex-wrap ">
-        <ng-container *ngFor="let producto of seccion.productos">
-          <!-- isOwner -->
-          <app-product-card [producto]="producto" ></app-product-card>
-        </ng-container>
+    <app-store-profile [tienda]="tienda"></app-store-profile>
 
-      </div>
+
+    <div>
+        <app-section-bar [secciones]="tienda.secciones"></app-section-bar>
+        <div class="flex flex-col border rounded-b-xl p-7">
+
+            <div *ngFor="let seccion of tienda.secciones; let first = first">
+                
+                <ng-container *ngIf="seccion.productos.length > 0">
+                    <div class="flex flex-col gap-3 border-b border-b-gray-300 pb-10 pt-7"
+                    [class.pt-7]="!first"> 
+                        
+                        <h1 class="text-2xl font-bold">{{seccion.nombre}}</h1>
+        
+                        <div class="flex gap-4 w-full h-fit flex-wrap ">
+                            <ng-container *ngFor="let producto of seccion.productos">
+                                <!-- isOwner -->
+                                <app-product-card [producto]="producto"></app-product-card>
+                            </ng-container>
+        
+                        </div>
+                    </div>
+
+                </ng-container>
+
+
+            </div>
+
+        </div>
     </div>
-  </div>
 
 </section>
-
