@@ -69,6 +69,26 @@ import { PhoneFilledIconsComponent } from './components/atoms/icons/phone-filled
 import { MopedIconsComponent } from './components/atoms/icons/moped-icons/moped-icons.component';
 import { CalendarIconComponent } from './components/atoms/icons/calendar-icon/calendar-icon.component';
 import { IconInfoStoreComponent } from './components/atoms/icon-info-store/icon-info-store.component';
+import { GridIconComponent } from './components/atoms/icons/grid-icon/grid-icon.component';
+import { HamburgerIconComponent } from './components/atoms/icons/hamburger-icon/hamburger-icon.component';
+import { LeafIconComponent } from './components/atoms/icons/leaf-icon/leaf-icon.component';
+import { HomeIconComponent } from './components/atoms/icons/home-icon/home-icon.component';
+import { GlobeIconComponent } from './components/atoms/icons/globe-icon/globe-icon.component';
+import { SunIconComponent } from './components/atoms/icons/sun-icon/sun-icon.component';
+import { LuchIconComponent } from '@components/atoms/icons/luch-icon/lunch-icon.component';
+import { MoonIconComponent } from './components/atoms/icons/moon-icon/moon-icon.component';
+import { CakeIconComponent } from './components/atoms/icons/cake-icon/cake-icon.component';
+import { GlassIconComponent } from './components/atoms/icons/glass-icon/glass-icon.component';
+import { MeatIconComponent } from './components/atoms/icons/meat-icon/meat-icon.component';
+import { FishIconComponent } from './components/atoms/icons/fish-icon/fish-icon.component';
+import { PizzaIconComponent } from './components/atoms/icons/pizza-icon/pizza-icon.component';
+import { CamaronIconComponent } from './components/atoms/icons/camaron-icon/camaron-icon.component';
+import { UtensilsIconComponent } from './components/atoms/icons/utensils-icon/utensils-icon.component';
+import { ChopsticksIconComponent } from './components/atoms/icons/chopsticks-icon/chopsticks-icon.component';
+import { AppleIconComponent } from './components/atoms/icons/apple-icon/apple-icon.component';
+import { BreadIconComponent } from './components/atoms/icons/bread-icon/bread-icon.component';
+import { IceCreamConeIconComponent } from './components/atoms/icons/ice-cream-cone-icon/ice-cream-cone-icon.component';
+
 
 
 @NgModule({
@@ -135,6 +155,25 @@ import { IconInfoStoreComponent } from './components/atoms/icon-info-store/icon-
     MopedIconsComponent,
     CalendarIconComponent,
     IconInfoStoreComponent,
+    GridIconComponent,
+    HamburgerIconComponent,
+    LeafIconComponent,
+    HomeIconComponent,
+    GlobeIconComponent,
+    SunIconComponent,
+    LuchIconComponent,
+    MoonIconComponent,
+    CakeIconComponent,
+    GlassIconComponent,
+    MeatIconComponent,
+    FishIconComponent,
+    PizzaIconComponent,
+    CamaronIconComponent,
+    UtensilsIconComponent,
+    ChopsticksIconComponent,
+    AppleIconComponent,
+    BreadIconComponent,
+    IceCreamConeIconComponent,
   ],
   imports: [
     BrowserModule,
