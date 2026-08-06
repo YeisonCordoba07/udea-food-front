@@ -1,18 +1,36 @@
-<button 
-    (click)="searchByNombreCategoria()" 
-    class="flex flex-col justify-center items-center gap-2
-        w-28 py-2 px-4 rounded-md text-sm duration-150 ease-in-out hover:scale-105" 
-    [ngClass]="{
-    'text-white font-bold from-orange-400 to-orange-500 bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 ': isActive(),
-
+<button
+  (click)="searchByNombreCategoria()"
+  class="flex flex-col justify-center items-center gap-2 w-28 py-2 px-4 rounded-md text-sm duration-150 ease-in-out hover:scale-105"
+  [ngClass]="{
+    'text-white font-bold from-orange-400 to-orange-500 bg-gradient-to-r hover:from-orange-500 hover:to-orange-600': isActive(),
     'bg-zinc-100 text-neutral-600 border border-neutral-200 hover:bg-orange-100 hover:border hover:border-orange-500 hover:text-orange-500': !isActive()
-    }">
+  }">
 
-    <div>
-        <app-hamburger-icon></app-hamburger-icon>
-    </div>
-    <span class="text-sm" [class.font-bold]="isActive()" [class.font-medium]="!isActive()">
-        {{ text }}
-    </span>
-    
+  <div class="flex items-center justify-center">
+    <ng-container [ngSwitch]="iconName">
+      <app-hamburger-icon *ngSwitchCase="'hamburger'"></app-hamburger-icon>
+      <app-leaf-icon *ngSwitchCase="'leaf'"></app-leaf-icon>
+      <app-home-icon *ngSwitchCase="'home'"></app-home-icon>
+      <app-globe-icon *ngSwitchCase="'globe'"></app-globe-icon>
+      <app-sun-icon *ngSwitchCase="'sun'"></app-sun-icon>
+      <app-lunch-icon *ngSwitchCase="'lunch'"></app-lunch-icon>
+      <app-moon-icon *ngSwitchCase="'moon'"></app-moon-icon>
+      <app-cake-icon *ngSwitchCase="'cake'"></app-cake-icon>
+      <app-glass-icon *ngSwitchCase="'glass'"></app-glass-icon>
+      <app-meat-icon *ngSwitchCase="'meat'"></app-meat-icon>
+      <app-fish-icon *ngSwitchCase="'fish'"></app-fish-icon>
+      <app-utensils-icon *ngSwitchCase="'utensils'"></app-utensils-icon>
+      <app-pizza-icon *ngSwitchCase="'pizza'"></app-pizza-icon>
+      <app-chopsticks-icon *ngSwitchCase="'chopsticks'"></app-chopsticks-icon>
+      <app-camaron-icon *ngSwitchCase="'camaron'"></app-camaron-icon>
+      <app-apple-icon *ngSwitchCase="'apple'"></app-apple-icon>
+      <app-bread-icon *ngSwitchCase="'bread'"></app-bread-icon>
+      <app-ice-cream-cone-icon *ngSwitchCase="'iceCream'"></app-ice-cream-cone-icon>
+      <app-grid-icon *ngSwitchDefault></app-grid-icon>
+    </ng-container>
+  </div>
+
+  <span class="text-sm" [class.font-bold]="isActive()" [class.font-medium]="!isActive()">
+    {{ text }}
+  </span>
 </button>

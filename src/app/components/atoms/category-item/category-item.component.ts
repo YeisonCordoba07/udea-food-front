@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class CategoryItemComponent implements OnInit, OnDestroy {
 
   @Input() text: string = "";
+  @Input() iconName: string = 'default';
   activedCategory: string = "todas";
   routeSubscription!: Subscription;
 

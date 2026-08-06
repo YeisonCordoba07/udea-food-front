@@ -6,13 +6,13 @@
       class="flex px-3 overflow-hidden whitespace-nowrap gap-x-2 w-full categorias-container items-center border-l-2 border-r-2 py-1 scrollbar-hide"
     >
 
-        <app-category-item text="Todas">
-
+        <app-category-item text="Todas" iconName="grid">
         </app-category-item>
 
-        <app-category-item 
-            *ngFor="let categoria of categories$ | async" 
-            [text]="categoria.nombre">
+        <app-category-item
+            *ngFor="let categoria of categories$ | async"
+            [text]="categoria.nombre"
+            [iconName]="getIconName(categoria.nombre)">
         </app-category-item>
 
 
