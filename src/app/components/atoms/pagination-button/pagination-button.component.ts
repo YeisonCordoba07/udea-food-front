@@ -62,11 +62,11 @@ export class PaginationButtonComponent implements OnInit, OnDestroy {
 
         if (this.typePaginationButton === "previous") {
             newPage = newPage - 1;
-            this.filterService.updateFilters("page", newPage);
+            this.filterService.changePage(newPage);
 
         } else if (this.typePaginationButton === "next") {
             newPage = newPage + 1;
-            this.filterService.updateFilters("page", newPage);
+            this.filterService.changePage(newPage);
         }
     }
 

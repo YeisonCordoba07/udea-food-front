@@ -19,6 +19,8 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute, private filtersService: FiltersService) { }
 
 
+
+
   ngOnInit(): void {
     if (this.router.url.startsWith('/resultados')) {
       this.routeSubscription = this.route.queryParams.subscribe(params => {
@@ -29,21 +31,29 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  searchByCategoriaId(){
 
-  }
+
 
   searchByNombreCategoria(){
-    if(this.text.toLowerCase() !== "todas"){
-        this.searchService.searchByNombreCategoria(this.text.toLowerCase());
-    }
-    this.router.navigate(["/resultados"]);
     this.filtersService.updateFilters("categoria", this.text.toLowerCase());
+    
+    this.router.navigate(["/resultados"],{
+        queryParams: {categoria: this.text.toLowerCase()},
+        queryParamsHandling: 'merge'
+    }
+        
+
+    );
   }
+
+
+
 
   isActive():boolean{
     return this.activedCategory.toLocaleLowerCase() === this.text.toLocaleLowerCase();
   }
+
+
 
 
   ngOnDestroy(): void {

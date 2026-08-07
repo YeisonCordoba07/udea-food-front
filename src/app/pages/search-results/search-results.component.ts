@@ -31,7 +31,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.filtersSubscription$ = this.filtersService.filters$.subscribe({
             next: (f: Filters) => {
                 this.filters = f;
-                console.log("FILTROS EN SEARCH RESULT: ", this.filters)               
+                console.log("FILTROS EN SEARCH RESULT COMPONENT: ", this.filters)               
                
                 this.searchService.searchByName(this.route.snapshot.queryParams["q"]);
                

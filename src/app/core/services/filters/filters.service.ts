@@ -15,6 +15,7 @@ export class FiltersService {
   updateFilters(filterName: string, value: string | number) {
     const currentFilters = this.filters.getValue();
     const updatedFilters = {...currentFilters, [filterName]: value};
+    updatedFilters.page = 0;
 
     this.filters.next(updatedFilters);
     console.log("FILTER.SERVICE nuevo: ", this.filters.getValue());
@@ -23,5 +24,17 @@ export class FiltersService {
   getCurrentFilters() {
     return this.filters.getValue();
   }
+
+  changePage(newPage: number){
+    let tempFilters =  this.filters.getValue();
+    tempFilters.page = newPage;
+    this.filters.next(tempFilters);
+  }
+
+//   restartPage(){
+//     let tempFilters = this.filters.getValue();
+//     tempFilters.page = 0;
+//     this.filters.next(tempFilters);
+//   }
 
 }
