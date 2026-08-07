@@ -13,7 +13,7 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
 
   @Input() text: string = "";
   @Input() iconName: string = 'default';
-  activedCategory: string = "todas";
+  activedCategory: string = "";
   routeSubscription!: Subscription;
 
   constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute, private filtersService: FiltersService) { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Categoria } from '@core/models/udea.model';
 import { CategoriesService } from '@core/services/categories/categories.service';
 import { Observable } from 'rxjs';
@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class CategoryComponent implements OnInit {
 
+    @ViewChild("categoryBar", {static: true}) categoryBar!: ElementRef;
+
     categories$!: Observable<Categoria[]>;
 
     constructor(private categoriesService: CategoriesService) { }
@@ -17,6 +19,14 @@ export class CategoryComponent implements OnInit {
     ngOnInit(): void {
         this.categories$ = this.categoriesService.getCategories();
     }
+
+      scrollLeft(): void {
+    this.categoryBar.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.categoryBar.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+  }
 
     getIconName(nombre: string): string {
         const normalized = nombre.toLowerCase().trim();
