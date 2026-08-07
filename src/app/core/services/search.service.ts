@@ -42,7 +42,7 @@ export class SearchService implements OnDestroy {
 
         if (currentFilters.mostrarSolo === filterOptions.mostrarSolo[0]) {
 
-            this.http.get<ProductoSearchResult>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}&categoria=${currentFilters.categoria}`)
+            this.http.get<ProductoSearchResult>(`${API_ROUTES.SEARCH_PRODUCT_BY_NAME_URL}?nombre=${query}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}&categoria=${currentFilters.categoria}`)
                 .subscribe({
                     next: (productos) => {
                         this.tiendasSubject.next([])
@@ -56,7 +56,7 @@ export class SearchService implements OnDestroy {
 
         } else if (currentFilters.mostrarSolo === filterOptions.mostrarSolo[1]) {
 
-            this.http.get<TiendaSearchResult>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&mostrarSolo=${currentFilters.mostrarSolo}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}&categoria=${currentFilters.categoria}`)
+            this.http.get<TiendaSearchResult>(`${API_ROUTES.SEARCH_TIENDAS_BY_NAME_URL}?nombre=${query}&buscarEn=${currentFilters.buscarEn}&ordenarPor=${currentFilters.ordenarPor}&tipoOrden=${currentFilters.tipoOrden}&page=${currentFilters.page}&size=${currentFilters.size}&categoria=${currentFilters.categoria}`)
                 .subscribe({
                     next: (tiendas) => {
                         console.log("---TIENDAS: ", tiendas)
