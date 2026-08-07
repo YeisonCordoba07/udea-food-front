@@ -16,7 +16,7 @@ export class CategoryItemComponent implements OnInit, OnDestroy {
   activedCategory: string = "";
   routeSubscription!: Subscription;
 
-  constructor(private router: Router, private searchService: SearchService, private route: ActivatedRoute, private filtersService: FiltersService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private filtersService: FiltersService) { }
 
 
 
