@@ -18,6 +18,7 @@ export class CategoryComponent implements OnInit {
 
     ngOnInit(): void {
         this.categories$ = this.categoriesService.getCategories();
+        
     }
 
       scrollLeft(): void {

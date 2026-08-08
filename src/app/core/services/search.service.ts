@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { API_ROUTES } from "@core/constants/routes.constants";
 import { Filters, PageInfo, Producto, ProductoSearchResult, Tienda, TiendaSearchResult } from "@core/models/udea.model";
 import { FiltersService } from './filters/filters.service';
@@ -29,6 +29,9 @@ export class SearchService implements OnDestroy {
 
 
 
+    searchAllStores(): Observable<Tienda[]>{
+        return this.http.get<Tienda[]>(`http://localhost:8080/tienda/obtenerTodas`);
+    }
 
 
     searchByName(query: string): void {

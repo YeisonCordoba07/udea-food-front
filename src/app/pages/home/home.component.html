@@ -1,15 +1,11 @@
-<div>
+<div class="p-5 flex flex-col gap-5">
 
-    <div class="w-full p-5">
-      <div class="w-full rounded-xl overflow-hidden">
-        <img
-          src="assets/images/food2.png"
-          alt="imagen de miniatura"
-          class="w-full h-80 object-cover block"
-        />
-      </div>
+    <div class="w-full">
+        <div class="w-full rounded-xl overflow-hidden">
+            <img src="assets/images/food2.png" alt="imagen de miniatura" class="w-full h-80 object-cover block" />
+        </div>
     </div>
-    
+
     <!-- <div class="w-full h-full flex flex-col items-center justify-center p-5">
     
         <div class="grid grid-cols-3 gap-4 w-full max-w-[1200px] h-60 max-md:grid-cols-1 max-md:w-full max-md:h-full">
@@ -20,4 +16,21 @@
     
     </div> -->
     <app-category></app-category>
+
+    <section class="flex flex-col gap-3">
+        <h3 class="font-bold text-2xl text-black">Nuestras tiendas</h3>
+        <div class="flex justify-center items-center">
+
+            <app-arrow-button (onClick)="scrollLeft()" direction="left" ></app-arrow-button>
+
+            <div class="flex flex-nowrap gap-5 overflow-hidden py-1 w-full" #storeBar>
+
+                    <app-store-card *ngFor="let tienda of tiendas$ | async" [tienda]="tienda"></app-store-card>
+  
+            </div>
+
+            <app-arrow-button (onClick)="scrollRight()" direction="right"></app-arrow-button>
+
+        </div>
+    </section>
 </div>
