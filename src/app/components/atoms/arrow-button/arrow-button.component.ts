@@ -6,7 +6,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./arrow-button.component.css']
 })
 export class ArrowButtonComponent implements OnInit {
-  @Input() direction: 'left' | 'right' = 'right';
+  @Input() direction: "left" | "right" = "right";
+  @Input() style: "primary" | "secondary" = "primary";
 
   @Output() onClick = new EventEmitter<void>();
   constructor() { }

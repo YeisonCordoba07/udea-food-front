@@ -3,9 +3,11 @@
   (click)="buttonClicked()"
   class="rounded-full p-2 duration-150
   hover:scale-110 mx-1 h-9 w-9  flex items-center justify-center
-  bg-gradient-to-r from-orange-400 to-orange-500 text-white 
-  hover:from-orange-500 hover:to-orange-600
   "
+  [ngClass]="{
+    'bg-gradient-to-r from-orange-400 to-orange-500 text-white hover:from-orange-500 hover:to-orange-600': style === 'primary',
+    'bg-neutral-100 hover:bg-neutral-200 text-neutral-700 border border-neutral-200': style === 'secondary'
+  }"
 >
   <app-left-arrow-icon *ngIf="direction === 'left'"></app-left-arrow-icon>
   <app-right-arrow-icon *ngIf="direction === 'right'"></app-right-arrow-icon>

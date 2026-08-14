@@ -21,12 +21,12 @@
         <h3 class="font-bold text-2xl text-black">Nuestras tiendas</h3>
         <div class="flex justify-center items-center">
 
-            <app-arrow-button (onClick)="scrollLeft()" direction="left" ></app-arrow-button>
+            <app-arrow-button (onClick)="scrollLeft()" direction="left"></app-arrow-button>
 
             <div class="flex flex-nowrap gap-5 overflow-hidden py-1 w-full" #storeBar>
 
-                    <app-store-card *ngFor="let tienda of tiendas$ | async" [tienda]="tienda"></app-store-card>
-  
+                <app-store-card *ngFor="let tienda of tiendas$ | async" [tienda]="tienda"></app-store-card>
+
             </div>
 
             <app-arrow-button (onClick)="scrollRight()" direction="right"></app-arrow-button>
