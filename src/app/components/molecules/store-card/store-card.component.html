@@ -1,5 +1,6 @@
 <a [routerLink]="tienda.idTienda ? ['/tienda', tienda.idTienda] : null"
-    class="relative store-card border border-gray-200 flex flex-col gap-4 items-start shadow-lg duration-200 ease-out overflow-hidden rounded-xl w-[420px] h-60 hover:border-orange-400 hover:shadow-lg hover:shadow-orange-100">
+    class="relative store-card border border-gray-200 flex flex-col gap-4 items-start shadow-lg duration-200 ease-out overflow-hidden rounded-xl  hover:border-orange-400 hover:shadow-lg hover:shadow-orange-100 
+    w-full md:w-[450px] h-60 max-sm:h-96 ">
 
     <div class="w-full h-1/2 bg-white mt-auto px-3 pb-3">
 
@@ -11,20 +12,24 @@
 
             <div class="flex flex-col w-full h-fit min-w-0 mt-2">
 
-                <!-- name of store -->
-                <span class="text-lg text-ellipsis line-clamp-2 w-full max-h-14 font-bold">
-                    {{ tienda.nombre || 'Tienda' }}
-                </span>
+                <div class="flex flex-col w-full">
 
-                <!-- description of store -->
-                <p class="text-sm text-neutral-800 text-ellipsis line-clamp-1 h-fit font-normal w-full">
-                    {{ tienda.descripcion || 'Sin descripción disponible.' }}
-                </p>
+                    <!-- name of store -->
+                    <span class="text-lg text-ellipsis line-clamp-2 w-full max-h-14 font-bold">
+                        {{ tienda.nombre || 'Tienda' }}
+                    </span>
+    
+                    <!-- description of store -->
+                    <p class="text-sm text-neutral-800 text-ellipsis line-clamp-1 h-fit font-normal w-full">
+                        {{ tienda.descripcion || 'Sin descripción disponible.' }}
+                    </p>
+                </div>
 
                 <!-- icons -->
-                <div class="flex overflow-hidden gap-2 items-center mt-4 w-full min-w-0">
+                <div class="flex overflow-hidden gap-2 items-center mt-4 w-full min-w-0
+                            max-sm:flex-col max-sm:items-stretch max-sm:gap-1">
 
-                    <div class="store-card__info-container">
+                    <div class="store-card__info-container max-sm:w-full">
                         <div class="scale-75 text-orange-400">
                             <app-star-icon></app-star-icon>
                         </div>
@@ -33,27 +38,26 @@
                     </div>
 
 
-                    <span>‧</span>
+                    <span  class="max-sm:hidden">‧</span>
 
 
-                    <div class="store-card__info-container">
+                    <div class="store-card__info-container max-sm:w-full">
                         <div class=" text-lime-500">
                             <app-watch-icon></app-watch-icon>
                         </div>
-                        <span class="store-card__icon-container">25-35 min</span>
+                        <span class="store-card__icon-container">25-35</span>
                     </div>
 
 
-                    <span>‧</span>
+                    <span  class="max-sm:hidden">‧</span>
 
 
-                    <div class="store-card__info-container min-w-0 flex-[1_1_0%] max-w-full">
+                    <div class="store-card__info-container min-w-0 flex-[1_1_0%] max-w-full max-sm:w-full">
                         <div class="scale-90 text-orange-500">
                             <app-map-pin-outline-icon></app-map-pin-outline-icon>
                         </div>
-                        <span
-                            class="store-card__icon-container block min-w-0 w-0 flex-1 overflow-hidden whitespace-nowrap text-ellipsis">
-                            {{ tienda.ubicacion }}
+                        <span class="store-card__icon-container flex-1 min-w-0 truncate">
+                        {{ tienda.ubicacion }}
                         </span>
                     </div>
 

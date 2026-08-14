@@ -8,12 +8,12 @@
 .store-card__info-container{
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 5px;
     min-width: 0;
 }
 
 .store-card__icon-container{
   font-size: 0.875rem;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
 }
