@@ -56,7 +56,7 @@
              <app-moped-icons></app-moped-icons>
         </app-icon-info-store>
 
-        <app-icon-info-store [text]="tienda.fechaCreacion" label="Fecha de creación">
+        <app-icon-info-store [text]="(tienda.fechaCreacion | date:'MMMM d y') ?? ''" label="Fecha de creación">
               <app-calendar-icon></app-calendar-icon>
         </app-icon-info-store>
 
