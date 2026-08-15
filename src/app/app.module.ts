@@ -88,6 +88,8 @@ import { ChopsticksIconComponent } from './components/atoms/icons/chopsticks-ico
 import { AppleIconComponent } from './components/atoms/icons/apple-icon/apple-icon.component';
 import { BreadIconComponent } from './components/atoms/icons/bread-icon/bread-icon.component';
 import { IceCreamConeIconComponent } from './components/atoms/icons/ice-cream-cone-icon/ice-cream-cone-icon.component';
+import { HomeBannerComponent } from './components/molecules/home-banner/home-banner.component';
+import { BannerItemComponent } from './components/atoms/banner-item/banner-item.component';
 
 
 
@@ -174,6 +176,8 @@ import { IceCreamConeIconComponent } from './components/atoms/icons/ice-cream-co
     AppleIconComponent,
     BreadIconComponent,
     IceCreamConeIconComponent,
+    HomeBannerComponent,
+    BannerItemComponent,
   ],
   imports: [
     BrowserModule,

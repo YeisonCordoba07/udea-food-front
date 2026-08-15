@@ -1,0 +1,9 @@
+
+app-banner-item:not(:last-child){
+    border-right: 1px solid #fdba74;
+}
+
+app-banner-item{
+    flex-grow: 1;
+}
+

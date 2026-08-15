@@ -25,7 +25,7 @@
 
             <app-arrow-button class="absolute top-[105px] left-0 z-10" (onClick)="scrollLeft()" direction="left"></app-arrow-button>
 
-            <div class="flex flex-nowrap overflow-hidden py-1 w-full gap-5" #storeBar>
+            <div class="flex flex-nowrap overflow-hidden pb-5 w-full gap-5" #storeBar>
 
                 <app-store-card *ngFor="let tienda of tiendas$ | async" [tienda]="tienda"></app-store-card>
 
@@ -35,4 +35,13 @@
 
         </div>
     </section>
+
+
+
+
+    <app-home-banner class="mt-10"></app-home-banner>
+
+
+
+
 </div>
