@@ -1,4 +1,6 @@
-<div class="p-5 flex flex-col gap-5">
+<div class=" p-5 pt-0 flex flex-col gap-2">
+        <app-category></app-category>
+
 
     <div class="w-full">
         <div class="w-full rounded-xl overflow-hidden">
@@ -15,21 +17,21 @@
         </div>
     
     </div> -->
-    <app-category></app-category>
 
-    <section class="flex flex-col gap-3">
-        <h3 class="font-bold text-2xl text-black">Nuestras tiendas</h3>
-        <div class="flex justify-center items-center">
 
-            <app-arrow-button (onClick)="scrollLeft()" direction="left"></app-arrow-button>
+    <section class="flex flex-col gap-3 mt-8">
+        <h3 class="font-bold text-3xl text-black">Nuestras tiendas</h3>
+        <div class="relative flex justify-center items-center">
 
-            <div class="flex flex-nowrap gap-5 overflow-hidden py-1 w-full" #storeBar>
+            <app-arrow-button class="absolute top-[105px] left-0 z-10" (onClick)="scrollLeft()" direction="left"></app-arrow-button>
+
+            <div class="flex flex-nowrap overflow-hidden py-1 w-full gap-5" #storeBar>
 
                 <app-store-card *ngFor="let tienda of tiendas$ | async" [tienda]="tienda"></app-store-card>
 
             </div>
 
-            <app-arrow-button (onClick)="scrollRight()" direction="right"></app-arrow-button>
+            <app-arrow-button class="absolute top-[105px] right-0 z-10" (onClick)="scrollRight()" direction="right"></app-arrow-button>
 
         </div>
     </section>
