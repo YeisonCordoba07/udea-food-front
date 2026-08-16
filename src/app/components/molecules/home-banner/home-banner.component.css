@@ -7,3 +7,12 @@ app-banner-item{
     flex-grow: 1;
 }
 
+@media (max-width:640px) {
+    app-banner-item:not(:last-child){
+        border: 0;
+        border-bottom: 1px solid #fdba74;
+        width: 80%;
+    
+    }
+}
+
