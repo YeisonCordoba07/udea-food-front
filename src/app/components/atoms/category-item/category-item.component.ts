@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FiltersService } from '@core/services/filters/filters.service';
-import { SearchService } from '@core/services/search.service';
 import { Subscription } from 'rxjs';
 
 @Component({
