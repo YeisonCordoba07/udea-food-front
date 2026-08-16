@@ -30,13 +30,13 @@ class="text-gray-400 w-full mt-2 ml-4 inline-block">
 
   <ng-container *ngIf="filters.mostrarSolo.toLowerCase() ==='productos'">
       <ng-container *ngFor="let producto of productos$ | async">
-        <app-product-card [producto]="producto"></app-product-card>
+        <app-product-card class="w-full sm:w-fit" [producto]="producto"></app-product-card>
       </ng-container>
   </ng-container>
 
   <ng-container *ngIf="filters.mostrarSolo.toLowerCase()=== 'tiendas'" >
     <ng-container *ngFor="let tienda of tiendas$ | async">
-        <app-store-card  class="block w-full md:w-[450px]" [tienda]="tienda"></app-store-card>
+        <app-store-card  class="flex w-full md:w-[450px]" [tienda]="tienda"></app-store-card>
        
     </ng-container>
   </ng-container>
