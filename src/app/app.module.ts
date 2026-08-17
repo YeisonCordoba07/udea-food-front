@@ -90,6 +90,12 @@ import { BreadIconComponent } from './components/atoms/icons/bread-icon/bread-ic
 import { IceCreamConeIconComponent } from './components/atoms/icons/ice-cream-cone-icon/ice-cream-cone-icon.component';
 import { HomeBannerComponent } from './components/molecules/home-banner/home-banner.component';
 import { BannerItemComponent } from './components/atoms/banner-item/banner-item.component';
+import { InfoIconComponent } from './components/atoms/icons/info-icon/info-icon.component';
+import { GroupUsersIconComponent } from './components/atoms/icons/group-users-icon/group-users-icon.component';
+import { FileDescriptionIconComponent } from './components/atoms/icons/file-description-icon/file-description-icon.component';
+import { ShieldIconComponent } from './components/atoms/icons/shield-icon/shield-icon.component';
+import { MessageDotsIconComponent } from './components/atoms/icons/message-dots-icon/message-dots-icon.component';
+import { MailIconComponent } from './components/atoms/icons/mail-icon/mail-icon.component';
 
 
 
@@ -178,6 +184,12 @@ import { BannerItemComponent } from './components/atoms/banner-item/banner-item.
     IceCreamConeIconComponent,
     HomeBannerComponent,
     BannerItemComponent,
+    InfoIconComponent,
+    GroupUsersIconComponent,
+    FileDescriptionIconComponent,
+    ShieldIconComponent,
+    MessageDotsIconComponent,
+    MailIconComponent,
   ],
   imports: [
     BrowserModule,
