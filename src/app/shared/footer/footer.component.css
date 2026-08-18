@@ -20,5 +20,9 @@
 } */
 
 .soft-shadow{
-    box-shadow: 0px 0px 30px -5px #fdbb74, 0px 0px 60px 0px #ffedd5a1;
+    box-shadow: 0px 0px 30px -5px #fdbb74d7, 0px 0px 60px 0px #ffedd556;
+}
+
+.rounded-lr{
+    border-radius: 60px 24px 24px 60px;
 }
