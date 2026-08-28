@@ -1,7 +1,14 @@
 
-<button (click)="openDialog()" class=" p-2  hover:text-orange-600 duration-150 hover:scale-[101%] mx-1 w-full h-full flex items-center justify-center">
+<button (click)="openDialog()" class=" p-2  hover:text-orange-600 duration-150 hover:scale-[101%] mx-1 w-full h-full flex items-center justify-center" *ngIf="buttonWidth ==='full'">
   <app-add-section-icon></app-add-section-icon>
 </button>
+
+
+<app-arrow-button direction="add" (onClick)="openDialog()" *ngIf="buttonWidth ==='custom'" [style]="style"></app-arrow-button>
+
+
+
+
 <app-empty-dialog>
 
   <div class="flex p-8 gap-5 flex-col">

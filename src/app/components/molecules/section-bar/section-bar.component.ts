@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {SeccionTienda} from "@core/models/udea.model";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-section-bar',
@@ -10,8 +11,10 @@ export class SectionBarComponent implements OnInit {
 
   @Input() secciones: SeccionTienda[] = [];
   activeSection: string = "";
+  @Input() control!: FormControl;
 
   @ViewChild('sectionContainer', { static: true }) sectionContainer!: ElementRef;
+
 
   constructor() { }
 
@@ -31,4 +34,11 @@ export class SectionBarComponent implements OnInit {
     }
   }
 
+  openCreateSection() {
+
+  }
+
+  updateControl($event: string) {
+    this.control.setValue($event);
+  }
 }

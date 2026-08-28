@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {EmptyDialogComponent} from "@components/atoms/empty-dialog/empty-dialog.component";
 import {TiendaService} from "@core/services/tienda/tienda.service";
@@ -10,19 +10,24 @@ import {TiendaService} from "@core/services/tienda/tienda.service";
 })
 export class CreateSectionDialogComponent implements OnInit {
 
+  @Input() style: 'primary' | 'secondary' = 'primary';
+  @Input() buttonWidth: 'full' | 'custom' = 'full';
+
   sectionName = new FormControl('', [Validators.required]);
 
   @ViewChild(EmptyDialogComponent) emptyDialog!: EmptyDialogComponent;
   constructor(private tiendaService: TiendaService) { }
 
+
+
   ngOnInit(): void {
   }
+
 
   handleSubmit() {
     this.tiendaService.createSeccion(this.sectionName.value || '').subscribe({
       next: (response) =>{
-        console.log('Sección creada:', response);
-        this.tiendaService.getSeccionesByIdTienda();
+        this.recargarPagina();
         this.closeDialog();
       },
       error: (error) => {
@@ -30,11 +35,20 @@ export class CreateSectionDialogComponent implements OnInit {
       }
     })
   }
+
+
+
   closeDialog() {
     this.emptyDialog.closeDialog();
   }
 
   openDialog() {
     this.emptyDialog.openDialog();
+  }
+
+
+
+  recargarPagina() {
+    window.location.reload();
   }
 }

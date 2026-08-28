@@ -13,12 +13,12 @@
                 <a (click)="switchSection(section.nombre)"
                     [ngClass]="{'px-4 py-2 relative transition-colors duration-150 whitespace-nowrap rounded-lg cursor-pointer  font-bold': true,
 
-                    'text-white bg-gradient-to-r from-orange-500 to-orange-600' : activeSection === section.nombre, 
-                    
+                    'text-white bg-gradient-to-r from-orange-500 to-orange-600' : activeSection === section.nombre,
+
                     'text-black hover:bg-orange-100 hover:text-orange-500 hover:border-orange-500 bg-neutral-200 border bg-border-300': activeSection !== section.nombre
-                } 
-        
-                    
+                }
+
+
                     ">
 
                     {{ section.nombre }}
@@ -39,12 +39,17 @@
             <app-arrow-button direction="left" (onClick)="scrollLeft()"></app-arrow-button>
             <app-arrow-button direction="right" (onClick)="scrollRight()"></app-arrow-button>
         </div>
+
+      <div class="flex items-center">
+
+        <app-create-section-dialog [style]="'secondary'" buttonWidth="custom"></app-create-section-dialog>
+      </div>
     </div>
 
 
     <div class="flex items-center space-x-2 w-1/4">
         <div class="w-full">
-            <app-search-bar placeholder="Buscar dentro de la tienda" backgroundColor="bg-white"></app-search-bar>
+            <app-search-bar placeholder="Buscar dentro de la tienda" backgroundColor="bg-white" (search)="updateControl($event)" ></app-search-bar>
         </div>
     </div>
 
