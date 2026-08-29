@@ -98,6 +98,7 @@ import {
 import {ShieldIconComponent} from './components/atoms/icons/shield-icon/shield-icon.component';
 import {MessageDotsIconComponent} from './components/atoms/icons/message-dots-icon/message-dots-icon.component';
 import {MailIconComponent} from './components/atoms/icons/mail-icon/mail-icon.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -198,7 +199,8 @@ import {MailIconComponent} from './components/atoms/icons/mail-icon/mail-icon.co
     FormsModule,
     HttpClientModule,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

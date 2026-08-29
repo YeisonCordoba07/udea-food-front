@@ -26,3 +26,11 @@
 .rounded-lr{
     border-radius: 60px 24px 24px 60px;
 }
+
+
+
+@media (max-width: 640px) {
+  .rounded-lr{
+    border-radius: 30px;
+  }
+}
