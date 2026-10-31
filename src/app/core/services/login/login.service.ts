@@ -32,6 +32,9 @@ export class LoginService {
   get currentAccount$(): Observable<UsuarioInfo | TiendaInfo | null> {
     return this.currentAccountSubject.asObservable();
   }
+  get currentAccount(): UsuarioInfo | TiendaInfo | null {
+    return this.currentAccountSubject.getValue();
+  }
 
   get isLogged$(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
