@@ -8,6 +8,7 @@ import {TiendaComponent} from "@pages/tienda/tienda.component";
 import {LoginComponent} from "@pages/login/login.component";
 import {CartComponent} from "@pages/cart/cart.component";
 import {CreateProductComponent} from "@pages/create-product/create-product.component";
+import {AuthGuard} from "@core/guard/auth.guard";
 
 
 const routes: Routes = [
@@ -24,10 +25,12 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'carrito', component: CartComponent
+    path: 'carrito', component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'crear-producto', component: CreateProductComponent
+    path: 'crear-producto', component: CreateProductComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -5,6 +5,9 @@ import {API_ROUTES} from "@core/constants/routes.constants";
 import {AccountInfo, TiendaInfo, UsuarioInfo} from "@core/models/udea.model";
 import {LOGIN} from "@core/constants/services.constants";
 
+import {jwtDecode, JwtPayload} from 'jwt-decode';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +24,7 @@ export class LoginService {
   }
 
 
+
   get accountInfo$(): Observable<AccountInfo | null> {
     return this.accountInfoSubject.asObservable();
   }
@@ -32,9 +36,21 @@ export class LoginService {
   get isLogged$(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
   }
+  get isLogged(): boolean{
+    return this.isLoggedSubject.getValue();
+  }
 
   get token$(): Observable<string | null> {
     return this.tokenSubject.asObservable();
+  }
+
+
+
+
+  checkSession(){
+    if (this.isTokenExpired()){
+      this.logout();
+    }
   }
 
 
@@ -56,6 +72,7 @@ export class LoginService {
     localStorage.removeItem(LOGIN.LOCALSTORAGE_TOKEN_NAME);
     localStorage.removeItem(LOGIN.LOCALSTORAGE_ACCOUNT_INFO_NAME);
   }
+
 
 
  changeAccount(idCuenta: number): void {
@@ -104,6 +121,26 @@ export class LoginService {
     }else{
       this.logout();
     }
+  }
+
+
+
+
+  private isTokenExpired(): boolean {
+    const token = this.tokenSubject.getValue();
+
+    if(token){
+      const decoded = jwtDecode<JwtPayload>(token);
+
+      // @ts-ignore
+      const expirationDate = decoded.exp * 1000;
+
+      const isExpired = Date.now() >= expirationDate;
+
+      console.log('Expiró el Token?', isExpired);
+      return isExpired;
+    }
+    return false;
   }
 
 }

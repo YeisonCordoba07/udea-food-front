@@ -1,13 +1,13 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Injectable, OnDestroy} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { API_ROUTES } from "@core/constants/routes.constants";
-import { Filters, PageInfo, Producto, ProductoSearchResult, Tienda, TiendaSearchResult } from "@core/models/udea.model";
-import { FiltersService } from './filters/filters.service';
-import { emptyPageInfo, filterOptions } from '@core/constants/filter.constants';
-import { PRODUCTO } from '@core/constants/services.constants';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {API_ROUTES} from "@core/constants/routes.constants";
+import {Filters, PageInfo, Producto, ProductoSearchResult, Tienda, TiendaSearchResult} from "@core/models/udea.model";
+import {FiltersService} from './filters/filters.service';
+import {emptyPageInfo, filterOptions} from '@core/constants/filter.constants';
+import {PRODUCTO} from '@core/constants/services.constants';
 
 
 @Injectable({
@@ -123,7 +123,7 @@ export class SearchService implements OnDestroy {
     }
 
 
-    
+
 
         //   searchByName2(query: string): void {
     //         if(query === ""){
